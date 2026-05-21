@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vertical · contemporary stories</title>
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #121212 50%, #0a0a0a 100%);
+            color: #e8e2da;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        /* Анимированные градиенты */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(183, 143, 58, 0.08), transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(183, 143, 58, 0.05), transparent 50%);
+            z-index: -2;
+        }
+
+        .animated-blob {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(183, 143, 58, 0.1), transparent);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .animated-blob-1 { top: -200px; left: -200px; animation-delay: 0s; }
+        .animated-blob-2 { bottom: -300px; right: -200px; animation-delay: -5s; width: 500px; height: 500px; }
+        .animated-blob-3 { top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -10s; width: 400px; height: 400px; opacity: 0.3; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
+            border-radius: 4px;
+        }
+
+        body.modal-active {
+            overflow: hidden;
+        }
+
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(183, 143, 58, 0.3);
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Объёмный 3D эффект для логотипа - матовая стеклянная подушка */
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff, #e8e2da, #c9b28b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 
+                0 2px 5px rgba(0, 0, 0, 0.2),
+                0 5px 10px rgba(183, 143, 58, 0.2),
+                0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+            transform-style: preserve-3d;
+            animation: gentleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-2px); }
+        }
+
+        /* Добавляем матовый блеск */
+        .logo h1::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -10px;
+            right: -10px;
+            bottom: -5px;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,240,0.2), transparent 70%);
+            border-radius: 20px;
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .auth-section {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .auth-btn {
+            background: rgba(20, 18, 16, 0.9);
+            border: 1px solid rgba(183, 143, 58, 0.4);
+            color: #B78F3A;
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .auth-btn:hover {
+            background: #B78F3A;
+            color: #000000;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(183, 143, 58, 0.3);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(20, 18, 16, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(183, 143, 58, 0.3);
+            border-radius: 100px;
+            padding: 0.3rem 1rem 0.3rem 0.5rem;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .user-name {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid #4d443c;
+            color: #a39281;
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logout-btn:hover {
+            border-color: #B78F3A;
+            color: #B78F3A;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 2rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Правая панель с прежними палочками */
+        .right-panel {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 100;
+        }
+
+        .quick-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .nav-dot {
+            width: 3px;
+            height: 16px;
+            background: rgba(58, 51, 42, 0.6);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .nav-dot:hover {
+            background: rgba(183, 143, 58, 0.9);
+            height: 22px;
+            box-shadow: 0 0 8px rgba(183, 143, 58, 0.5);
+        }
+
+        .nav-dot.active {
+            background: #B78F3A;
+            height: 22px;
+            box-shadow: 0 0 12px rgba(183, 143, 58, 0.6);
+        }
+
+        .lang-switch-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(183, 143, 58, 0.25);
+            border-radius: 30px;
+            padding: 0.5rem 0.3rem;
+            width: 48px;
+            margin-top: 1rem;
+        }
+
+        .lang-vert-btn {
+            background: transparent;
+            border: none;
+            color: #a39281;
+            font-size: 0.7rem;
+            padding: 0.3rem 0.2rem;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.03rem;
+            text-align: center;
+        }
+
+        .lang-vert-btn.active {
+            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
+            color: #000000;
+        }
+
+        /* Секции */
+        .section { 
+            margin-bottom: 7rem; 
+            scroll-margin-top: 100px;
+        }
+        
+        .section-header { 
+            display: flex; 
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem; 
+        }
+        
+        .section-header-left {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+        
+        .section-number { 
+            font-size: 1rem; 
+            color: #B78F3A; 
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+        
+        .section-title { 
+            font-size: 2.5rem; 
+            font-weight: 600; 
+            background: linear-gradient(135deg, #ffffff, #e0d4c8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .glass-card {
+            background: rgba(15, 15, 15, 0.5);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(183, 143, 58, 0.2);
+            border-radius: 32px;
+            padding: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(183, 143, 58, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .description-text { 
+            font-size: 1.2rem; 
+            color: #e0d4c8; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .description-text p { margin-bottom: 1.5rem; }
+
+        .accent-quote {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #B78F3A;
+            text-align: center;
+            margin: 2.5rem 0 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(183, 143, 58, 0.2);
+            letter-spacing: -0.01em;
+        }
+
+        .creator-full {
+            background: linear-gradient(135deg, rgba(20, 18, 16, 0.8), rgba(15, 15, 15, 0.6));
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(183, 143, 58, 0.2);
+            border-radius: 32px;
+            padding: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .creator-full:hover {
+            border-color: rgba(183, 143, 58, 0.4);
+        }
+
+        .creator-name { 
+            font-size: 2.5rem; 
+            font-weight: 600; 
+            background: linear-gradient(135deg, #ffffff, #B78F3A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem; 
+        }
+        
+        .creator-role { 
+            font-size: 0.9rem; 
+            color: #B78F3A; 
+            text-transform: uppercase; 
+            letter-spacing: 0.15em; 
+            margin-bottom: 1.5rem; 
+            border-bottom: 1px solid rgba(183, 143, 58, 0.3); 
+            padding-bottom: 1rem; 
+            display: inline-block;
+        }
+        
+        .creator-bio { 
+            color: #cfc4b8; 
+            font-size: 1.1rem; 
+            max-width: 600px;
+        }
+        
+        .creator-link { 
+            color: #B78F3A; 
+            text-decoration: none; 
+            border-bottom: 1px solid #B78F3A; 
+            font-weight: 400;
+        }
+        
+        .creator-quote { 
+            font-size: 1.2rem; 
+            font-weight: 400;
+            color: #B78F3A; 
+            border-left: 3px solid #B78F3A; 
+            padding-left: 1.5rem; 
+            margin-top: 1.5rem; 
+        }
+
+        .news-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .news-item {
+            background: rgba(15, 15, 15, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(183, 143, 58, 0.15);
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .news-item:hover {
+            border-color: #B78F3A;
+            background: rgba(25, 23, 20, 0.6);
+            transform: translateX(8px);
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            color: #B78F3A;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            min-width: 95px;
+        }
+
+        .news-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+            flex: 1;
+        }
+
+        .news-arrow {
+            color: #B78F3A;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .news-item:hover .news-arrow {
+            transform: translateX(5px);
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .issue-card {
+            background: rgba(15, 15, 15, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(183, 143, 58, 0.2);
+            border-radius: 28px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .issue-card:hover {
+            transform: translateY(-8px);
+            border-color: #B78F3A;
+            background: rgba(25, 23, 20, 0.7);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .issue-cover {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(183, 143, 58, 0.3);
+        }
+
+        .issue-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .issue-card:hover .issue-cover img {
+            transform: scale(1.05);
+        }
+
+        .issue-number { 
+            font-size: 0.75rem; 
+            color: #B78F3A; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            margin-bottom: 0.5rem; 
+            font-weight: 500;
+        }
+        .issue-title { 
+            font-size: 1.4rem; 
+            font-weight: 600; 
+            color: #ffffff; 
+            margin-bottom: 0.5rem; 
+        }
+        .issue-title .label { 
+            color: #a39281; 
+            font-size: 0.9rem; 
+            font-weight: 400; 
+            margin-right: 0.3rem; 
+        }
+        .issue-date { 
+            font-size: 0.85rem; 
+            color: #a39281; 
+            margin-bottom: 1rem; 
+            border-bottom: 1px solid rgba(183, 143, 58, 0.2); 
+            padding-bottom: 0.8rem; 
+        }
+        .issue-description { 
+            color: #cfc4b8; 
+            font-size: 0.95rem; 
+            margin-bottom: 1rem; 
+            flex-grow: 1; 
+            line-height: 1.5;
+        }
+        .issue-tag { 
+            display: inline-block; 
+            background: rgba(183, 143, 58, 0.15); 
+            border: 1px solid rgba(183, 143, 58, 0.3); 
+            border-radius: 100px; 
+            padding: 0.3rem 1.2rem; 
+            font-size: 0.75rem; 
+            color: #B78F3A; 
+            font-weight: 500;
+        }
+
+        /* Модальные окна */
+        .news-modal, .auth-modal, .age-modal, .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .news-modal.active, .auth-modal.active, .age-modal.active, .modal.active { display: flex; }
+
+        .news-modal-content, .auth-modal-content, .age-modal-content, .modal-content {
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(183, 143, 58, 0.4);
+            border-radius: 40px;
+            padding: 2.5rem;
+            max-width: 850px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-close, .auth-modal-close, .news-modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: none;
+            border: none;
+            color: #B78F3A;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-close:hover, .auth-modal-close:hover, .news-modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .news-modal-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(183, 143, 58, 0.3);
+            padding-bottom: 1rem;
+        }
+
+        .news-modal-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-modal-date {
+            font-size: 0.9rem;
+            color: #B78F3A;
+        }
+
+        .news-modal-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .news-modal-image {
+            flex: 0 0 200px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(183, 143, 58, 0.4);
+        }
+
+        .news-modal-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .news-modal-text {
+            flex: 1;
+            font-size: 1rem;
+            color: #e0d4c8;
+            line-height: 1.7;
+        }
+
+        .auth-modal-content {
+            max-width: 400px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #4d443c;
+            padding-bottom: 1rem;
+        }
+
+        .auth-tab {
+            background: none;
+            border: none;
+            color: #a39281;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .auth-tab.active {
+            color: #B78F3A;
+            border-bottom: 2px solid #B78F3A;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .auth-form input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #4d443c;
+            border-radius: 100px;
+            padding: 0.9rem 1.2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .auth-form input:focus {
+            outline: none;
+            border-color: #B78F3A;
+        }
+
+        .auth-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
+            border: none;
+            border-radius: 100px;
+            padding: 0.9rem;
+            color: #000000;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .auth-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(183, 143, 58, 0.3);
+        }
+
+        .auth-error {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .age-modal-content {
+            text-align: center;
+            max-width: 450px;
+        }
+
+        .age-circle {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .age-circle span {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .age-text {
+            font-size: 1.1rem;
+            color: #d4bcab;
+            margin-bottom: 1.5rem;
+        }
+
+        .age-warning {
+            font-size: 0.9rem;
+            color: #B78F3A;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            padding: 0.8rem;
+            border: 1px solid rgba(183, 143, 58, 0.3);
+            border-radius: 100px;
+        }
+
+        .age-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .age-btn {
+            background: transparent;
+            border: 1px solid rgba(183, 143, 58, 0.5);
+            color: #B78F3A;
+            padding: 0.8rem 2rem;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .age-btn:hover {
+            background: #B78F3A;
+            color: #000000;
+        }
+
+        .cookie-banner {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(183, 143, 58, 0.4);
+            border-radius: 100px;
+            padding: 1rem 2rem;
+            z-index: 4000;
+        }
+
+        .cookie-banner.active { display: block; }
+
+        .cookie-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-text h3 {
+            font-size: 1rem;
+            color: #B78F3A;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .cookie-text p {
+            font-size: 0.85rem;
+            color: #d4bcab;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .cookie-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .cookie-btn.accept {
+            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
+            border-color: transparent;
+            color: #000;
+        }
+
+        .cookie-btn.decline {
+            background: transparent;
+            border-color: #4d443c;
+            color: #a39281;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .gallery-main {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(183, 143, 58, 0.4);
+            margin-bottom: 1rem;
+        }
+
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4d443c;
+            cursor: pointer;
+        }
+
+        .gallery-dot.active {
+            background: #B78F3A;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(183, 143, 58, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .gallery-arrow.prev { left: 10px; }
+        .gallery-arrow.next { right: 10px; }
+
+        .modal-info h3 { 
+            font-size: 2rem; 
+            color: #B78F3A; 
+            margin-bottom: 0.5rem; 
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid #2a2a2a;
+            text-align: center;
+            color: #7a6f66;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 800px) {
+            .right-panel { display: none; }
+            .container { padding: 2rem; }
+            .modal-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2rem; }
+            .news-modal-body {
+                flex-direction: column;
+            }
+            .news-modal-image {
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            .sticky-header {
+                padding: 0.8rem 1rem;
+            }
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            .auth-section {
+                position: static;
+                transform: none;
+            }
+            .header-content {
+                justify-content: space-between;
+            }
+            body {
+                padding-top: 70px;
+            }
+            .cookie-banner {
+                border-radius: 24px;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="animated-blob animated-blob-1"></div>
+    <div class="animated-blob animated-blob-2"></div>
+    <div class="animated-blob animated-blob-3"></div>
+
+    <header class="sticky-header">
+        <div class="header-content">
+            <div class="logo">
+                <h1 id="logoTitle">The Vertical</h1>
+            </div>
+            <div class="auth-section" id="authSection"></div>
+        </div>
+    </header>
+
+    <div class="right-panel">
+        <div class="quick-nav">
+            <div class="nav-dot" data-section="about"></div>
+            <div class="nav-dot" data-section="creator"></div>
+            <div class="nav-dot" data-section="news"></div>
+            <div class="nav-dot" data-section="issues"></div>
+        </div>
+        <div class="lang-switch-vertical">
+            <button class="lang-vert-btn active" data-lang="en">EN</button>
+            <button class="lang-vert-btn" data-lang="ru">RU</button>
+            <button class="lang-vert-btn" data-lang="zh">中文</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="section" id="about">
+            <div class="section-header">
+                <div class="section-header-left">
+                    <span class="section-number" id="aboutNumber">01</span>
+                    <h2 class="section-title" id="aboutTitle">about</h2>
+                </div>
+            </div>
+            <div class="glass-card">
+                <div class="description-text" id="aboutText">
+                    <p><strong>The Vertical</strong> is an online magazine about people, their inner world, and the stories behind the facade of publicity. Our focus is thoughts, feelings, principles, and the search for meaning.</p>
+                    <p>Each piece is an attempt to look beyond the obvious and truly understand a person.</p>
+                </div>
+                <div class="accent-quote" id="aboutQuote">— behind the facade, there is always someone. we seek the vertical.</div>
+            </div>
+        </section>
+
+        <section class="section" id="creator">
+            <div class="section-header">
+                <div class="section-header-left">
+                    <span class="section-number" id="creatorNumber">02</span>
+                    <h2 class="section-title" id="creatorTitle">creator</h2>
+                </div>
+            </div>
+            <div class="creator-full">
+                <div class="creator-name" id="creatorName">Alexander Sokolov</div>
+                <div class="creator-role" id="creatorRole">founder, editor</div>
+                <div class="creator-bio" id="creatorBio">
+                    <p>Born in 1998 in Moscow. Founded The Vertical in 2026.</p>
+                    <p>Personal <a href="https://asksokolov.github.io/mybiography" target="_blank" class="creator-link" id="creatorLinkText">website</a>.</p>
+                </div>
+                <div class="creator-quote" id="creatorQuote">«Criticism is a way of dialogue»</div>
+            </div>
+        </section>
+
+        <section class="section" id="news">
+            <div class="section-header">
+                <div class="section-header-left">
+                    <span class="section-number" id="newsNumber">03</span>
+                    <h2 class="section-title" id="newsTitle">last news</h2>
+                </div>
+            </div>
+            <div class="news-grid" id="newsGrid"></div>
+        </section>
+
+        <section class="section" id="issues">
+            <div class="section-header">
+                <div class="section-header-left">
+                    <span class="section-number" id="issuesNumber">04</span>
+                    <h2 class="section-title" id="issuesTitle">issues</h2>
+                </div>
+            </div>
+            <div class="issues-grid">
+                <div class="issue-card" data-issue="1">
+                    <div class="issue-cover">
+                        <img src="https://i.postimg.cc/GhrzR21X/Vertical-1.png" alt="The Vertical issue 1" loading="lazy">
+                    </div>
+                    <div class="issue-number" id="issueNumber">first issue</div>
+                    <h3 class="issue-title"><span class="label" id="modelLabel">model:</span> <span id="modelName">Selina Tan</span></h3>
+                    <div class="issue-date" id="issueDate">March 8, 2026</div>
+                    <div class="issue-description" id="issueDesc">
+                        An honest conversation about inner silence, life in front of the camera, and finding oneself.
+                    </div>
+                    <span class="issue-tag" id="issueTag">interview</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div id="copyright">© The Vertical, 2026</div>
+        </footer>
+    </div>
+
+    <!-- Модальные окна -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-modal-content">
+            <button class="auth-modal-close" id="closeAuthModal">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login" id="loginTab">Login</button>
+                <button class="auth-tab" data-tab="register" id="registerTab">Register</button>
+            </div>
+            <div class="auth-form active" id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email">
+                <input type="password" id="loginPassword" placeholder="Password">
+                <button class="auth-submit" id="loginSubmit">Login</button>
+                <div class="auth-error" id="loginError"></div>
+            </div>
+            <div class="auth-form" id="registerForm">
+                <input type="text" id="registerName" placeholder="Name">
+                <input type="email" id="registerEmail" placeholder="Email">
+                <input type="password" id="registerPassword" placeholder="Password">
+                <button class="auth-submit" id="registerSubmit">Register</button>
+                <div class="auth-error" id="registerError"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="age-modal" id="ageModal">
+        <div class="age-modal-content">
+            <div class="age-circle"><span>18+</span></div>
+            <div class="age-text" id="ageText">This website contains mature content that may not be suitable for viewers under 18 years of age.</div>
+            <div class="age-warning" id="ageWarning">By entering, you confirm that you are at least 18 years old</div>
+            <div class="age-buttons">
+                <button class="age-btn" id="confirmAge">I am 18+</button>
+                <button class="age-btn exit" id="exitSite">Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h3 id="cookieTitle">Cookie Policy</h3>
+                <p id="cookieText">We use cookies to enhance your experience. By clicking "Accept", you consent to the use of all cookies.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" id="acceptCookies">Accept</button>
+                <button class="cookie-btn decline" id="declineCookies">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="issueModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div class="modal-grid" id="modalContent"></div>
+        </div>
+    </div>
+
+    <div class="news-modal" id="newsModal">
+        <div class="news-modal-content">
+            <button class="news-modal-close" id="closeNewsModal">&times;</button>
+            <div id="newsModalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const newsData = [
+            {
+                id: 1,
+                date: { en: "March 15, 2026", ru: "15 марта 2026", zh: "2026年3月15日" },
+                title: { en: "New Issue Coming Soon", ru: "Скоро новый выпуск", zh: "新一期即将推出" },
+                fullText: { 
+                    en: "We are excited to announce that the second issue of The Vertical is in production. This issue will feature an exclusive interview with a renowned composer about silence in music, as well as a photo essay on urban solitude. Expected release: May 2026.",
+                    ru: "Мы рады сообщить, что второй выпуск The Vertical находится в производстве. В этом номере выйдет эксклюзивное интервью с известным композитором о тишине в музыке, а также фотоэссе о городском одиночестве. Ожидаемый релиз: май 2026.",
+                    zh: "我们很高兴地宣布，The Vertical第二期正在制作中。本期将独家采访一位著名作曲家，探讨音乐中的沉默，以及关于城市孤独的摄影散文。预计发布时间：2026年5月。"
+                },
+                image: "https://i.postimg.cc/GhrzR21X/Vertical-1.png"
+            },
+            {
+                id: 2,
+                date: { en: "March 1, 2026", ru: "1 марта 2026", zh: "2026年3月1日" },
+                title: { en: "Selina Tan Interview Now Live", ru: "Интервью с Селиной Тан уже доступно", zh: "塞琳娜·谭专访现已上线" },
+                fullText: { 
+                    en: "The very first issue of The Vertical is now available. Our conversation with model Selina Tan explores the space between public image and inner self. Read the full interview and view the exclusive photo gallery.",
+                    ru: "Первый выпуск The Vertical уже доступен. Наш разговор с моделью Селиной Тан исследует пространство между публичным образом и внутренним я. Читайте полное интервью и смотрите эксклюзивную фотогалерею.",
+                    zh: "The Vertical第一期现已上线。我们与模特塞琳娜·谭的对话探讨了公众形象与内心自我之间的空间。阅读完整采访并查看独家照片集。"
+                },
+                image: "https://i.postimg.cc/ry5g747d/Vertical-2.png"
+            },
+            {
+                id: 3,
+                date: { en: "February 20, 2026", ru: "20 февраля 2026", zh: "2026年2月20日" },
+                title: { en: "Behind the Scenes: Selina Tan Shoot", ru: "За кадром: съемка с Селиной Тан", zh: "幕后花絮：塞琳娜·谭拍摄" },
+                fullText: { 
+                    en: "Exclusive behind-the-scenes footage from our first issue photoshoot with Selina Tan. See how the magic happens and what goes into creating the perfect shot.",
+                    ru: "Эксклюзивные кадры со съемки первого выпуска с Селиной Тан. Узнайте, как создается магия и что нужно для идеального кадра.",
+                    zh: "第一期拍摄幕后独家花絮。了解魔法如何发生，以及打造完美镜头需要什么。"
+                },
+                image: "https://i.postimg.cc/6qV0RsC0/Vertical-3.png"
+            },
+            {
+                id: 4,
+                date: { en: "February 8, 2026", ru: "8 февраля 2026", zh: "2026年2月8日" },
+                title: { en: "The Vertical Launches", ru: "Запуск The Vertical", zh: "The Vertical 正式启动" },
+                fullText: { 
+                    en: "Today we officially launched The Vertical — a new media platform dedicated to deep, human interviews. Our mission is to look beyond the facade and understand people truly. Welcome to our journey.",
+                    ru: "Сегодня мы официально запустили The Vertical — новую медиаплатформу, посвященную глубоким, человечным интервью. Наша миссия — заглянуть за фасад и понять людей по-настоящему. Добро пожаловать в наше путешествие.",
+                    zh: "今天我们正式推出了The Vertical — 一个致力于深度人性化访谈的新媒体平台。我们的使命是超越表面，真正理解人们。欢迎加入我们的旅程。"
+                },
+                image: "https://i.postimg.cc/mk3wMx7y/Vertical-4.png"
+            }
+        ];
+
+        const issueData = {
+            name: { en: "Selina Tan", ru: "Селина Тан", zh: "塞琳娜·谭" },
+            date: { en: "March 8, 2026", ru: "8 марта 2026", zh: "2026年3月8日" },
+            description: { 
+                en: "In the first issue of The Vertical — a conversation with model Selina Tan about what remains behind the scenes, about inner silence, and about how not to lose yourself when your face is part of the profession.",
+                ru: "В первом выпуске The Vertical — разговор с моделью Селиной Тан о том, что остаётся за кадром, о тишине внутри и о том, как не потерять себя.",
+                zh: "在第一期《The Vertical》中，我们与模特塞琳娜·谭探讨了镜头之外的故事、内心的宁静，以及如何不迷失自我。"
+            },
+            photos: [
+                "https://i.postimg.cc/GhrzR21X/Vertical-1.png",
+                "https://i.postimg.cc/ry5g747d/Vertical-2.png",
+                "https://i.postimg.cc/6qV0RsC0/Vertical-3.png",
+                "https://i.postimg.cc/mk3wMx7y/Vertical-4.png",
+                "https://i.postimg.cc/0jGfmg7Y/Vertical-5.png",
+                "https://i.postimg.cc/rsGJW65S/Vertical-6.png"
+            ]
+        };
+
+        const translations = {
+            en: {
+                logoTitle: 'The Vertical',
+                aboutNumber: '01', aboutTitle: 'about',
+                aboutText: '<p><strong>The Vertical</strong> is an online magazine about people, their inner world, and the stories behind the facade of publicity. Our focus is thoughts, feelings, principles, and the search for meaning.</p><p>Each piece is an attempt to look beyond the obvious and truly understand a person.</p>',
+                aboutQuote: '— behind the facade, there is always someone. we seek the vertical.',
+                creatorNumber: '02', creatorTitle: 'creator',
+                creatorName: 'Alexander Sokolov', creatorRole: 'founder, editor',
+                creatorBio: '<p>Born in 1998 in Moscow. Founded The Vertical in 2026.</p><p>Personal <a href="https://asksokolov.github.io/mybiography" target="_blank" class="creator-link">website</a>.</p>',
+                creatorQuote: '«Criticism is a way of dialogue»',
+                newsNumber: '03', newsTitle: 'last news',
+                issuesNumber: '04', issuesTitle: 'issues',
+                issueNumber: 'first issue', modelLabel: 'model:', modelName: 'Selina Tan',
+                issueDate: 'March 8, 2026', issueDesc: 'An honest conversation about inner silence, life in front of the camera, and finding oneself.',
+                issueTag: 'interview',
+                copyright: '© The Vertical, 2026',
+                ageText: 'This website contains mature content that may not be suitable for viewers under 18 years of age.',
+                ageWarning: 'By entering, you confirm that you are at least 18 years old',
+                ageConfirm: 'I am 18+', ageExit: 'Exit',
+                cookieTitle: 'Cookie Policy',
+                cookieText: 'We use cookies to enhance your experience. By clicking "Accept", you consent to the use of all cookies.',
+                acceptCookies: 'Accept', declineCookies: 'Decline',
+                loginTab: 'Login', registerTab: 'Register',
+                loginSubmit: 'Login', registerSubmit: 'Register',
+                loginEmailPlaceholder: 'Email', loginPasswordPlaceholder: 'Password',
+                registerNamePlaceholder: 'Name', registerEmailPlaceholder: 'Email', registerPasswordPlaceholder: 'Password',
+                authBtn: 'Login / Register', logoutBtn: 'Logout'
+            },
+            ru: {
+                logoTitle: 'The Vertical',
+                aboutNumber: '01', aboutTitle: 'о журнале',
+                aboutText: '<p><strong>The Vertical</strong> — это интернет-журнал о людях, их внутреннем мире и историях за фасадом публичности. Наша тема — мысли, чувства, принципы и поиск смыслов.</p><p>Каждый материал — попытка заглянуть за очевидное и понять человека по-настоящему.</p>',
+                aboutQuote: '— за фасадом всегда кто-то есть. мы ищем вертикаль.',
+                creatorNumber: '02', creatorTitle: 'создатель',
+                creatorName: 'Александр Соколов', creatorRole: 'основатель, редактор',
+                creatorBio: '<p>Родился в 1998 году в Москве. Основал The Vertical в 2026 году.</p><p>Личный <a href="https://asksokolov.github.io/mybiography" target="_blank" class="creator-link">сайт</a>.</p>',
+                creatorQuote: '«Критика — это способ диалога»',
+                newsNumber: '03', newsTitle: 'последние новости',
+                issuesNumber: '04', issuesTitle: 'выпуски',
+                issueNumber: 'первый выпуск', modelLabel: 'модель:', modelName: 'Селина Тан',
+                issueDate: '8 марта 2026', issueDesc: 'Искренний разговор о внутренней тишине, жизни перед камерой и поиске себя.',
+                issueTag: 'интервью',
+                copyright: '© The Vertical, 2026',
+                ageText: 'Этот сайт содержит контент для взрослых и не предназначен для просмотра лицам младше 18 лет.',
+                ageWarning: 'Входя на сайт, вы подтверждаете, что вам есть 18 лет',
+                ageConfirm: 'Мне есть 18', ageExit: 'Выйти',
+                cookieTitle: 'Политика cookie',
+                cookieText: 'Мы используем cookie для улучшения работы сайта. Нажимая "Принять", вы соглашаетесь на использование всех cookie.',
+                acceptCookies: 'Принять', declineCookies: 'Отказаться',
+                loginTab: 'Вход', registerTab: 'Регистрация',
+                loginSubmit: 'Войти', registerSubmit: 'Зарегистрироваться',
+                loginEmailPlaceholder: 'Email', loginPasswordPlaceholder: 'Пароль',
+                registerNamePlaceholder: 'Имя', registerEmailPlaceholder: 'Email', registerPasswordPlaceholder: 'Пароль',
+                authBtn: 'Войти / Регистрация', logoutBtn: 'Выйти'
+            },
+            zh: {
+                logoTitle: 'The Vertical',
+                aboutNumber: '01', aboutTitle: '关于',
+                aboutText: '<p><strong>The Vertical</strong> 是一本关于人、他们的内心世界以及公众形象背后故事的在线杂志。我们的主题是思想、感受、原则和寻找意义。</p><p>每一篇内容都是试图超越表面，真正理解一个人的尝试。</p>',
+                aboutQuote: '— 表象背后总有人存在。我们寻找垂直。',
+                creatorNumber: '02', creatorTitle: '创建者',
+                creatorName: '亚历山大·索科洛夫', creatorRole: '创始人, 编辑',
+                creatorBio: '<p>1998年出生于莫斯科。2026年创立The Vertical。</p><p>个人 <a href="https://asksokolov.github.io/mybiography" target="_blank" class="creator-link">网站</a>。</p>',
+                creatorQuote: '«批评是对话的一种方式»',
+                newsNumber: '03', newsTitle: '最新新闻',
+                issuesNumber: '04', issuesTitle: '期刊',
+                issueNumber: '第一期', modelLabel: '模特:', modelName: '塞琳娜·谭',
+                issueDate: '2026年3月8日', issueDesc: '关于内心宁静、镜头前的生活以及寻找自我的真诚对话。',
+                issueTag: '访谈',
+                copyright: '© The Vertical, 2026',
+                ageText: '本网站包含成人内容，可能不适合18岁以下用户观看。',
+                ageWarning: '进入即表示您确认已年满18岁',
+                ageConfirm: '我已年满18岁', ageExit: '退出',
+                cookieTitle: 'Cookie政策',
+                cookieText: '我们使用cookie来改善您的网站体验。点击"接受"，即表示您同意使用所有cookie。',
+                acceptCookies: '接受', declineCookies: '拒绝',
+                loginTab: '登录', registerTab: '注册',
+                loginSubmit: '登录', registerSubmit: '注册',
+                loginEmailPlaceholder: '邮箱', loginPasswordPlaceholder: '密码',
+                registerNamePlaceholder: '姓名', registerEmailPlaceholder: '邮箱', registerPasswordPlaceholder: '密码',
+                authBtn: '登录 / 注册', logoutBtn: '退出'
+            }
+        };
+
+        let currentLang = 'en';
+        let currentUser = null;
+        let users = [];
+
+        function setCookie(name, value, days) {
+            const date = new Date(); date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/;SameSite=Strict";
+        }
+        function getCookie(name) {
+            const c = document.cookie.split(';'); for(let i=0;i<c.length;i++) { let d=c[i]; while(d.charAt(0)==' ') d=d.substring(1); if(d.indexOf(name+'=')==0) return d.substring(name.length+1,d.length); } return null;
+        }
+        function deleteCookie(name) { document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; }
+
+        function checkCookieConsent() {
+            if (!getCookie('cookie_consent') && getCookie('age_confirmed')) document.getElementById('cookieBanner').classList.add('active');
+        }
+        function acceptCookies() { setCookie('cookie_consent','accepted',365); document.getElementById('cookieBanner').classList.remove('active'); }
+        function declineCookies() { setCookie('cookie_consent','declined',365); document.getElementById('cookieBanner').classList.remove('active'); }
+
+        function checkAge() { if(!getCookie('age_confirmed')) { document.getElementById('ageModal').classList.add('active'); document.body.classList.add('modal-active'); } else checkCookieConsent(); }
+        function confirmAge() { setCookie('age_confirmed','true',365); document.getElementById('ageModal').classList.remove('active'); document.body.classList.remove('modal-active'); checkCookieConsent(); }
+        function exitSite() { window.location.href = 'https://www.google.com'; }
+
+        function closeModalOnOutsideClick(modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang; const t = translations[lang];
+            document.querySelectorAll('.lang-vert-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+            for(let id in t) {
+                if(document.getElementById(id)) document.getElementById(id).innerHTML = t[id];
+            }
+            renderNews();
+            updateAuthUI();
+        }
+
+        function openNewsDetail(id) {
+            const news = newsData.find(n => n.id === id);
+            if(news) {
+                const modal = document.getElementById('newsModal');
+                const content = document.getElementById('newsModalContent');
+                content.innerHTML = `
+                    <div class="news-modal-header">
+                        <h2 class="news-modal-title">${news.title[currentLang]}</h2>
+                        <div class="news-modal-date">${news.date[currentLang]}</div>
+                    </div>
+                    <div class="news-modal-body">
+                        <div class="news-modal-image">
+                            <img src="${news.image}" alt="${news.title[currentLang]}">
+                        </div>
+                        <div class="news-modal-text">${news.fullText[currentLang]}</div>
+                    </div>
+                `;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function renderNews() {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = newsData.slice(0,4).map(n => `
+                <div class="news-item" data-news-id="${n.id}">
+                    <span class="news-date">${n.date[currentLang]}</span>
+                    <span class="news-title">${n.title[currentLang]}</span>
+                    <span class="news-arrow">→</span>
+                </div>
+            `).join('');
+            document.querySelectorAll('.news-item').forEach(item => {
+                item.addEventListener('click', () => openNewsDetail(parseInt(item.dataset.newsId)));
+            });
+        }
+
+        try { const saved = localStorage.getItem('vertical_user'); if(saved && getCookie('session')) currentUser = JSON.parse(saved); } catch(e) {}
+        try { const su = localStorage.getItem('vertical_users'); if(su) users = JSON.parse(su); } catch(e) {}
+        function saveUsers() { localStorage.setItem('vertical_users', JSON.stringify(users)); }
+        function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+        function setUser(u) { currentUser=u; localStorage.setItem('vertical_user',JSON.stringify(u)); setCookie('session',Math.random().toString(36).substring(2)+Date.now().toString(36),7); updateAuthUI(); }
+        function logout() { currentUser=null; localStorage.removeItem('vertical_user'); deleteCookie('session'); updateAuthUI(); }
+        function updateAuthUI() {
+            const t = translations[currentLang];
+            if(currentUser) {
+                document.getElementById('authSection').innerHTML = `<div class="user-info"><div class="user-avatar">${currentUser.name.charAt(0)}</div><span class="user-name">${currentUser.name}</span><button class="logout-btn" id="logoutBtn">${t.logoutBtn}</button></div>`;
+                document.getElementById('logoutBtn').addEventListener('click', logout);
+            } else {
+                document.getElementById('authSection').innerHTML = `<button class="auth-btn" id="showAuthModal">${t.authBtn}</button>`;
+                document.getElementById('showAuthModal').addEventListener('click', () => document.getElementById('authModal').classList.add('active'));
+            }
+        }
+
+        document.getElementById('loginSubmit').addEventListener('click', () => {
+            const e = document.getElementById('loginEmail').value, p = document.getElementById('loginPassword').value;
+            if(!e||!p) { document.getElementById('loginError').textContent='Fill all fields'; document.getElementById('loginError').classList.add('show'); return; }
+            if(!isValidEmail(e)) { document.getElementById('loginError').textContent='Invalid email'; document.getElementById('loginError').classList.add('show'); return; }
+            const u = users.find(u=>u.email===e && u.password===p);
+            if(u) { setUser(u); document.getElementById('authModal').classList.remove('active'); document.getElementById('loginError').classList.remove('show'); }
+            else { document.getElementById('loginError').textContent='Invalid email or password'; document.getElementById('loginError').classList.add('show'); }
+        });
+        document.getElementById('registerSubmit').addEventListener('click', () => {
+            const n = document.getElementById('registerName').value, e = document.getElementById('registerEmail').value, p = document.getElementById('registerPassword').value;
+            if(!n||!e||!p) { document.getElementById('registerError').textContent='Fill all fields'; document.getElementById('registerError').classList.add('show'); return; }
+            if(!isValidEmail(e)) { document.getElementById('registerError').textContent='Invalid email'; document.getElementById('registerError').classList.add('show'); return; }
+            if(p.length<6) { document.getElementById('registerError').textContent='Password min 6 chars'; document.getElementById('registerError').classList.add('show'); return; }
+            if(users.some(u=>u.email===e)) { document.getElementById('registerError').textContent='Email exists'; document.getElementById('registerError').classList.add('show'); return; }
+            const nu = {name:n, email:e, password:p}; users.push(nu); saveUsers(); setUser(nu);
+            document.getElementById('authModal').classList.remove('active'); document.getElementById('registerError').classList.remove('show');
+        });
+
+        const modals = ['authModal', 'ageModal', 'cookieBanner', 'issueModal', 'newsModal'];
+        modals.forEach(id => {
+            const modal = document.getElementById(id);
+            if(modal) closeModalOnOutsideClick(modal);
+        });
+
+        document.getElementById('closeAuthModal').addEventListener('click', () => document.getElementById('authModal').classList.remove('active'));
+        document.getElementById('closeModal').addEventListener('click', () => document.getElementById('issueModal').classList.remove('active'));
+        document.getElementById('closeNewsModal').addEventListener('click', () => { document.getElementById('newsModal').classList.remove('active'); document.body.style.overflow = ''; });
+
+        document.querySelectorAll('.lang-vert-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
+
+        const sectionsMap = { about: document.getElementById('about'), creator: document.getElementById('creator'), news: document.getElementById('news'), issues: document.getElementById('issues') };
+        document.querySelectorAll('.nav-dot').forEach(dot => {
+            const section = dot.dataset.section;
+            dot.addEventListener('click', () => sectionsMap[section]?.scrollIntoView({ behavior: 'smooth' }));
+        });
+        window.addEventListener('scroll', () => {
+            const pos = window.scrollY + 100;
+            for(let [key, sec] of Object.entries(sectionsMap)) {
+                if(sec && pos >= sec.offsetTop && pos < sec.offsetTop + sec.offsetHeight) {
+                    document.querySelectorAll('.nav-dot').forEach(d => d.classList.toggle('active', d.dataset.section === key));
+                    break;
+                }
+            }
+        });
+
+        let slideshowInterval=null, currentPhotoIndex=0, isTransitioning=false;
+        function renderGallery(photos, container) {
+            currentPhotoIndex=0;
+            container.innerHTML = `<div class="gallery-container"><div class="gallery-main"><img src="${photos[0]}" id="galleryImage"></div><div class="gallery-arrow prev" id="prevPhoto">←</div><div class="gallery-arrow next" id="nextPhoto">→</div><div class="gallery-nav" id="galleryDots">${photos.map((_,i)=>`<span class="gallery-dot ${i===0?'active':''}" data-index="${i}"></span>`).join('')}</div></div>`;
+            function updatePhoto(idx) { if(isTransitioning) return; if(idx>=0&&idx<photos.length) { isTransitioning=true; const img=document.getElementById('galleryImage'); img.style.opacity='0'; setTimeout(()=>{ currentPhotoIndex=idx; img.src=photos[idx]; img.style.opacity='1'; document.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===idx)); setTimeout(()=>isTransitioning=false,100); },500); } }
+            document.getElementById('prevPhoto')?.addEventListener('click',()=>{ let i=currentPhotoIndex-1; if(i<0)i=photos.length-1; updatePhoto(i); resetSlideshow(); });
+            document.getElementById('nextPhoto')?.addEventListener('click',()=>{ let i=currentPhotoIndex+1; if(i>=photos.length)i=0; updatePhoto(i); resetSlideshow(); });
+            document.querySelectorAll('.gallery-dot').forEach((d,i)=>d.addEventListener('click',()=>{ updatePhoto(i); resetSlideshow(); }));
+            function startSlideshow() { if(slideshowInterval) clearInterval(slideshowInterval); slideshowInterval = setInterval(()=>{ let i=currentPhotoIndex+1; if(i>=photos.length)i=0; updatePhoto(i); },5000); }
+            function resetSlideshow() { if(slideshowInterval){ clearInterval(slideshowInterval); startSlideshow(); } }
+            startSlideshow();
+        }
+        document.querySelector('.issue-card')?.addEventListener('click', () => {
+            const modal=document.getElementById('issueModal'), content=document.getElementById('modalContent');
+            content.innerHTML = `<div class="gallery-container"></div><div class="modal-info"><h3>${issueData.name[currentLang]}</h3><div class="modal-date">${issueData.date[currentLang]}</div><div class="modal-description">${issueData.description[currentLang]}</div></div>`;
+            renderGallery(issueData.photos, content.querySelector('.gallery-container'));
+            modal.classList.add('active'); document.body.style.overflow='hidden';
+        });
+
+        document.getElementById('confirmAge').addEventListener('click', confirmAge);
+        document.getElementById('exitSite').addEventListener('click', exitSite);
+        document.getElementById('acceptCookies').addEventListener('click', acceptCookies);
+        document.getElementById('declineCookies').addEventListener('click', declineCookies);
+
+        setLanguage('en');
+        checkAge();
+        updateAuthUI();
+        renderNews();
+    </script>
+</body>
+</html>
