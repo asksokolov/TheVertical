@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Vertical · contemporary stories</title>
-    <!-- Шрифты -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <title>VERT · contemporary stories</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * {
             margin: 0;
@@ -16,80 +25,204 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #121212 50%, #0a0a0a 100%);
-            color: #e8e2da;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            font-size: 16px;
-            line-height: 1.6;
+            background-color: #060606;
+            color: #C8C8C8;
+            font-family: 'Onest', 'Plus Jakarta Sans', 'DM Sans', 'Inter Tight', sans-serif;
+            font-weight: 350;
+            font-size: 15px;
+            line-height: 1.55;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-top: 80px;
+            padding-top: 72px;
+            letter-spacing: -0.01em;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* Анимированные градиенты */
-        .gradient-bg {
+        body.premium-active::before {
+            content: "";
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(183, 143, 58, 0.08), transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(183, 143, 58, 0.05), transparent 50%);
-            z-index: -2;
+            background-image: 
+                radial-gradient(ellipse at 12% 35%, rgba(255, 215, 0, 0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 88% 20%, rgba(255, 215, 0, 0.04) 0%, transparent 55%),
+                radial-gradient(ellipse at 35% 70%, rgba(255, 215, 0, 0.04) 0%, transparent 55%),
+                radial-gradient(ellipse at 65% 55%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .animated-blob {
+        body.premium-active::after {
+            content: "";
             position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(183, 143, 58, 0.1), transparent);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: float 20s infinite ease-in-out;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,215,0,0.015) 2px, rgba(255,215,0,0.015) 4px);
+            pointer-events: none;
+            z-index: 1;
+            animation: shimmerPremium 8s linear infinite;
         }
 
-        .animated-blob-1 { top: -200px; left: -200px; animation-delay: 0s; }
-        .animated-blob-2 { bottom: -300px; right: -200px; animation-delay: -5s; width: 500px; height: 500px; }
-        .animated-blob-3 { top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -10s; width: 400px; height: 400px; opacity: 0.3; }
+        @keyframes shimmerPremium {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.05); }
-            66% { transform: translate(-20px, 20px) scale(0.95); }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(ellipse at 12% 35%, rgba(204, 255, 0, 0.035) 0%, transparent 55%),
+                radial-gradient(ellipse at 88% 20%, rgba(255, 140, 0, 0.025) 0%, transparent 55%),
+                radial-gradient(ellipse at 35% 70%, rgba(204, 255, 0, 0.025) 0%, transparent 55%),
+                radial-gradient(ellipse at 65% 55%, rgba(0, 212, 255, 0.015) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body.maintenance-active {
+            overflow: hidden;
         }
 
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 3px;
         }
         ::-webkit-scrollbar-track {
-            background: #1a1a1a;
+            background: #060606;
         }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
-            border-radius: 4px;
+            background: #222;
+            border-radius: 1px;
         }
 
-        body.modal-active {
-            overflow: hidden;
+        :root {
+            --accent: #CCFF00;
+            --accent-secondary: #FF8C00;
+            --accent-blue: #00D4FF;
+            --premium-gold: #FFD700;
+            --font-display: 'Clash Display', 'Sora', 'Unbounded', 'Schibsted Grotesk', sans-serif;
+            --font-body: 'Onest', 'Instrument Sans', 'Plus Jakarta Sans', 'DM Sans', 'Inter Tight', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-chinese: 'Noto Sans SC', 'Onest', sans-serif;
+            --font-button: 'Schibsted Grotesk', 'Sora', 'Instrument Sans', sans-serif;
+            --transition-smooth: cubic-bezier(0.22, 0.02, 0.08, 1);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-spring: cubic-bezier(0.22, 1.28, 0.36, 1.04);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); filter: blur(6px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); filter: blur(4px); }
+            to { opacity: 1; transform: translateX(0); filter: blur(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); filter: blur(4px); }
+            to { opacity: 1; transform: translateX(0); filter: blur(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.88); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes revealClip {
+            from { clip-path: inset(0 100% 0 0); opacity: 0; }
+            to { clip-path: inset(0 0 0 0); opacity: 1; }
+        }
+        @keyframes maintenancePulse {
+            0%, 100% { opacity: 0.55; }
+            50% { opacity: 1; }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes notificationSlide {
+            from { transform: translateY(-120px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes notificationSlideOut {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-120px); opacity: 0; }
+        }
+        @keyframes premiumGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.2), 0 0 40px rgba(255,215,0,0.1); }
+            50% { box-shadow: 0 0 30px rgba(255,215,0,0.35), 0 0 60px rgba(255,215,0,0.2); }
+        }
+        @keyframes premiumBorderGlow {
+            0%, 100% { border-color: rgba(255,215,0,0.3); }
+            50% { border-color: rgba(255,215,0,0.7); }
+        }
+
+        .premium-badge {
+            display: none;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #0a0a0a;
+            font-family: var(--font-button);
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            animation: premiumGlow 2s ease-in-out infinite;
+        }
+
+        body.premium-active .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .premium-header-indicator {
+            display: none;
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+            border-radius: 1px;
+        }
+
+        body.premium-active .premium-header-indicator {
+            display: block;
+        }
+
+        .premium-card {
+            border-color: rgba(255,215,0,0.2) !important;
+            animation: premiumBorderGlow 3s ease-in-out infinite;
         }
 
         .sticky-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(183, 143, 58, 0.3);
-            padding: 1rem 2rem;
+            background: rgba(6, 6, 6, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 0.8rem 1.5rem;
+            animation: fadeInUp 0.8s var(--transition-smooth) both;
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
@@ -97,1377 +230,2136 @@
             position: relative;
         }
 
-        /* Объёмный 3D эффект для логотипа - матовая стеклянная подушка */
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff, #e8e2da, #c9b28b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 
-                0 2px 5px rgba(0, 0, 0, 0.2),
-                0 5px 10px rgba(183, 143, 58, 0.2),
-                0 10px 20px rgba(0, 0, 0, 0.2);
+        .logo {
             position: relative;
-            display: inline-block;
-            transform-style: preserve-3d;
-            animation: gentleFloat 3s ease-in-out infinite;
         }
 
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-2px); }
+        .logo h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            background: linear-gradient(135deg, #F0F0F0 0%, #F0F0F0 50%, var(--accent) 51%, var(--accent-secondary) 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease infinite;
+            transition: transform 0.4s var(--transition-spring);
         }
 
-        /* Добавляем матовый блеск */
-        .logo h1::before {
+        .logo h1::after {
             content: '';
             position: absolute;
-            top: -5px;
-            left: -10px;
-            right: -10px;
-            bottom: -5px;
-            background: radial-gradient(circle at 30% 20%, rgba(255,255,240,0.2), transparent 70%);
-            border-radius: 20px;
-            pointer-events: none;
-            z-index: -1;
-            filter: blur(8px);
+            bottom: -4px; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 1.5px;
+            background: var(--accent);
+            transition: width 0.5s var(--transition-spring);
+            border-radius: 1px;
         }
+
+        .logo h1:hover { transform: scale(1.04); }
+        .logo h1:hover::after { width: 100%; }
 
         .auth-section {
             position: absolute;
-            right: 0;
-            top: 50%;
+            right: 0; top: 50%;
             transform: translateY(-50%);
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .auth-btn {
-            background: rgba(20, 18, 16, 0.9);
-            border: 1px solid rgba(183, 143, 58, 0.4);
-            color: #B78F3A;
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            font-family: 'Inter', sans-serif;
+            background: transparent;
+            border: 1px solid #1f1f1f;
+            color: #aaa;
+            padding: 0.45rem 1.3rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            cursor: pointer;
+            transition: all 0.35s var(--transition-smooth);
+            font-family: var(--font-button);
         }
 
         .auth-btn:hover {
-            background: #B78F3A;
-            color: #000000;
-            transform: scale(1.02);
-            box-shadow: 0 4px 15px rgba(183, 143, 58, 0.3);
+            border-color: #fff;
+            color: #fff;
+            background: rgba(255,255,255,0.03);
         }
+        .auth-btn span { position: relative; z-index: 1; }
 
         .user-info {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            background: rgba(20, 18, 16, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(183, 143, 58, 0.3);
-            border-radius: 100px;
-            padding: 0.3rem 1rem 0.3rem 0.5rem;
+            gap: 0.7rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #1f1f1f;
+            border-radius: 40px;
+            padding: 0.2rem 1rem 0.2rem 0.5rem;
+            animation: scaleIn 0.4s var(--transition-spring);
         }
 
         .user-avatar {
-            width: 32px;
-            height: 32px;
+            width: 26px; height: 26px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
+            background: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
-            font-weight: 600;
+            color: #060606;
+            font-weight: 700;
+            font-size: 0.7rem;
+            font-family: var(--font-display);
+            transition: transform 0.3s var(--transition-spring);
         }
 
+        .user-info:hover .user-avatar { transform: scale(1.1) rotate(5deg); }
+
         .user-name {
-            color: #ffffff;
-            font-size: 0.9rem;
-            font-weight: 400;
+            color: #ddd;
+            font-size: 0.8rem;
+            font-weight: 500;
+            font-family: var(--font-body);
         }
 
         .logout-btn {
             background: transparent;
-            border: 1px solid #4d443c;
-            color: #a39281;
-            padding: 0.3rem 0.8rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
+            border: 1px solid #1f1f1f;
+            color: #888;
+            padding: 0.25rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
             cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .logout-btn:hover {
-            border-color: #B78F3A;
-            color: #B78F3A;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 2rem 2rem 4rem;
+            transition: all 0.3s var(--transition-smooth);
+            font-family: var(--font-button);
             position: relative;
-            z-index: 2;
+            overflow: hidden;
         }
 
-        /* Правая панель с прежними палочками */
+        .logout-btn::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: #FF3333;
+            opacity: 0;
+            transition: opacity 0.3s var(--transition-smooth);
+            z-index: 0;
+            border-radius: 40px;
+        }
+
+        .logout-btn:hover { border-color: #FF3333; color: #fff; }
+        .logout-btn:hover::before { opacity: 1; }
+        .logout-btn span { position: relative; z-index: 1; }
+
+        .notification-toast {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4500;
+            background: #0f0f0f;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 1.2rem 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            animation: notificationSlide 0.5s var(--transition-spring) forwards;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .notification-toast.premium-toast {
+            border-color: rgba(255,215,0,0.4);
+            background: #0f0f0f;
+            animation: notificationSlide 0.5s var(--transition-spring) forwards, premiumGlow 2s ease-in-out infinite;
+        }
+
+        .notification-toast.closing {
+            animation: notificationSlideOut 0.4s var(--transition-smooth) forwards;
+        }
+
+        .notification-toast-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .notification-toast.premium-toast .notification-toast-icon {
+            color: #FFD700;
+        }
+
+        .notification-toast-content {
+            flex: 1;
+        }
+
+        .notification-toast-title {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .notification-toast-text {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: #999;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .notification-toast-close {
+            background: none;
+            border: none;
+            color: #555;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .notification-toast-close:hover { color: #fff; }
+
         .right-panel {
             position: fixed;
-            right: 2rem;
-            top: 50%;
+            right: 1.5rem; top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 2rem;
             z-index: 100;
+            align-items: center;
+            animation: fadeInRight 1s var(--transition-smooth) 0.5s both;
         }
 
         .quick-nav {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1rem;
+            align-items: center;
         }
 
-        .nav-dot {
-            width: 3px;
-            height: 16px;
-            background: rgba(58, 51, 42, 0.6);
+        .nav-icon {
+            background: none;
+            border: none;
             cursor: pointer;
-            transition: all 0.2s;
-            border-radius: 2px;
+            color: #3a3a3a;
+            transition: all 0.4s var(--transition-spring);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px; height: 18px;
+            position: relative;
         }
 
-        .nav-dot:hover {
-            background: rgba(183, 143, 58, 0.9);
-            height: 22px;
-            box-shadow: 0 0 8px rgba(183, 143, 58, 0.5);
+        .nav-icon::after {
+            content: '';
+            position: absolute;
+            width: 3px; height: 3px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s var(--transition-spring);
         }
 
-        .nav-dot.active {
-            background: #B78F3A;
-            height: 22px;
-            box-shadow: 0 0 12px rgba(183, 143, 58, 0.6);
-        }
+        .nav-icon:hover { color: var(--accent); transform: scale(1.3); }
+        .nav-icon:hover::after { opacity: 1; transform: scale(1.5); }
+        .nav-icon.active { color: var(--accent); }
+        .nav-icon.active::after { opacity: 1; transform: scale(1.2); }
 
         .lang-switch-vertical {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            background: rgba(15, 15, 15, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(183, 143, 58, 0.25);
-            border-radius: 30px;
-            padding: 0.5rem 0.3rem;
-            width: 48px;
-            margin-top: 1rem;
+            gap: 0.6rem;
+            background: rgba(16, 16, 16, 0.85);
+            border: 1px solid #1f1f1f;
+            border-radius: 24px;
+            padding: 0.45rem 0.3rem;
+            width: 38px;
+            transition: border-color 0.4s var(--transition-smooth);
         }
+
+        .lang-switch-vertical:hover { border-color: rgba(204, 255, 0, 0.15); }
 
         .lang-vert-btn {
             background: transparent;
             border: none;
-            color: #a39281;
-            font-size: 0.7rem;
-            padding: 0.3rem 0.2rem;
-            border-radius: 24px;
+            color: #666;
+            font-size: 0.55rem;
+            font-weight: 600;
+            padding: 0.2rem 0.1rem;
+            border-radius: 16px;
             cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
+            transition: all 0.4s var(--transition-spring);
+            font-family: var(--font-button);
             text-transform: uppercase;
-            letter-spacing: 0.03rem;
+            letter-spacing: 0.05rem;
             text-align: center;
         }
 
         .lang-vert-btn.active {
-            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
-            color: #000000;
+            color: #060606;
+            background: var(--accent);
+            font-weight: 700;
+            transform: scale(1.05);
+        }
+        .lang-vert-btn:hover:not(.active) { color: #aaa; transform: translateY(-1px); }
+
+        .maintenance-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(6, 6, 6, 0.98);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1.8rem;
+            text-align: center;
+            padding: 2rem;
         }
 
-        /* Секции */
-        .section { 
-            margin-bottom: 7rem; 
-            scroll-margin-top: 100px;
+        .maintenance-overlay.active { display: flex; }
+
+        .maintenance-icon-symbol {
+            font-size: 3.5rem;
+            animation: maintenancePulse 2.2s infinite;
+            opacity: 0.8;
         }
-        
-        .section-header { 
-            display: flex; 
+
+        .maintenance-title {
+            font-family: var(--font-display);
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .maintenance-subtitle {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: #888;
+            font-weight: 400;
+            max-width: 480px;
+        }
+
+        .maintenance-time {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            color: #ccc;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #1f1f1f;
+            padding: 0.9rem 1.8rem;
+            border-radius: 16px;
+        }
+
+        .hero-slider {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-top: -72px;
+            margin-bottom: 4.5rem;
+            position: relative;
+            height: 78vh;
+            min-height: 480px;
+            overflow: hidden;
+            animation: scaleIn 1.2s var(--transition-smooth) both;
+        }
+
+        .hero-slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s var(--transition-spring);
+        }
+
+        .hero-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-slide img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.26);
+            transition: filter 0.8s var(--transition-smooth), transform 1.2s var(--transition-smooth);
+        }
+
+        .hero-slider:hover .hero-slide img { filter: brightness(0.36); transform: scale(1.015); }
+
+        .hero-slide-content {
+            position: relative; z-index: 2;
+            text-align: center;
+            max-width: 750px;
+            padding: 2rem;
+            animation: fadeInUp 0.8s var(--transition-spring) 0.3s both;
+        }
+
+        .hero-slide-content h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.08;
+            margin-bottom: 0.9rem;
+            letter-spacing: -0.04em;
+            animation: revealClip 1s var(--transition-smooth) 0.5s both;
+        }
+
+        .hero-slide-content p {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.82);
+            font-weight: 400;
+            animation: fadeInUp 0.8s var(--transition-smooth) 0.8s both;
+        }
+
+        .hero-dots {
+            position: absolute;
+            bottom: 2rem; left: 50%;
+            transform: translateX(-50%);
+            display: flex; gap: 0.7rem;
+            z-index: 3;
+        }
+
+        .hero-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.4s var(--transition-spring);
+        }
+
+        .hero-dot.active { background: #fff; width: 24px; border-radius: 4px; }
+        .hero-dot:hover { background: rgba(255, 255, 255, 0.6); transform: scale(1.3); }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem 1.5rem;
+            position: relative; z-index: 2;
+        }
+
+        .section { margin-bottom: 5.5rem; scroll-margin-top: 90px; }
+
+        .section-header {
+            display: flex;
             align-items: baseline;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 2rem; 
+            margin-bottom: 2.2rem;
         }
-        
-        .section-header-left {
-            display: flex;
-            align-items: baseline;
-            gap: 1rem;
+
+        .section-header-left { display: flex; align-items: baseline; gap: 1rem; }
+
+        .section-number {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            font-family: var(--font-mono);
         }
-        
-        .section-number { 
-            font-size: 1rem; 
-            color: #B78F3A; 
-            font-weight: 500;
-            letter-spacing: 0.1em;
-        }
-        
-        .section-title { 
-            font-size: 2.5rem; 
-            font-weight: 600; 
-            background: linear-gradient(135deg, #ffffff, #e0d4c8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.02em;
+
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 600;
+            color: #f0f0f0;
+            letter-spacing: -0.03em;
+            font-family: var(--font-display);
         }
 
         .glass-card {
-            background: rgba(15, 15, 15, 0.5);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(183, 143, 58, 0.2);
-            border-radius: 32px;
-            padding: 3rem;
-            transition: all 0.3s ease;
+            background: rgba(8, 8, 8, 0.55);
+            border: 1px solid #181818;
+            border-radius: 18px;
+            padding: 2.5rem;
+            transition: all 0.45s var(--transition-smooth);
         }
 
         .glass-card:hover {
-            border-color: rgba(183, 143, 58, 0.4);
+            border-color: #252525;
             transform: translateY(-3px);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
         }
 
-        .description-text { 
-            font-size: 1.2rem; 
-            color: #e0d4c8; 
-            max-width: 800px; 
-            margin: 0 auto; 
+        .description-text {
+            font-size: 1.05rem;
+            color: #bbb;
+            max-width: 700px;
+            margin: 0 auto;
+            font-family: var(--font-body);
+            font-weight: 400;
+            line-height: 1.7;
         }
-        .description-text p { margin-bottom: 1.5rem; }
+        .description-text p { margin-bottom: 1.4rem; }
 
         .accent-quote {
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: #B78F3A;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
             text-align: center;
-            margin: 2.5rem 0 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(183, 143, 58, 0.2);
+            margin: 2.2rem 0 0;
+            padding-top: 1.8rem;
+            border-top: 1px solid #181818;
             letter-spacing: -0.01em;
-        }
-
-        .creator-full {
-            background: linear-gradient(135deg, rgba(20, 18, 16, 0.8), rgba(15, 15, 15, 0.6));
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(183, 143, 58, 0.2);
-            border-radius: 32px;
-            padding: 3rem;
-            transition: all 0.3s ease;
-        }
-
-        .creator-full:hover {
-            border-color: rgba(183, 143, 58, 0.4);
-        }
-
-        .creator-name { 
-            font-size: 2.5rem; 
-            font-weight: 600; 
-            background: linear-gradient(135deg, #ffffff, #B78F3A);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem; 
-        }
-        
-        .creator-role { 
-            font-size: 0.9rem; 
-            color: #B78F3A; 
-            text-transform: uppercase; 
-            letter-spacing: 0.15em; 
-            margin-bottom: 1.5rem; 
-            border-bottom: 1px solid rgba(183, 143, 58, 0.3); 
-            padding-bottom: 1rem; 
-            display: inline-block;
-        }
-        
-        .creator-bio { 
-            color: #cfc4b8; 
-            font-size: 1.1rem; 
-            max-width: 600px;
-        }
-        
-        .creator-link { 
-            color: #B78F3A; 
-            text-decoration: none; 
-            border-bottom: 1px solid #B78F3A; 
-            font-weight: 400;
-        }
-        
-        .creator-quote { 
-            font-size: 1.2rem; 
-            font-weight: 400;
-            color: #B78F3A; 
-            border-left: 3px solid #B78F3A; 
-            padding-left: 1.5rem; 
-            margin-top: 1.5rem; 
+            font-family: var(--font-display);
         }
 
         .news-grid {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.3rem;
+            margin-top: 2.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.8rem;
+            scroll-snap-type: x mandatory;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
         }
 
+        .news-grid::-webkit-scrollbar { height: 2px; }
+        .news-grid::-webkit-scrollbar-track { background: transparent; }
+        .news-grid::-webkit-scrollbar-thumb { background: #222; border-radius: 1px; }
+
         .news-item {
-            background: rgba(15, 15, 15, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(183, 143, 58, 0.15);
-            border-radius: 24px;
-            padding: 1.2rem 1.8rem;
+            background: rgba(8, 8, 8, 0.4);
+            border: 1px solid #181818;
+            border-radius: 14px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.45s var(--transition-spring);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
+            flex-direction: column;
+            min-width: 220px; max-width: 220px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            overflow: hidden;
         }
 
         .news-item:hover {
-            border-color: #B78F3A;
-            background: rgba(25, 23, 20, 0.6);
-            transform: translateX(8px);
+            border-color: #2a2a2a;
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
         }
 
-        .news-date {
-            font-size: 0.8rem;
-            color: #B78F3A;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            min-width: 95px;
-        }
+        .news-image { width: 100%; aspect-ratio: 4/5; overflow: hidden; }
+        .news-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.55s var(--transition-smooth); }
+        .news-item:hover .news-image img { transform: scale(1.06); }
 
-        .news-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #ffffff;
-            flex: 1;
-        }
-
-        .news-arrow {
-            color: #B78F3A;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .news-item:hover .news-arrow {
-            transform: translateX(5px);
-        }
+        .news-info { padding: 0.8rem 0.9rem; display: flex; flex-direction: column; gap: 0.25rem; }
+        .news-title { font-size: 0.82rem; font-weight: 500; color: #e0e0e0; line-height: 1.3; font-family: var(--font-body); }
+        .news-arrow { color: #3a3a3a; font-size: 0.75rem; transition: all 0.4s var(--transition-spring); }
+        .news-item:hover .news-arrow { color: var(--accent); transform: translateX(5px); }
 
         .issues-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            display: flex;
+            gap: 1.3rem;
             margin-top: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.8rem;
+            scroll-snap-type: x mandatory;
         }
 
+        .issues-grid::-webkit-scrollbar { height: 2px; }
+        .issues-grid::-webkit-scrollbar-track { background: transparent; }
+        .issues-grid::-webkit-scrollbar-thumb { background: #222; border-radius: 1px; }
+
         .issue-card {
-            background: rgba(15, 15, 15, 0.5);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(183, 143, 58, 0.2);
-            border-radius: 28px;
-            padding: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            background: rgba(8, 8, 8, 0.4);
+            border: 1px solid #181818;
+            border-radius: 14px;
+            transition: all 0.45s var(--transition-spring);
             cursor: pointer;
             display: flex;
             flex-direction: column;
+            min-width: 220px; max-width: 220px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            overflow: hidden;
         }
 
         .issue-card:hover {
-            transform: translateY(-8px);
-            border-color: #B78F3A;
-            background: rgba(25, 23, 20, 0.7);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: #2a2a2a;
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
         }
 
-        .issue-cover {
-            width: 100%;
-            aspect-ratio: 3/4;
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(183, 143, 58, 0.3);
-        }
+        .issue-cover-large { width: 100%; aspect-ratio: 3/4; overflow: hidden; position: relative; }
+        .issue-cover-large img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.55s var(--transition-smooth); }
+        .issue-card:hover .issue-cover-large img { transform: scale(1.06); }
 
-        .issue-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .issue-card:hover .issue-cover img {
-            transform: scale(1.05);
-        }
-
-        .issue-number { 
-            font-size: 0.75rem; 
-            color: #B78F3A; 
-            text-transform: uppercase; 
-            letter-spacing: 0.1em; 
-            margin-bottom: 0.5rem; 
-            font-weight: 500;
-        }
-        .issue-title { 
-            font-size: 1.4rem; 
-            font-weight: 600; 
-            color: #ffffff; 
-            margin-bottom: 0.5rem; 
-        }
-        .issue-title .label { 
-            color: #a39281; 
-            font-size: 0.9rem; 
-            font-weight: 400; 
-            margin-right: 0.3rem; 
-        }
-        .issue-date { 
-            font-size: 0.85rem; 
-            color: #a39281; 
-            margin-bottom: 1rem; 
-            border-bottom: 1px solid rgba(183, 143, 58, 0.2); 
-            padding-bottom: 0.8rem; 
-        }
-        .issue-description { 
-            color: #cfc4b8; 
-            font-size: 0.95rem; 
-            margin-bottom: 1rem; 
-            flex-grow: 1; 
-            line-height: 1.5;
-        }
-        .issue-tag { 
-            display: inline-block; 
-            background: rgba(183, 143, 58, 0.15); 
-            border: 1px solid rgba(183, 143, 58, 0.3); 
-            border-radius: 100px; 
-            padding: 0.3rem 1.2rem; 
-            font-size: 0.75rem; 
-            color: #B78F3A; 
-            font-weight: 500;
-        }
-
-        /* Модальные окна */
-        .news-modal, .auth-modal, .age-modal, .modal {
+        .issue-cover-lock {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(20px);
+            z-index: 1;
         }
 
-        .news-modal.active, .auth-modal.active, .age-modal.active, .modal.active { display: flex; }
+        .issue-card.locked .issue-cover-lock {
+            display: flex;
+        }
 
-        .news-modal-content, .auth-modal-content, .age-modal-content, .modal-content {
-            background: rgba(15, 15, 15, 0.95);
-            border: 1px solid rgba(183, 143, 58, 0.4);
-            border-radius: 40px;
-            padding: 2.5rem;
-            max-width: 850px;
-            width: 90%;
-            max-height: 85vh;
+        .issue-cover-lock-icon {
+            color: #FFD700;
+            width: 32px;
+            height: 32px;
+        }
+
+        .issue-info-mini { padding: 0.8rem 0.9rem; display: flex; justify-content: space-between; align-items: center; }
+        .issue-tag-mini { font-size: 0.6rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; font-family: var(--font-mono); }
+        .issue-date-mini { font-size: 0.6rem; color: #777; font-weight: 400; font-family: var(--font-body); }
+
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(6, 6, 6, 0.99);
+            z-index: 3000;
             overflow-y: auto;
-            position: relative;
-            animation: modalFadeIn 0.3s ease;
+            animation: scaleIn 0.35s var(--transition-spring);
         }
 
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        .fullscreen-modal.active { display: block; }
+
+        .fullscreen-modal-header {
+            position: sticky;
+            top: 0; z-index: 10;
+            background: rgba(6, 6, 6, 0.97);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .modal-close, .auth-modal-close, .news-modal-close {
-            position: absolute;
-            top: 1.2rem;
-            right: 1.2rem;
-            background: none;
-            border: none;
-            color: #B78F3A;
-            font-size: 1.8rem;
+        .fullscreen-back-logo {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #eee;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: color 0.35s var(--transition-smooth), transform 0.35s var(--transition-spring);
+            background: none; border: none;
+            letter-spacing: -0.04em;
         }
 
-        .modal-close:hover, .auth-modal-close:hover, .news-modal-close:hover {
-            transform: rotate(90deg);
+        .fullscreen-back-logo:hover { color: var(--accent); transform: scale(1.04); }
+
+        .fullscreen-close {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            color: #777;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.35s var(--transition-spring);
         }
 
-        .news-modal-header {
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(183, 143, 58, 0.3);
-            padding-bottom: 1rem;
+        .fullscreen-close:hover {
+            color: #FF3333;
+            border-color: #FF3333;
+            transform: rotate(90deg) scale(1.08);
+            background: rgba(255, 51, 51, 0.08);
         }
 
-        .news-modal-title {
+        .fullscreen-modal-body { max-width: 950px; margin: 0 auto; padding: 1.8rem 1.5rem 3.5rem; }
+
+        .fullscreen-modal-body .meta {
+            display: inline-block;
+            background: rgba(204, 255, 0, 0.04);
+            color: var(--accent);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            padding: 0.25rem 0.8rem;
+            border-radius: 40px;
+            margin-bottom: 0.9rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            border: 1px solid rgba(204, 255, 0, 0.08);
+        }
+
+        .fullscreen-modal-body h2 {
+            font-family: var(--font-display);
             font-size: 2rem;
             font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
+            color: #f0f0f0;
+            margin-bottom: 1.3rem;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
         }
 
-        .news-modal-date {
-            font-size: 0.9rem;
-            color: #B78F3A;
-        }
+        .news-fullscreen-layout { display: flex; gap: 1.8rem; align-items: flex-start; }
+        .news-fullscreen-image { flex: 0 0 350px; aspect-ratio: 3/4; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 10px; position: sticky; top: 75px; }
+        .news-fullscreen-image img { width: 100%; height: 100%; object-fit: cover; }
+        .news-fullscreen-text { flex: 1; min-width: 0; }
+        .news-fullscreen-text .content-text { font-family: var(--font-body); font-size: 0.9rem; color: #aaa; line-height: 1.7; font-weight: 400; }
+        .news-fullscreen-text .content-text p { margin-bottom: 1.1rem; }
 
-        .news-modal-body {
+        .news-fullscreen-with-cutout {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
+            gap: 0;
             align-items: flex-start;
+            position: relative;
+            min-height: 380px;
         }
 
-        .news-modal-image {
-            flex: 0 0 200px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(183, 143, 58, 0.4);
+        .news-cutout-image {
+            flex: 0 0 42%;
+            position: sticky;
+            top: 75px;
+            align-self: flex-start;
         }
 
-        .news-modal-image img {
+        .news-cutout-image img {
             width: 100%;
             height: auto;
-            display: block;
+            max-height: 460px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 24px rgba(0,0,0,0.45));
+            animation: floatSlow 7s ease-in-out infinite;
         }
 
-        .news-modal-text {
+        .news-cutout-text {
             flex: 1;
-            font-size: 1rem;
-            color: #e0d4c8;
-            line-height: 1.7;
+            padding-left: 1.8rem;
         }
 
-        .auth-modal-content {
-            max-width: 400px;
-        }
+        .issue-fullscreen-layout { display: flex; gap: 1.8rem; align-items: flex-start; }
+        .issue-fullscreen-pages { flex: 0 0 460px; display: flex; flex-direction: column; gap: 1.3rem; position: sticky; top: 75px; }
+        .issue-page-spread { display: flex; gap: 0; }
+        .issue-page { flex: 1; aspect-ratio: 3/4; overflow: hidden; border-radius: 6px; cursor: pointer; transition: all 0.35s var(--transition-spring); }
+        .issue-page img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .issue-page:hover { transform: scale(1.02); z-index: 2; }
+        .issue-page:hover img { filter: brightness(1.12); }
+        .issue-fullscreen-info { flex: 1; min-width: 0; }
+        .issue-fullscreen-info .content-text { font-family: var(--font-body); font-size: 0.9rem; color: #aaa; line-height: 1.7; font-weight: 400; }
+        .issue-fullscreen-info .content-text p { margin-bottom: 1.1rem; }
 
-        .auth-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #4d443c;
-            padding-bottom: 1rem;
-        }
-
-        .auth-tab {
-            background: none;
-            border: none;
-            color: #a39281;
-            font-size: 1rem;
+        .apply-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #0a0a0a;
             cursor: pointer;
-            padding: 0.5rem 0;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-        }
-
-        .auth-tab.active {
-            color: #B78F3A;
-            border-bottom: 2px solid #B78F3A;
-        }
-
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
-
-        .auth-form input {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #4d443c;
-            border-radius: 100px;
-            padding: 0.9rem 1.2rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .auth-form input:focus {
-            outline: none;
-            border-color: #B78F3A;
-        }
-
-        .auth-submit {
-            width: 100%;
-            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
+            font-weight: 700;
+            margin-top: 1.3rem;
+            font-size: 0.9rem;
+            font-family: var(--font-button);
+            background: var(--accent);
             border: none;
-            border-radius: 100px;
-            padding: 0.9rem;
-            color: #000000;
+            padding: 0.75rem 1.8rem;
+            border-radius: 40px;
+            transition: all 0.35s var(--transition-smooth);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .apply-btn:hover {
+            background: #d4ff1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(204, 255, 0, 0.22);
+        }
+
+        .designer-application-form {
+            margin-top: 1.8rem;
+            padding: 2.2rem;
+            background: rgba(8, 8, 8, 0.55);
+            border: 1px solid #181818;
+            border-radius: 18px;
+            animation: fadeInUp 0.7s var(--transition-smooth) both;
+        }
+
+        .designer-application-form h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: #eee;
+            margin-bottom: 0.4rem;
             font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .designer-application-form .form-subtitle {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 1.8rem;
+            font-family: var(--font-body);
+            font-weight: 400;
+        }
+
+        .designer-form-group { margin-bottom: 1.6rem; }
+
+        .designer-form-group label {
+            display: block;
+            font-size: 0.78rem;
+            color: #bbb;
+            margin-bottom: 0.45rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .designer-form-group label .required-star { color: var(--accent); margin-left: 2px; }
+        .designer-form-group label .hint { display: block; font-size: 0.68rem; color: #555; font-weight: 400; margin-top: 0.15rem; }
+
+        .designer-form-group input[type="text"],
+        .designer-form-group input[type="email"],
+        .designer-form-group input[type="url"],
+        .designer-form-group textarea,
+        .designer-form-group select {
+            width: 100%;
+            background: rgba(12, 12, 12, 0.6);
+            border: 1px solid #181818;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            color: #ddd;
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.35s var(--transition-smooth), box-shadow 0.35s var(--transition-smooth);
+            resize: vertical;
+        }
+
+        .designer-form-group input:focus,
+        .designer-form-group textarea:focus,
+        .designer-form-group select:focus {
+            border-color: #444;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.02);
+        }
+
+        .checkbox-group { display: flex; flex-direction: column; gap: 0.6rem; }
+        .checkbox-item { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.82rem; color: #bbb; font-family: var(--font-body); font-weight: 400; transition: color 0.3s; }
+        .checkbox-item:hover { color: #fff; }
+        .checkbox-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 16px; height: 16px; border: 1px solid #333; border-radius: 4px; background: rgba(12, 12, 12, 0.6); cursor: pointer; position: relative; transition: all 0.3s; flex-shrink: 0; }
+        .checkbox-item input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+        .checkbox-item input[type="checkbox"]:checked::after { content: '\2713'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #0a0a0a; font-size: 0.65rem; font-weight: 700; }
+        .checkbox-item .other-input { display: none; margin-top: 0.35rem; margin-left: 1.8rem; width: calc(100% - 1.8rem); }
+        .checkbox-item .other-input.active { display: block; }
+
+        .radio-group { display: flex; flex-direction: column; gap: 0.6rem; }
+        .radio-item { display: flex; align-items: flex-start; gap: 0.6rem; cursor: pointer; font-size: 0.82rem; color: #bbb; font-family: var(--font-body); font-weight: 400; transition: color 0.3s; }
+        .radio-item:hover { color: #fff; }
+        .radio-item input[type="radio"] { appearance: none; -webkit-appearance: none; width: 16px; height: 16px; border: 1px solid #333; border-radius: 50%; background: rgba(12, 12, 12, 0.6); cursor: pointer; position: relative; transition: all 0.3s; flex-shrink: 0; margin-top: 2px; }
+        .radio-item input[type="radio"]:checked { border-color: var(--accent); }
+        .radio-item input[type="radio"]:checked::after { content: ''; position: absolute; top: 3.5px; left: 3.5px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+        .contact-method-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .contact-method-item { display: flex; align-items: center; gap: 0.45rem; cursor: pointer; font-size: 0.78rem; color: #bbb; font-family: var(--font-body); font-weight: 400; transition: color 0.3s; }
+        .contact-method-item:hover { color: #fff; }
+        .contact-method-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 14px; height: 14px; border: 1px solid #333; border-radius: 3px; background: rgba(12, 12, 12, 0.6); cursor: pointer; position: relative; transition: all 0.3s; flex-shrink: 0; }
+        .contact-method-item input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+        .contact-method-item input[type="checkbox"]:checked::after { content: '\2713'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #0a0a0a; font-size: 0.55rem; font-weight: 700; }
+
+        .contact-fields { margin-top: 0.8rem; }
+        .contact-field { display: none; margin-bottom: 0.7rem; }
+        .contact-field.active { display: block; }
+
+        .form-not-logged-in {
+            text-align: center;
+            padding: 2.5rem;
+            color: #777;
+            font-family: var(--font-body);
+        }
+
+        .form-not-logged-in .login-link-btn {
+            display: inline-block;
+            margin-top: 0.9rem;
+            color: #0a0a0a;
+            background: var(--accent);
+            padding: 0.65rem 1.8rem;
+            border-radius: 40px;
             cursor: pointer;
-            margin-bottom: 1rem;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-button);
+            font-weight: 700;
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: all 0.3s var(--transition-smooth);
+            letter-spacing: 0.04em;
+        }
+
+        .form-not-logged-in .login-link-btn:hover { background: #d4ff1a; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(204, 255, 0, 0.18); }
+
+        .designer-submit-btn {
+            width: 100%;
+            background: var(--accent);
+            border: none;
+            border-radius: 40px;
+            padding: 0.95rem;
+            color: #0a0a0a;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: var(--font-button);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            transition: all 0.35s var(--transition-smooth);
+            font-size: 0.9rem;
+            margin-top: 0.9rem;
+        }
+
+        .designer-submit-btn:hover { background: #d4ff1a; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(204, 255, 0, 0.22); }
+
+        .designer-form-success {
+            display: none;
+            color: var(--accent);
+            font-family: var(--font-body);
+            font-weight: 500;
+            margin-top: 0.9rem;
+            font-size: 0.85rem;
+            text-align: center;
+            animation: scaleIn 0.35s var(--transition-spring);
+        }
+
+        .designer-form-error {
+            display: none;
+            color: #FF3333;
+            font-family: var(--font-body);
+            font-weight: 400;
+            margin-top: 0.45rem;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .privacy-policy-section { margin-top: 0.4rem; padding-top: 0.4rem; }
+        .privacy-policy-link { color: #555; font-size: 0.7rem; font-family: var(--font-body); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color 0.3s; }
+        .privacy-policy-link:hover { color: #aaa; }
+
+        .privacy-policy-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 5200;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .privacy-policy-modal.active { display: flex; }
+
+        .privacy-policy-content {
+            background: #0a0a0a;
+            border: 1px solid #1f1f1f;
+            border-radius: 18px;
+            padding: 2.2rem;
+            max-width: 650px;
+            width: 90%;
+            max-height: 78vh;
+            overflow-y: auto;
+            animation: scaleIn 0.3s var(--transition-spring);
+        }
+
+        .privacy-policy-content h3 { font-family: var(--font-display); color: var(--accent); margin-bottom: 1.3rem; font-size: 1.2rem; }
+        .privacy-policy-content h4 { font-family: var(--font-body); color: #ccc; margin: 1.3rem 0 0.4rem; font-size: 0.9rem; }
+        .privacy-policy-content p { color: #888; font-size: 0.78rem; line-height: 1.7; margin-bottom: 0.7rem; font-family: var(--font-body); font-weight: 400; }
+        .privacy-policy-close { background: transparent; border: 1px solid #1f1f1f; color: #888; padding: 0.45rem 1.3rem; border-radius: 40px; cursor: pointer; font-family: var(--font-button); font-size: 0.75rem; margin-top: 1.3rem; transition: all 0.3s; }
+        .privacy-policy-close:hover { border-color: #fff; color: #fff; }
+
+        .footer-site {
+            margin-top: 5rem;
+            padding: 2.5rem 1.5rem 2rem;
+            border-top: 1px solid #141414;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            max-width: 1150px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: end;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .footer-brand-name {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.03em;
+        }
+
+        .footer-brand-tagline {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            color: #555;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.7rem;
+            color: #444;
+            font-family: var(--font-body);
+            font-weight: 400;
+        }
+
+        .footer-social {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.6rem;
+        }
+
+        .footer-social-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #888;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.3s var(--transition-smooth);
+            letter-spacing: 0.01em;
+        }
+
+        .footer-social-item:hover {
+            color: #fff;
+            transform: translateX(-3px);
+        }
+
+        .footer-social-item svg {
+            width: 15px;
+            height: 15px;
+            opacity: 0.6;
+            flex-shrink: 0;
+        }
+
+        .footer-social-item:hover svg {
+            opacity: 1;
+        }
+
+        .footer-links-row {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links-row a {
+            color: #444;
+            font-size: 0.68rem;
+            font-family: var(--font-body);
+            text-decoration: none;
+            transition: color 0.3s;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-links-row a:hover { color: #aaa; }
+
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: #060606;
+            z-index: 5000;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+        }
+
+        .admin-panel.active { display: block; }
+
+        .admin-header {
+            position: sticky;
+            top: 0; z-index: 10;
+            background: #060606;
+            border-bottom: 1px solid rgba(204, 255, 0, 0.12);
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .admin-header-left { display: flex; align-items: center; gap: 1.3rem; }
+        .admin-header h2 { font-family: var(--font-display); font-size: 1.3rem; color: var(--accent); font-weight: 600; }
+        .admin-header-stats { display: flex; gap: 1.3rem; font-size: 0.7rem; color: #888; }
+        .admin-header-stats span { color: var(--accent); font-weight: 600; }
+
+        .admin-actions { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+
+        .admin-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #1f1f1f;
+            color: #999;
+            padding: 0.45rem 0.9rem;
+            border-radius: 16px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .admin-btn:hover { border-color: #444; color: #ccc; }
+        .admin-btn.warning { border-color: rgba(255, 140, 0, 0.18); color: var(--accent-secondary); }
+        .admin-btn.warning:hover { background: rgba(255, 140, 0, 0.05); }
+        .admin-btn.danger { border-color: rgba(255, 85, 85, 0.12); color: #FF5555; }
+        .admin-btn.danger:hover { background: rgba(255, 85, 85, 0.05); }
+
+        .admin-body { max-width: 1050px; margin: 0 auto; padding: 1.8rem; }
+        .admin-tabs { display: flex; gap: 0.25rem; margin-bottom: 1.8rem; flex-wrap: wrap; border-bottom: 1px solid #181818; padding-bottom: 0.9rem; }
+
+        .admin-tab {
+            background: transparent;
+            border: none;
+            color: #555;
+            padding: 0.5rem 1.1rem;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+        }
+
+        .admin-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -0.9rem; left: 0; right: 0;
+            height: 1.5px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s var(--transition-smooth);
+        }
+
+        .admin-tab.active { color: var(--accent); font-weight: 600; }
+        .admin-tab.active::after { transform: scaleX(1); }
+        .admin-tab:hover:not(.active) { color: #999; }
+
+        .admin-tab-badge { background: var(--accent); color: #060606; font-size: 0.55rem; padding: 0.08rem 0.35rem; border-radius: 8px; margin-left: 0.25rem; font-weight: 700; }
+
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
+
+        .admin-toolbar { display: flex; gap: 0.5rem; margin-bottom: 1.3rem; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+
+        .admin-search {
+            background: #0a0a0a;
+            border: 1px solid #181818;
+            color: #ddd;
+            padding: 0.45rem 0.9rem;
+            border-radius: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            outline: none;
+            width: 230px;
+            transition: border-color 0.3s var(--transition-smooth);
+        }
+
+        .admin-search:focus { border-color: #444; }
+        .admin-search::placeholder { color: #444; }
+
+        .admin-filter-select {
+            background: #0a0a0a;
+            border: 1px solid #181818;
+            color: #999;
+            padding: 0.45rem 0.9rem;
+            border-radius: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            padding-right: 1.8rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+        }
+
+        .admin-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.9rem; margin-bottom: 1.8rem; }
+        .admin-stat-card { background: #0a0a0a; border: 1px solid #181818; border-radius: 12px; padding: 1.3rem; transition: all 0.35s var(--transition-smooth); }
+        .admin-stat-card:hover { border-color: #2a2a2a; transform: translateY(-3px); }
+        .admin-stat-number { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #eee; }
+        .admin-stat-label { font-size: 0.65rem; color: #888; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.25rem; }
+
+        .maintenance-stop-btn {
+            background: #4ADE80;
+            color: #060606;
+            padding: 0.45rem 0.9rem;
+            border-radius: 16px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            border: none;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            margin-top: 0.45rem;
+        }
+
+        .maintenance-stop-btn:hover { filter: brightness(1.1); }
+
+        .admin-table-wrapper { overflow-x: auto; border: 1px solid #181818; border-radius: 12px; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        .admin-table th { background: #0a0a0a; padding: 0.7rem 0.9rem; text-align: left; color: #888; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6rem; border-bottom: 1px solid #181818; white-space: nowrap; }
+        .admin-table td { padding: 0.6rem 0.9rem; border-bottom: 1px solid #181818; color: #bbb; font-weight: 400; font-size: 0.72rem; }
+        .admin-table tr:hover td { background: rgba(204, 255, 0, 0.01); }
+        .admin-table .empty-row td { text-align: center; color: #555; padding: 2.5rem; }
+
+        .admin-table-actions { display: flex; gap: 0.25rem; }
+        .admin-row-btn { background: transparent; border: 1px solid #1f1f1f; color: #888; padding: 0.2rem 0.55rem; border-radius: 10px; cursor: pointer; font-family: var(--font-mono); font-size: 0.58rem; text-transform: uppercase; transition: all 0.3s; }
+        .admin-row-btn:hover { border-color: #444; color: #ccc; }
+        .admin-row-btn.delete:hover { border-color: #FF3333; color: #FF3333; background: rgba(255, 51, 51, 0.08); }
+
+        .admin-pagination { display: flex; gap: 0.4rem; justify-content: center; margin-top: 0.9rem; align-items: center; }
+        .admin-page-btn { background: transparent; border: 1px solid #1f1f1f; color: #999; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-family: var(--font-mono); font-size: 0.65rem; transition: all 0.3s; }
+        .admin-page-btn.active { background: var(--accent); color: #060606; border-color: var(--accent); font-weight: 700; }
+        .admin-page-btn:hover:not(.active) { border-color: #444; }
+
+        .admin-notification-send {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.3rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-notification-input {
+            flex: 1;
+            min-width: 250px;
+            background: #0a0a0a;
+            border: 1px solid #181818;
+            color: #ddd;
+            padding: 0.5rem 0.9rem;
+            border-radius: 16px;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            outline: none;
+        }
+
+        .admin-notification-input:focus { border-color: #444; }
+
+        .admin-notification-send-btn {
+            background: var(--accent);
+            border: none;
+            color: #060606;
+            padding: 0.5rem 1.2rem;
+            border-radius: 16px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 600;
             transition: all 0.3s;
         }
 
-        .auth-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(183, 143, 58, 0.3);
-        }
+        .admin-notification-send-btn:hover { background: #d4ff1a; }
 
-        .auth-error {
-            color: #ff6b6b;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .age-modal-content {
-            text-align: center;
-            max-width: 450px;
-        }
-
-        .age-circle {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
-            border-radius: 50%;
+        .admin-subscription-grant {
             display: flex;
+            gap: 0.5rem;
+            margin-top: 1.3rem;
+            flex-wrap: wrap;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem auto;
         }
 
-        .age-circle span {
-            font-size: 3rem;
-            font-weight: 600;
-            color: #000;
+        .admin-subscription-grant input {
+            background: #0a0a0a;
+            border: 1px solid #181818;
+            color: #ddd;
+            padding: 0.45rem 0.9rem;
+            border-radius: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            outline: none;
+            width: 200px;
         }
 
-        .age-text {
-            font-size: 1.1rem;
-            color: #d4bcab;
-            margin-bottom: 1.5rem;
-        }
-
-        .age-warning {
-            font-size: 0.9rem;
-            color: #B78F3A;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
-            padding: 0.8rem;
-            border: 1px solid rgba(183, 143, 58, 0.3);
-            border-radius: 100px;
-        }
-
-        .age-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .age-btn {
-            background: transparent;
-            border: 1px solid rgba(183, 143, 58, 0.5);
-            color: #B78F3A;
-            padding: 0.8rem 2rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
+        .admin-subscription-grant select {
+            background: #0a0a0a;
+            border: 1px solid #181818;
+            color: #999;
+            padding: 0.45rem 0.9rem;
+            border-radius: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
             cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 500;
+            outline: none;
         }
 
-        .age-btn:hover {
-            background: #B78F3A;
-            color: #000000;
+        .admin-subscription-grant button {
+            background: var(--accent);
+            border: none;
+            color: #060606;
+            padding: 0.45rem 1.1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.3s;
         }
+
+        .admin-subscription-grant button:hover { background: #d4ff1a; }
+
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 5200;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-modal.active { display: flex; }
+        .admin-modal-content { background: #0a0a0a; border: 1px solid #1f1f1f; border-radius: 16px; padding: 1.8rem; max-width: 480px; width: 90%; max-height: 78vh; overflow-y: auto; animation: scaleIn 0.3s var(--transition-spring); }
+        .admin-modal h3 { font-family: var(--font-display); color: var(--accent); margin-bottom: 0.9rem; }
+        .admin-modal p { color: #999; font-size: 0.8rem; margin-bottom: 0.45rem; font-family: var(--font-body); }
+        .admin-modal strong { color: #ccc; }
+        .admin-modal-close { background: transparent; border: 1px solid #1f1f1f; color: #888; padding: 0.4rem 1.2rem; border-radius: 16px; cursor: pointer; font-family: var(--font-mono); font-size: 0.7rem; margin-top: 0.9rem; transition: all 0.3s; }
+        .admin-modal-close:hover { border-color: #444; color: #ccc; }
+
+        .maintenance-setup-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 5200;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .maintenance-setup-modal.active { display: flex; }
+        .maintenance-setup-content { background: #0a0a0a; border: 1px solid var(--accent-secondary); border-radius: 16px; padding: 1.8rem; max-width: 420px; width: 90%; animation: scaleIn 0.3s var(--transition-spring); }
+        .maintenance-setup-content h3 { font-family: var(--font-display); color: var(--accent-secondary); margin-bottom: 1.3rem; }
+        .maintenance-setup-content label { display: block; font-size: 0.78rem; color: #bbb; margin-bottom: 0.4rem; }
+        .maintenance-setup-content input { width: 100%; background: #0a0a0a; border: 1px solid #181818; border-radius: 8px; padding: 0.8rem 1.1rem; color: #ddd; font-family: var(--font-mono); margin-bottom: 0.9rem; outline: none; font-size: 0.9rem; }
+        .maintenance-setup-content input:focus { border-color: var(--accent-secondary); }
+        .maintenance-setup-actions { display: flex; gap: 0.45rem; }
+        .maintenance-setup-actions button { flex: 1; padding: 0.7rem; border-radius: 8px; cursor: pointer; font-family: var(--font-mono); text-transform: uppercase; font-size: 0.75rem; font-weight: 600; border: none; transition: all 0.3s; }
+        .maintenance-start-btn { background: var(--accent-secondary); color: #060606; }
+        .maintenance-start-btn:hover { filter: brightness(1.1); }
+        .maintenance-cancel-btn { background: transparent; border: 1px solid #1f1f1f !important; color: #888; }
+        .maintenance-cancel-btn:hover { border-color: #FF5555 !important; color: #FF5555; }
+
+        .admin-login-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 5100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-login-overlay.active {
+            display: flex;
+        }
+
+        .admin-login-box {
+            background: #0a0a0a;
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            padding: 2.2rem;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            animation: scaleIn 0.35s var(--transition-spring);
+        }
+
+        .admin-login-box h3 { font-family: var(--font-display); color: var(--accent); margin-bottom: 1.3rem; font-size: 1.1rem; }
+        .admin-login-box input { width: 100%; background: #0a0a0a; border: 1px solid #181818; border-radius: 8px; padding: 0.8rem 1.1rem; color: #ddd; font-family: var(--font-mono); margin-bottom: 0.9rem; outline: none; text-align: center; font-size: 0.9rem; letter-spacing: 0.1em; transition: border-color 0.3s; }
+        .admin-login-box input:focus { border-color: #444; }
+        .admin-login-box button { width: 100%; background: var(--accent); border: none; border-radius: 8px; padding: 0.8rem; color: #060606; font-weight: 600; cursor: pointer; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; transition: all 0.3s; }
+        .admin-login-box button:hover { background: #d4ff1a; transform: translateY(-1px); }
+        .admin-login-error { color: #FF5555; font-size: 0.75rem; margin-top: 0.4rem; display: none; }
+
+        .admin-login-backdrop {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: transparent;
+            z-index: 5099;
+            cursor: pointer;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.96);
+            z-index: 4000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 92vw; max-height: 92vh; object-fit: contain; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2px; animation: scaleIn 0.35s var(--transition-spring); }
+
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-modal.active { display: flex; }
+
+        .auth-modal-content {
+            background: #0a0a0a;
+            border: 1px solid rgba(204, 255, 0, 0.12);
+            border-radius: 18px;
+            padding: 2.2rem;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: scaleIn 0.35s var(--transition-spring);
+        }
+
+        .auth-modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #777; cursor: pointer; transition: all 0.35s var(--transition-spring); display: flex; align-items: center; justify-content: center; }
+        .auth-modal-close:hover { color: var(--accent); transform: rotate(90deg) scale(1.08); }
+
+        .auth-tabs { display: flex; gap: 1.3rem; margin-bottom: 1.8rem; border-bottom: 1px solid #181818; padding-bottom: 0.9rem; }
+        .auth-tab { background: none; border: none; color: #555; font-size: 0.9rem; cursor: pointer; padding: 0.35rem 0; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; font-family: var(--font-button); transition: color 0.3s; }
+        .auth-tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); font-weight: 600; }
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+
+        .auth-form input {
+            width: 100%;
+            background: #0a0a0a;
+            border: 1px solid #181818;
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.9rem;
+            color: #ddd;
+            font-family: var(--font-body);
+            font-weight: 400;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .auth-form input:focus { border-color: #444; }
+
+        .auth-submit {
+            width: 100%;
+            background: var(--accent);
+            border: none;
+            border-radius: 40px;
+            padding: 0.85rem;
+            color: #0a0a0a;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 0.4rem 0 0.9rem;
+            font-family: var(--font-button);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .auth-submit:hover { background: #d4ff1a; transform: translateY(-1px); }
+        .auth-error { color: #FF5555; font-size: 0.8rem; display: none; font-family: var(--font-body); }
 
         .cookie-banner {
             display: none;
             position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 800px;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(183, 143, 58, 0.4);
-            border-radius: 100px;
-            padding: 1rem 2rem;
+            bottom: 1.5rem; left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            width: 90%; max-width: 550px;
+            background: rgba(10, 10, 10, 0.97);
+            border: 1px solid rgba(204, 255, 0, 0.12);
+            border-radius: 18px;
+            padding: 1.1rem 1.8rem;
             z-index: 4000;
+            opacity: 0;
+            transition: all 0.5s var(--transition-spring);
         }
 
-        .cookie-banner.active { display: block; }
-
-        .cookie-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .cookie-text h3 {
-            font-size: 1rem;
-            color: #B78F3A;
-            margin-bottom: 0.3rem;
-            font-weight: 600;
-        }
-
-        .cookie-text p {
-            font-size: 0.85rem;
-            color: #d4bcab;
-        }
-
-        .cookie-buttons {
-            display: flex;
-            gap: 0.8rem;
-        }
+        .cookie-banner.active { display: block; transform: translateX(-50%) translateY(0); opacity: 1; }
+        .cookie-content { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+        .cookie-text h3 { font-size: 0.82rem; color: var(--accent); margin-bottom: 0.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; font-family: var(--font-body); }
+        .cookie-text p { font-size: 0.72rem; color: #888; line-height: 1.4; font-family: var(--font-body); font-weight: 400; }
+        .cookie-buttons { display: flex; gap: 0.6rem; }
 
         .cookie-btn {
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
             cursor: pointer;
             font-weight: 500;
-            border: 1px solid;
-        }
-
-        .cookie-btn.accept {
-            background: linear-gradient(135deg, #B78F3A, #8B5A2B);
-            border-color: transparent;
-            color: #000;
-        }
-
-        .cookie-btn.decline {
+            border: 1px solid #1f1f1f;
             background: transparent;
-            border-color: #4d443c;
-            color: #a39281;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+            font-family: var(--font-button);
         }
 
-        .modal-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+        .cookie-btn.accept { background: var(--accent); border-color: var(--accent); color: #0a0a0a; font-weight: 600; }
+        .cookie-btn:hover { transform: translateY(-2px); border-color: #444; }
+
+        @media (max-width: 900px) {
+            .news-fullscreen-layout, .issue-fullscreen-layout, .news-fullscreen-with-cutout { flex-direction: column; }
+            .news-fullscreen-image, .news-cutout-image { flex: 0 0 auto; width: 100%; max-width: 380px; position: static; margin: 0 auto; }
+            .news-cutout-text { padding-left: 0; padding-top: 1.5rem; }
+            .issue-fullscreen-pages { flex: 0 0 auto; width: 100%; max-width: 380px; position: static; margin: 0 auto; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
+            .footer-brand { align-items: center; }
+            .footer-social { align-items: center; }
+            .footer-links-row { justify-content: center; }
         }
 
-        .gallery-container {
-            position: relative;
-            width: 100%;
-        }
-
-        .gallery-main {
-            width: 100%;
-            aspect-ratio: 3/4;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(183, 143, 58, 0.4);
-            margin-bottom: 1rem;
-        }
-
-        .gallery-main img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-nav {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .gallery-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #4d443c;
-            cursor: pointer;
-        }
-
-        .gallery-dot.active {
-            background: #B78F3A;
-        }
-
-        .gallery-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(183, 143, 58, 0.4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .gallery-arrow.prev { left: 10px; }
-        .gallery-arrow.next { right: 10px; }
-
-        .modal-info h3 { 
-            font-size: 2rem; 
-            color: #B78F3A; 
-            margin-bottom: 0.5rem; 
-            font-weight: 600;
-        }
-
-        .footer {
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid #2a2a2a;
-            text-align: center;
-            color: #7a6f66;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 800px) {
-            .right-panel { display: none; }
-            .container { padding: 2rem; }
-            .modal-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 2rem; }
-            .news-modal-body {
-                flex-direction: column;
-            }
-            .news-modal-image {
-                width: 100%;
-                max-width: 250px;
-                margin: 0 auto;
-            }
-            .sticky-header {
-                padding: 0.8rem 1rem;
-            }
-            .logo h1 {
-                font-size: 1.3rem;
-            }
-            .auth-section {
-                position: static;
-                transform: none;
-            }
-            .header-content {
-                justify-content: space-between;
-            }
-            body {
-                padding-top: 70px;
-            }
-            .cookie-banner {
-                border-radius: 24px;
-                padding: 1rem;
-            }
+        @media (max-width: 750px) {
+            body { font-size: 14px; padding-top: 64px; }
+            .sticky-header { padding: 0.6rem 1rem; }
+            .logo h1 { font-size: 2rem; }
+            .auth-section { position: static; transform: none; margin-top: 0.3rem; }
+            .header-content { flex-direction: column; gap: 0.4rem; }
+            .right-panel { right: 0.3rem; gap: 1rem; }
+            .lang-switch-vertical { width: 32px; padding: 0.35rem 0.25rem; border-radius: 20px; }
+            .lang-vert-btn { font-size: 0.5rem; }
+            .hero-slider { height: 50vh; min-height: 300px; margin-bottom: 3rem; }
+            .hero-slide-content h2 { font-size: 1.8rem; }
+            .hero-slide-content p { font-size: 0.85rem; }
+            .container { padding: 0 0.8rem 1.5rem 0.8rem; }
+            .section { margin-bottom: 3.5rem; scroll-margin-top: 70px; }
+            .section-title { font-size: 1.7rem; }
+            .glass-card { padding: 1.5rem; }
+            .news-grid { gap: 0.8rem; }
+            .news-item { min-width: 160px; max-width: 160px; }
+            .issues-grid { gap: 0.8rem; }
+            .issue-card { min-width: 160px; max-width: 160px; }
+            .fullscreen-modal-body { padding: 1.2rem 0.8rem 2.5rem; }
+            .fullscreen-modal-body h2 { font-size: 1.5rem; }
+            .cookie-banner { bottom: 0.8rem; width: 94%; padding: 0.9rem 1.2rem; border-radius: 14px; }
+            .cookie-content { flex-direction: column; text-align: center; }
+            .footer-grid { gap: 1rem; }
+            .notification-toast { top: 70px; width: 94%; padding: 1rem 1.3rem; }
         }
     </style>
 </head>
 <body>
-    <div class="gradient-bg"></div>
-    <div class="animated-blob animated-blob-1"></div>
-    <div class="animated-blob animated-blob-2"></div>
-    <div class="animated-blob animated-blob-3"></div>
+    <div class="maintenance-overlay" id="maintenanceOverlay">
+        <div class="maintenance-icon-symbol">&#9881;</div>
+        <h2 class="maintenance-title" id="maintenanceTitle">Technical Break</h2>
+        <p class="maintenance-subtitle" id="maintenanceSubtitle">We're making VERT even better. Please check back soon.</p>
+        <div class="maintenance-time" id="maintenanceTime">Estimated return: --:--</div>
+    </div>
+
+    <div id="notificationContainer"></div>
 
     <header class="sticky-header">
+        <div class="premium-header-indicator"></div>
         <div class="header-content">
-            <div class="logo">
-                <h1 id="logoTitle">The Vertical</h1>
-            </div>
+            <div class="logo"><h1 id="logoTitle" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;">VERT</h1></div>
             <div class="auth-section" id="authSection"></div>
         </div>
     </header>
 
-    <div class="right-panel">
-        <div class="quick-nav">
-            <div class="nav-dot" data-section="about"></div>
-            <div class="nav-dot" data-section="creator"></div>
-            <div class="nav-dot" data-section="news"></div>
-            <div class="nav-dot" data-section="issues"></div>
+    <div class="hero-slider" id="heroSlider">
+        <div class="hero-slides" id="heroSlides">
+            <div class="hero-slide"><img src="https://github.com/asksokolov/TheVertical/blob/main/%D0%A1%D1%8A%D0%B5%D0%BC%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BE%D1%87%D0%BA%D0%BE%D0%B2%20%E2%9D%A4%EF%B8%8F_Idol%20Production%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0.jpg?raw=true" alt="Designer search"><div class="hero-slide-content"><h2 id="heroTitle1">VERT Seeks Web Designers</h2><p id="heroDesc1">Join our digital team and shape the future of online storytelling</p></div></div>
+            <div class="hero-slide"><img src="https://github.com/asksokolov/TheVertical/blob/main/Vertical_2.png?raw=true" alt="Selina Tan"><div class="hero-slide-content"><h2 id="heroTitle2">We seek the vertical</h2><p id="heroDesc2">Deep conversations with those who inspire</p></div></div>
+            <div class="hero-slide"><img src="https://images.wallpaperscraft.ru/image/single/fotoapparat_obektiv_kamera_137568_540x960.jpg" alt="VERT launch"><div class="hero-slide-content"><h2 id="heroTitle3">Stories that matter</h2><p id="heroDesc3">Every voice deserves to be heard</p></div></div>
         </div>
-        <div class="lang-switch-vertical">
+        <div class="hero-dots" id="heroDots"></div>
+    </div>
+
+    <div class="right-panel" id="rightPanel">
+        <div class="quick-nav" id="quickNav"></div>
+        <div class="lang-switch-vertical" id="langSwitch">
             <button class="lang-vert-btn active" data-lang="en">EN</button>
             <button class="lang-vert-btn" data-lang="ru">RU</button>
-            <button class="lang-vert-btn" data-lang="zh">中文</button>
+            <button class="lang-vert-btn" data-lang="zh">CN</button>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="mainContent">
         <section class="section" id="about">
-            <div class="section-header">
-                <div class="section-header-left">
-                    <span class="section-number" id="aboutNumber">01</span>
-                    <h2 class="section-title" id="aboutTitle">about</h2>
-                </div>
-            </div>
-            <div class="glass-card">
-                <div class="description-text" id="aboutText">
-                    <p><strong>The Vertical</strong> is an online magazine about people, their inner world, and the stories behind the facade of publicity. Our focus is thoughts, feelings, principles, and the search for meaning.</p>
-                    <p>Each piece is an attempt to look beyond the obvious and truly understand a person.</p>
-                </div>
-                <div class="accent-quote" id="aboutQuote">— behind the facade, there is always someone. we seek the vertical.</div>
-            </div>
-        </section>
-
-        <section class="section" id="creator">
-            <div class="section-header">
-                <div class="section-header-left">
-                    <span class="section-number" id="creatorNumber">02</span>
-                    <h2 class="section-title" id="creatorTitle">creator</h2>
-                </div>
-            </div>
-            <div class="creator-full">
-                <div class="creator-name" id="creatorName">Alexander Sokolov</div>
-                <div class="creator-role" id="creatorRole">founder, editor</div>
-                <div class="creator-bio" id="creatorBio">
-                    <p>Born in 1998 in Moscow. Founded The Vertical in 2026.</p>
-                    <p>Personal <a href="https://asksokolov.github.io/mybiography" target="_blank" class="creator-link" id="creatorLinkText">website</a>.</p>
-                </div>
-                <div class="creator-quote" id="creatorQuote">«Criticism is a way of dialogue»</div>
-            </div>
+            <div class="section-header"><div class="section-header-left"><span class="section-number" id="aboutNumber">01</span><h2 class="section-title" id="aboutTitle">about</h2></div></div>
+            <div class="glass-card"><div class="description-text" id="aboutText"></div><div class="accent-quote" id="aboutQuote"></div></div>
         </section>
 
         <section class="section" id="news">
-            <div class="section-header">
-                <div class="section-header-left">
-                    <span class="section-number" id="newsNumber">03</span>
-                    <h2 class="section-title" id="newsTitle">last news</h2>
-                </div>
-            </div>
+            <div class="section-header"><div class="section-header-left"><span class="section-number" id="newsNumber">02</span><h2 class="section-title" id="newsTitle">last news</h2></div></div>
             <div class="news-grid" id="newsGrid"></div>
         </section>
 
         <section class="section" id="issues">
-            <div class="section-header">
-                <div class="section-header-left">
-                    <span class="section-number" id="issuesNumber">04</span>
-                    <h2 class="section-title" id="issuesTitle">issues</h2>
-                </div>
-            </div>
-            <div class="issues-grid">
-                <div class="issue-card" data-issue="1">
-                    <div class="issue-cover">
-                        <img src="https://i.postimg.cc/GhrzR21X/Vertical-1.png" alt="The Vertical issue 1" loading="lazy">
-                    </div>
-                    <div class="issue-number" id="issueNumber">first issue</div>
-                    <h3 class="issue-title"><span class="label" id="modelLabel">model:</span> <span id="modelName">Selina Tan</span></h3>
-                    <div class="issue-date" id="issueDate">March 8, 2026</div>
-                    <div class="issue-description" id="issueDesc">
-                        An honest conversation about inner silence, life in front of the camera, and finding oneself.
-                    </div>
-                    <span class="issue-tag" id="issueTag">interview</span>
-                </div>
-            </div>
+            <div class="section-header"><div class="section-header-left"><span class="section-number" id="issuesNumber">03</span><h2 class="section-title" id="issuesTitle">issues</h2></div></div>
+            <div class="issues-grid" id="issuesGrid"></div>
         </section>
-
-        <footer class="footer">
-            <div id="copyright">© The Vertical, 2026</div>
-        </footer>
     </div>
 
-    <!-- Модальные окна -->
+    <footer class="footer-site">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-brand-name">VERT</div>
+                <div class="footer-brand-tagline" id="footerTagline">contemporary stories</div>
+            </div>
+            <div class="footer-center">
+                <div class="footer-links-row">
+                    <a href="#" onclick="openPrivacyPolicy()" id="footerPrivacy">Privacy</a>
+                    <a href="#" onclick="openPrivacyPolicy()" id="footerTerms">Terms</a>
+                    <a href="#" onclick="openPrivacyPolicy()" id="footerCookies">Cookies</a>
+                </div>
+                <div class="footer-copyright" id="copyright">© VERT, 2026</div>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/vertoffic/" target="_blank" rel="noopener noreferrer" class="footer-social-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    vertoffic
+                </a>
+                <a href="https://t.me/ofvert" target="_blank" rel="noopener noreferrer" class="footer-social-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 3.1L2.4 10.5c-.8.4-.8 1.5 0 1.9l5.3 2.2 2.2 5.3c.4.8 1.5.8 1.9 0l7.4-18.8z"/><path d="M10.5 13.5l4.5-4.5"/></svg>
+                    ofvert
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fullscreen-modal" id="newsFullscreenModal">
+        <div class="fullscreen-modal-header"><button class="fullscreen-back-logo" onclick="closeFullscreenModal()">VERT</button><button class="fullscreen-close" onclick="closeFullscreenModal()"><i data-lucide="x"></i></button></div>
+        <div class="fullscreen-modal-body" id="newsFullscreenBody"></div>
+    </div>
+
+    <div class="fullscreen-modal" id="issueFullscreenModal">
+        <div class="fullscreen-modal-header"><button class="fullscreen-back-logo" onclick="closeIssueFullscreen()">VERT</button><button class="fullscreen-close" onclick="closeIssueFullscreen()"><i data-lucide="x"></i></button></div>
+        <div class="fullscreen-modal-body" id="issueFullscreenBody"></div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')"><img src="" alt="Enlarged photo" id="lightboxImg"></div>
+
     <div class="auth-modal" id="authModal">
         <div class="auth-modal-content">
-            <button class="auth-modal-close" id="closeAuthModal">&times;</button>
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login" id="loginTab">Login</button>
-                <button class="auth-tab" data-tab="register" id="registerTab">Register</button>
-            </div>
-            <div class="auth-form active" id="loginForm">
-                <input type="email" id="loginEmail" placeholder="Email">
-                <input type="password" id="loginPassword" placeholder="Password">
-                <button class="auth-submit" id="loginSubmit">Login</button>
-                <div class="auth-error" id="loginError"></div>
-            </div>
-            <div class="auth-form" id="registerForm">
-                <input type="text" id="registerName" placeholder="Name">
-                <input type="email" id="registerEmail" placeholder="Email">
-                <input type="password" id="registerPassword" placeholder="Password">
-                <button class="auth-submit" id="registerSubmit">Register</button>
-                <div class="auth-error" id="registerError"></div>
-            </div>
+            <button class="auth-modal-close" id="closeAuthModal"><i data-lucide="x"></i></button>
+            <div class="auth-tabs"><button class="auth-tab active" data-tab="login" id="loginTab">Login</button><button class="auth-tab" data-tab="register" id="registerTab">Register</button></div>
+            <div class="auth-form active" id="loginForm"><input type="email" id="loginEmail" placeholder="Email"><input type="password" id="loginPassword" placeholder="Password"><button class="auth-submit" id="loginSubmit">Login</button><div class="auth-error" id="loginError"></div></div>
+            <div class="auth-form" id="registerFormModal"><input type="text" id="registerNameModal" placeholder="Name"><input type="email" id="registerEmailModal" placeholder="Email"><input type="password" id="registerPasswordModal" placeholder="Password"><button class="auth-submit" id="registerSubmitModal">Register</button><div class="auth-error" id="registerErrorModal"></div></div>
         </div>
     </div>
 
-    <div class="age-modal" id="ageModal">
-        <div class="age-modal-content">
-            <div class="age-circle"><span>18+</span></div>
-            <div class="age-text" id="ageText">This website contains mature content that may not be suitable for viewers under 18 years of age.</div>
-            <div class="age-warning" id="ageWarning">By entering, you confirm that you are at least 18 years old</div>
-            <div class="age-buttons">
-                <button class="age-btn" id="confirmAge">I am 18+</button>
-                <button class="age-btn exit" id="exitSite">Exit</button>
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header"><div class="admin-header-left"><h2>VERT Admin</h2><div class="admin-header-stats">Apps: <span id="adminHeaderApps">0</span> / Subs: <span id="adminHeaderSubs">0</span> / Users: <span id="adminHeaderUsers">0</span></div></div><div class="admin-actions"><button class="admin-btn warning" onclick="openMaintenanceSetup()">Maintenance</button><button class="admin-btn" onclick="adminExportAll()">Export</button><button class="admin-btn danger" onclick="closeAdminPanel()">Exit</button></div></div>
+        <div class="admin-body">
+            <div class="admin-stats-grid" id="adminStatsGrid"></div>
+            <div class="admin-tabs"><button class="admin-tab active" data-admin-tab="designers">Applications <span class="admin-tab-badge" id="adminDesignerCount">0</span></button><button class="admin-tab" data-admin-tab="subscribers">Subscribers <span class="admin-tab-badge" id="adminSubscriberCount">0</span></button><button class="admin-tab" data-admin-tab="users">Users <span class="admin-tab-badge" id="adminUserCount">0</span></button><button class="admin-tab" data-admin-tab="notifications">Notifications</button></div>
+            <div class="admin-toolbar"><input type="text" class="admin-search" id="adminSearch" placeholder="Search..."><select class="admin-filter-select" id="adminFilter"><option value="all">All Time</option><option value="recent">24h</option><option value="week">Week</option><option value="month">Month</option></select><span style="color:#555;font-size:0.7rem;" id="adminResultCount">0 results</span></div>
+            <div class="admin-section active" id="adminDesigners"></div>
+            <div class="admin-section" id="adminSubscribers">
+                <div class="admin-subscription-grant">
+                    <input type="email" id="grantEmail" placeholder="User email">
+                    <select id="grantPlan"><option value="monthly">Monthly</option><option value="yearly">Yearly</option><option value="twoyear">Two Years</option></select>
+                    <button onclick="grantSubscription()">Grant Access</button>
+                </div>
+                <div class="admin-table-wrapper" style="margin-top:1.3rem;" id="adminSubscribersTable"></div>
             </div>
+            <div class="admin-section" id="adminUsers"></div>
+            <div class="admin-section" id="adminNotifications">
+                <div class="admin-notification-send">
+                    <input type="text" class="admin-notification-input" id="adminNotificationText" placeholder="Notification message for all users...">
+                    <button class="admin-notification-send-btn" onclick="sendGlobalNotification()">Send</button>
+                </div>
+                <div class="admin-table-wrapper" style="margin-top:1.3rem;" id="adminNotificationsList"></div>
+            </div>
+            <div class="admin-pagination" id="adminPagination"></div>
         </div>
     </div>
 
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-content">
-            <div class="cookie-text">
-                <h3 id="cookieTitle">Cookie Policy</h3>
-                <p id="cookieText">We use cookies to enhance your experience. By clicking "Accept", you consent to the use of all cookies.</p>
-            </div>
-            <div class="cookie-buttons">
-                <button class="cookie-btn accept" id="acceptCookies">Accept</button>
-                <button class="cookie-btn decline" id="declineCookies">Decline</button>
-            </div>
+    <div class="admin-modal" id="adminDetailModal"><div class="admin-modal-content" id="adminDetailContent"></div></div>
+    <div class="maintenance-setup-modal" id="maintenanceSetupModal"><div class="maintenance-setup-content"><h3>Maintenance Mode</h3><label>Estimated end time (hours from now):</label><input type="number" id="maintenanceEndHours" placeholder="e.g. 2" min="1" max="48"><div class="maintenance-setup-actions"><button class="maintenance-start-btn" onclick="startMaintenance()">Start</button><button class="maintenance-cancel-btn" onclick="closeMaintenanceSetup()">Cancel</button></div></div></div>
+    <div class="privacy-policy-modal" id="privacyPolicyModal"><div class="privacy-policy-content" id="privacyPolicyContent"></div></div>
+    <div class="admin-login-overlay" id="adminLoginOverlay">
+        <div class="admin-login-backdrop" onclick="closeAdminLogin()"></div>
+        <div class="admin-login-box">
+            <h3>Admin Access</h3>
+            <input type="password" id="adminPasswordInput" placeholder="Enter admin password" autocomplete="off">
+            <button onclick="verifyAdminPassword()">Unlock</button>
+            <div class="admin-login-error" id="adminLoginError">Invalid password</div>
         </div>
     </div>
-
-    <div class="modal" id="issueModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeModal">&times;</button>
-            <div class="modal-grid" id="modalContent"></div>
-        </div>
-    </div>
-
-    <div class="news-modal" id="newsModal">
-        <div class="news-modal-content">
-            <button class="news-modal-close" id="closeNewsModal">&times;</button>
-            <div id="newsModalContent"></div>
-        </div>
-    </div>
+    <div class="cookie-banner" id="cookieBanner"><div class="cookie-content"><div class="cookie-text"><h3 id="cookieTitle">Cookie Policy</h3><p id="cookieText"></p></div><div class="cookie-buttons"><button class="cookie-btn accept" id="acceptCookies">Accept</button><button class="cookie-btn decline" id="declineCookies">Decline</button></div></div></div>
 
     <script>
-        const newsData = [
-            {
-                id: 1,
-                date: { en: "March 15, 2026", ru: "15 марта 2026", zh: "2026年3月15日" },
-                title: { en: "New Issue Coming Soon", ru: "Скоро новый выпуск", zh: "新一期即将推出" },
-                fullText: { 
-                    en: "We are excited to announce that the second issue of The Vertical is in production. This issue will feature an exclusive interview with a renowned composer about silence in music, as well as a photo essay on urban solitude. Expected release: May 2026.",
-                    ru: "Мы рады сообщить, что второй выпуск The Vertical находится в производстве. В этом номере выйдет эксклюзивное интервью с известным композитором о тишине в музыке, а также фотоэссе о городском одиночестве. Ожидаемый релиз: май 2026.",
-                    zh: "我们很高兴地宣布，The Vertical第二期正在制作中。本期将独家采访一位著名作曲家，探讨音乐中的沉默，以及关于城市孤独的摄影散文。预计发布时间：2026年5月。"
-                },
-                image: "https://i.postimg.cc/GhrzR21X/Vertical-1.png"
-            },
-            {
-                id: 2,
-                date: { en: "March 1, 2026", ru: "1 марта 2026", zh: "2026年3月1日" },
-                title: { en: "Selina Tan Interview Now Live", ru: "Интервью с Селиной Тан уже доступно", zh: "塞琳娜·谭专访现已上线" },
-                fullText: { 
-                    en: "The very first issue of The Vertical is now available. Our conversation with model Selina Tan explores the space between public image and inner self. Read the full interview and view the exclusive photo gallery.",
-                    ru: "Первый выпуск The Vertical уже доступен. Наш разговор с моделью Селиной Тан исследует пространство между публичным образом и внутренним я. Читайте полное интервью и смотрите эксклюзивную фотогалерею.",
-                    zh: "The Vertical第一期现已上线。我们与模特塞琳娜·谭的对话探讨了公众形象与内心自我之间的空间。阅读完整采访并查看独家照片集。"
-                },
-                image: "https://i.postimg.cc/ry5g747d/Vertical-2.png"
-            },
-            {
-                id: 3,
-                date: { en: "February 20, 2026", ru: "20 февраля 2026", zh: "2026年2月20日" },
-                title: { en: "Behind the Scenes: Selina Tan Shoot", ru: "За кадром: съемка с Селиной Тан", zh: "幕后花絮：塞琳娜·谭拍摄" },
-                fullText: { 
-                    en: "Exclusive behind-the-scenes footage from our first issue photoshoot with Selina Tan. See how the magic happens and what goes into creating the perfect shot.",
-                    ru: "Эксклюзивные кадры со съемки первого выпуска с Селиной Тан. Узнайте, как создается магия и что нужно для идеального кадра.",
-                    zh: "第一期拍摄幕后独家花絮。了解魔法如何发生，以及打造完美镜头需要什么。"
-                },
-                image: "https://i.postimg.cc/6qV0RsC0/Vertical-3.png"
-            },
-            {
-                id: 4,
-                date: { en: "February 8, 2026", ru: "8 февраля 2026", zh: "2026年2月8日" },
-                title: { en: "The Vertical Launches", ru: "Запуск The Vertical", zh: "The Vertical 正式启动" },
-                fullText: { 
-                    en: "Today we officially launched The Vertical — a new media platform dedicated to deep, human interviews. Our mission is to look beyond the facade and understand people truly. Welcome to our journey.",
-                    ru: "Сегодня мы официально запустили The Vertical — новую медиаплатформу, посвященную глубоким, человечным интервью. Наша миссия — заглянуть за фасад и понять людей по-настоящему. Добро пожаловать в наше путешествие.",
-                    zh: "今天我们正式推出了The Vertical — 一个致力于深度人性化访谈的新媒体平台。我们的使命是超越表面，真正理解人们。欢迎加入我们的旅程。"
-                },
-                image: "https://i.postimg.cc/mk3wMx7y/Vertical-4.png"
-            }
-        ];
+        (function() {
+            const _m = [86,69,82,84,97,100,109,105,110,50,48,56,49,33];
+            const ADMIN_PASSWORD = _m.map(c => String.fromCharCode(c)).join('');
+            const ITEMS_PER_PAGE = 10;
+            let adminUnlocked = false, adminCurrentPage = 1, adminCurrentTab = 'designers', adminSearchQuery = '', adminFilterValue = 'all', adminLoginAttempts = 0, adminLoginBlocked = false, adminBlockTimer = null;
+            let maintenanceActive = false, maintenanceEndTime = null, maintenanceInterval = null;
+            let globalNotifications = [];
+            let dismissedNotifications = [];
+            let premiumUsers = [];
 
-        const issueData = {
-            name: { en: "Selina Tan", ru: "Селина Тан", zh: "塞琳娜·谭" },
-            date: { en: "March 8, 2026", ru: "8 марта 2026", zh: "2026年3月8日" },
-            description: { 
-                en: "In the first issue of The Vertical — a conversation with model Selina Tan about what remains behind the scenes, about inner silence, and about how not to lose yourself when your face is part of the profession.",
-                ru: "В первом выпуске The Vertical — разговор с моделью Селиной Тан о том, что остаётся за кадром, о тишине внутри и о том, как не потерять себя.",
-                zh: "在第一期《The Vertical》中，我们与模特塞琳娜·谭探讨了镜头之外的故事、内心的宁静，以及如何不迷失自我。"
-            },
-            photos: [
-                "https://i.postimg.cc/GhrzR21X/Vertical-1.png",
-                "https://i.postimg.cc/ry5g747d/Vertical-2.png",
-                "https://i.postimg.cc/6qV0RsC0/Vertical-3.png",
-                "https://i.postimg.cc/mk3wMx7y/Vertical-4.png",
-                "https://i.postimg.cc/0jGfmg7Y/Vertical-5.png",
-                "https://i.postimg.cc/rsGJW65S/Vertical-6.png"
-            ]
-        };
+            const issueData = {
+                name: { en: "Selina Tan", ru: "Селина Тан", zh: "塞琳娜·谭" }, date: { en: "March 2026", ru: "Март 2026", zh: "2026年3月" }, tag: { en: "interview", ru: "интервью", zh: "访谈" },
+                description: { en: "<p>A conversation with model Selina Tan about inner silence, creativity, and finding balance in a world that never stops. We explore her journey from a small town to international runways, and the philosophy that keeps her grounded.</p><p>Photography by Alex Chen. Styling by Maria Volkova. Production by VERT Studio.</p>", ru: "<p>Разговор с моделью Селиной Тан о внутренней тишине, творчестве и поиске баланса в мире, который никогда не останавливается. Мы исследуем её путь из маленького городка на международные подиумы и философию, которая помогает ей оставаться на земле.</p><p>Фотография: Алекс Чен. Стиль: Мария Волкова. Продакшн: VERT Studio.</p>", zh: "<p>与模特塞琳娜·谭关于内心宁静、创造力和在不断运转的世界中寻找平衡的对话。我们探索她从小镇到国际T台的旅程，以及让她保持脚踏实地的哲学。</p><p>摄影：Alex Chen。造型：Maria Volkova。制作：VERT Studio。</p>" },
+                photos: ["https://github.com/asksokolov/TheVertical/blob/main/Vertical_1.png?raw=true","https://github.com/asksokolov/TheVertical/blob/main/Vertical_2.png?raw=true","https://github.com/asksokolov/TheVertical/blob/main/Vertical_3.png?raw=true","https://github.com/asksokolov/TheVertical/blob/main/Vertical_4.png?raw=true","https://github.com/asksokolov/TheVertical/blob/main/Vertical_5.png?raw=true"]
+            };
 
-        const translations = {
-            en: {
-                logoTitle: 'The Vertical',
-                aboutNumber: '01', aboutTitle: 'about',
-                aboutText: '<p><strong>The Vertical</strong> is an online magazine about people, their inner world, and the stories behind the facade of publicity. Our focus is thoughts, feelings, principles, and the search for meaning.</p><p>Each piece is an attempt to look beyond the obvious and truly understand a person.</p>',
-                aboutQuote: '— behind the facade, there is always someone. we seek the vertical.',
-                creatorNumber: '02', creatorTitle: 'creator',
-                creatorName: 'Alexander Sokolov', creatorRole: 'founder, editor',
-                creatorBio: '<p>Born in 1998 in Moscow. Founded The Vertical in 2026.</p><p>Personal <a href="https://asksokolov.github.io/mybiography" target="_blank" class="creator-link">website</a>.</p>',
-                creatorQuote: '«Criticism is a way of dialogue»',
-                newsNumber: '03', newsTitle: 'last news',
-                issuesNumber: '04', issuesTitle: 'issues',
-                issueNumber: 'first issue', modelLabel: 'model:', modelName: 'Selina Tan',
-                issueDate: 'March 8, 2026', issueDesc: 'An honest conversation about inner silence, life in front of the camera, and finding oneself.',
-                issueTag: 'interview',
-                copyright: '© The Vertical, 2026',
-                ageText: 'This website contains mature content that may not be suitable for viewers under 18 years of age.',
-                ageWarning: 'By entering, you confirm that you are at least 18 years old',
-                ageConfirm: 'I am 18+', ageExit: 'Exit',
-                cookieTitle: 'Cookie Policy',
-                cookieText: 'We use cookies to enhance your experience. By clicking "Accept", you consent to the use of all cookies.',
-                acceptCookies: 'Accept', declineCookies: 'Decline',
-                loginTab: 'Login', registerTab: 'Register',
-                loginSubmit: 'Login', registerSubmit: 'Register',
-                loginEmailPlaceholder: 'Email', loginPasswordPlaceholder: 'Password',
-                registerNamePlaceholder: 'Name', registerEmailPlaceholder: 'Email', registerPasswordPlaceholder: 'Password',
-                authBtn: 'Login / Register', logoutBtn: 'Logout'
-            },
-            ru: {
-                logoTitle: 'The Vertical',
-                aboutNumber: '01', aboutTitle: 'о журнале',
-                aboutText: '<p><strong>The Vertical</strong> — это интернет-журнал о людях, их внутреннем мире и историях за фасадом публичности. Наша тема — мысли, чувства, принципы и поиск смыслов.</p><p>Каждый материал — попытка заглянуть за очевидное и понять человека по-настоящему.</p>',
-                aboutQuote: '— за фасадом всегда кто-то есть. мы ищем вертикаль.',
-                creatorNumber: '02', creatorTitle: 'создатель',
-                creatorName: 'Александр Соколов', creatorRole: 'основатель, редактор',
-                creatorBio: '<p>Родился в 1998 году в Москве. Основал The Vertical в 2026 году.</p><p>Личный <a href="https://asksokolov.github.io/mybiography" target="_blank" class="creator-link">сайт</a>.</p>',
-                creatorQuote: '«Критика — это способ диалога»',
-                newsNumber: '03', newsTitle: 'последние новости',
-                issuesNumber: '04', issuesTitle: 'выпуски',
-                issueNumber: 'первый выпуск', modelLabel: 'модель:', modelName: 'Селина Тан',
-                issueDate: '8 марта 2026', issueDesc: 'Искренний разговор о внутренней тишине, жизни перед камерой и поиске себя.',
-                issueTag: 'интервью',
-                copyright: '© The Vertical, 2026',
-                ageText: 'Этот сайт содержит контент для взрослых и не предназначен для просмотра лицам младше 18 лет.',
-                ageWarning: 'Входя на сайт, вы подтверждаете, что вам есть 18 лет',
-                ageConfirm: 'Мне есть 18', ageExit: 'Выйти',
-                cookieTitle: 'Политика cookie',
-                cookieText: 'Мы используем cookie для улучшения работы сайта. Нажимая "Принять", вы соглашаетесь на использование всех cookie.',
-                acceptCookies: 'Принять', declineCookies: 'Отказаться',
-                loginTab: 'Вход', registerTab: 'Регистрация',
-                loginSubmit: 'Войти', registerSubmit: 'Зарегистрироваться',
-                loginEmailPlaceholder: 'Email', loginPasswordPlaceholder: 'Пароль',
-                registerNamePlaceholder: 'Имя', registerEmailPlaceholder: 'Email', registerPasswordPlaceholder: 'Пароль',
-                authBtn: 'Войти / Регистрация', logoutBtn: 'Выйти'
-            },
-            zh: {
-                logoTitle: 'The Vertical',
-                aboutNumber: '01', aboutTitle: '关于',
-                aboutText: '<p><strong>The Vertical</strong> 是一本关于人、他们的内心世界以及公众形象背后故事的在线杂志。我们的主题是思想、感受、原则和寻找意义。</p><p>每一篇内容都是试图超越表面，真正理解一个人的尝试。</p>',
-                aboutQuote: '— 表象背后总有人存在。我们寻找垂直。',
-                creatorNumber: '02', creatorTitle: '创建者',
-                creatorName: '亚历山大·索科洛夫', creatorRole: '创始人, 编辑',
-                creatorBio: '<p>1998年出生于莫斯科。2026年创立The Vertical。</p><p>个人 <a href="https://asksokolov.github.io/mybiography" target="_blank" class="creator-link">网站</a>。</p>',
-                creatorQuote: '«批评是对话的一种方式»',
-                newsNumber: '03', newsTitle: '最新新闻',
-                issuesNumber: '04', issuesTitle: '期刊',
-                issueNumber: '第一期', modelLabel: '模特:', modelName: '塞琳娜·谭',
-                issueDate: '2026年3月8日', issueDesc: '关于内心宁静、镜头前的生活以及寻找自我的真诚对话。',
-                issueTag: '访谈',
-                copyright: '© The Vertical, 2026',
-                ageText: '本网站包含成人内容，可能不适合18岁以下用户观看。',
-                ageWarning: '进入即表示您确认已年满18岁',
-                ageConfirm: '我已年满18岁', ageExit: '退出',
-                cookieTitle: 'Cookie政策',
-                cookieText: '我们使用cookie来改善您的网站体验。点击"接受"，即表示您同意使用所有cookie。',
-                acceptCookies: '接受', declineCookies: '拒绝',
-                loginTab: '登录', registerTab: '注册',
-                loginSubmit: '登录', registerSubmit: '注册',
-                loginEmailPlaceholder: '邮箱', loginPasswordPlaceholder: '密码',
-                registerNamePlaceholder: '姓名', registerEmailPlaceholder: '邮箱', registerPasswordPlaceholder: '密码',
-                authBtn: '登录 / 注册', logoutBtn: '退出'
-            }
-        };
+            const newsData = [
+                { id: 1, title: { en: "VERT is Looking for Web Designers", ru: "VERT ищет веб-дизайнеров", zh: "VERT 正在寻找网页设计师" }, date: { en: "April 2026", ru: "Апрель 2026", zh: "2026年4月" }, fullText: { en: "<p>VERT magazine is expanding its digital team and looking for talented web designers and developers to join us. We're building the future of digital publishing and need creative minds who understand both aesthetics and functionality.</p><p>Our magazine is dedicated to exploring the inner world of people through contemporary stories and deep interviews. The digital experience is at the core of how our readers connect with these narratives.</p><p>We are looking for web designers, UI/UX specialists, and frontend developers who share our passion for minimalist design and innovative digital storytelling. Experience with responsive design, modern CSS, and interactive web experiences is essential.</p><p>If you want to be part of shaping the visual identity of a forward-thinking online publication, we would love to hear from you.</p>", ru: "<p>Журнал VERT расширяет цифровую команду и ищет талантливых веб-дизайнеров и разработчиков. Мы строим будущее цифрового издательства и нуждаемся в творческих умах, понимающих как эстетику, так и функциональность.</p><p>Наш журнал посвящён исследованию внутреннего мира людей через современные истории и глубокие интервью. Цифровой опыт лежит в основе того, как наши читатели взаимодействуют с этими нарративами.</p><p>Мы ищем веб-дизайнеров, UI/UX-специалистов и фронтенд-разработчиков, разделяющих нашу страсть к минималистичному дизайну и инновационному цифровому повествованию.</p><p>Если вы хотите участвовать в формировании визуальной идентичности прогрессивного онлайн-издания, мы будем рады услышать вас.</p>", zh: "<p>VERT杂志正在扩大数字团队，寻找有才华的网页设计师和开发人员加入我们。我们正在构建数字出版的未来，需要既懂美学又懂功能的创意人才。</p><p>我们的杂志致力于通过当代故事和深度访谈探索人的内心世界。数字体验是读者与这些叙事连接的核心。</p><p>我们正在寻找与我们一样热爱极简设计和创新数字叙事的网页设计师、UI/UX专家和前端开发人员。</p><p>如果您想参与塑造前瞻性在线出版物的视觉形象，我们很乐意听到您的消息。</p>" }, linkText: { en: "Apply now", ru: "Подать заявку", zh: "立即申请" }, image: "https://github.com/asksokolov/TheVertical/blob/main/%D0%A1%D1%8A%D0%B5%D0%BC%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BE%D1%87%D0%BA%D0%BE%D0%B2%20%E2%9D%A4%EF%B8%8F_Idol%20Production%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0.jpg?raw=true", cutoutImage: "https://github.com/asksokolov/TheVertical/blob/main/%D0%A1%D1%8A%D0%B5%D0%BC%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BE%D1%87%D0%BA%D0%BE%D0%B2%20%E2%9D%A4%EF%B8%8F_Idol%20Production%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0.png?raw=true", hasForm: true, hasLink: true, linkAction: 'designerForm', useCutoutLayout: true },
+                { id: 2, title: { en: "Selina Tan Interview Now Live", ru: "Интервью с Селиной Тан уже доступно", zh: "塞琳娜·谭专访现已上线" }, date: { en: "March 2026", ru: "Март 2026", zh: "2026年3月" }, fullText: { en: "<p>The very first issue of VERT is now available, featuring an exclusive conversation with model Selina Tan. We explore her journey, her philosophy, and the stories that shaped her.</p><p>In this intimate interview, Selina opens up about inner silence, creativity, and finding balance in a chaotic world. The photo gallery captures the essence of her presence — quiet, powerful, and unmistakably real.</p>", ru: "<p>Первый выпуск VERT уже доступен с эксклюзивным интервью модели Селины Тан. Мы исследуем её путь, философию и истории, которые её сформировали.</p><p>В этом откровенном интервью Селина рассказывает о внутренней тишине, творчестве и поиске баланса в хаотичном мире. Фотогалерея передаёт суть её присутствия — тихого, мощного и несомненно настоящего.</p>", zh: "<p>VERT第一期现已上线，包含与模特塞琳娜·谭的独家对话。我们探索她的旅程、哲学和塑造她的故事。</p><p>在这次亲密采访中，塞琳娜敞开心扉谈论内心宁静、创造力和在混乱世界中寻找平衡。照片库捕捉了她存在的本质——安静、强大且真实。</p>" }, linkText: { en: "View the full photo gallery", ru: "Смотреть полную фотогалерею", zh: "查看完整照片库" }, image: "https://github.com/asksokolov/TheVertical/blob/main/Vertical_2.png?raw=true", hasForm: false, hasLink: true, linkAction: 'openIssue' },
+                { id: 4, title: { en: "VERT Officially Launches", ru: "Официальный запуск VERT", zh: "VERT 正式启动" }, date: { en: "March 2026", ru: "Март 2026", zh: "2026年3月" }, fullText: { en: "<p>Today marks the official launch of VERT — a new online magazine dedicated to contemporary stories and deep conversations. We're here to explore what lies behind the facade.</p><p>Join us on this journey as we seek the vertical in art, culture, and the human experience. Every month, we bring you exclusive interviews, visual stories, and thought-provoking content.</p>", ru: "<p>Сегодня состоялся официальный запуск VERT — нового онлайн-журнала, посвящённого современным историям и глубоким разговорам. Мы здесь, чтобы исследовать то, что скрывается за фасадом.</p><p>Присоединяйтесь к нам в поиске вертикали в искусстве, культуре и человеческом опыте. Каждый месяц мы представляем эксклюзивные интервью, визуальные истории и контент, заставляющий задуматься.</p>", zh: "<p>今天标志着VERT的正式启动——一本致力于当代故事和深度对话的新在线杂志。我们在这里探索表象背后的东西。</p><p>加入我们，在艺术、文化和人类经验中寻找垂直。每个月，我们为您带来独家采访、视觉故事和发人深省的内容。</p>" }, image: "https://images.wallpaperscraft.ru/image/single/fotoapparat_obektiv_kamera_137568_540x960.jpg", hasForm: false, hasLink: false }
+            ];
 
-        let currentLang = 'en';
-        let currentUser = null;
-        let users = [];
+            const heroSlidesData = {
+                en: [{ title: "VERT Seeks Web Designers", desc: "Join our digital team and shape the future of online storytelling" },{ title: "We seek the vertical", desc: "Deep conversations with those who inspire" },{ title: "Stories that matter", desc: "Every voice deserves to be heard" }],
+                ru: [{ title: "VERT ищет веб-дизайнеров", desc: "Присоединяйтесь к нашей цифровой команде" },{ title: "Мы ищем вертикаль", desc: "Глубокие разговоры с теми, кто вдохновляет" },{ title: "Истории, которые важны", desc: "Каждый голос заслуживает быть услышанным" }],
+                zh: [{ title: "VERT 寻找网页设计师", desc: "加入我们的数字团队" },{ title: "我们寻找垂直", desc: "与激励人心的人进行深度对话" },{ title: "重要的故事", desc: "每个声音都值得被听到" }]
+            };
 
-        function setCookie(name, value, days) {
-            const date = new Date(); date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/;SameSite=Strict";
-        }
-        function getCookie(name) {
-            const c = document.cookie.split(';'); for(let i=0;i<c.length;i++) { let d=c[i]; while(d.charAt(0)==' ') d=d.substring(1); if(d.indexOf(name+'=')==0) return d.substring(name.length+1,d.length); } return null;
-        }
-        function deleteCookie(name) { document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; }
+            const footerTexts = {
+                en: { tagline: "contemporary stories", privacy: "Privacy", terms: "Terms", cookies: "Cookies" },
+                ru: { tagline: "современные истории", privacy: "Конфиденциальность", terms: "Условия", cookies: "Cookie" },
+                zh: { tagline: "当代故事", privacy: "隐私", terms: "条款", cookies: "Cookie" }
+            };
 
-        function checkCookieConsent() {
-            if (!getCookie('cookie_consent') && getCookie('age_confirmed')) document.getElementById('cookieBanner').classList.add('active');
-        }
-        function acceptCookies() { setCookie('cookie_consent','accepted',365); document.getElementById('cookieBanner').classList.remove('active'); }
-        function declineCookies() { setCookie('cookie_consent','declined',365); document.getElementById('cookieBanner').classList.remove('active'); }
+            const designerFormTexts = {
+                en: { title: "Designer Application", subtitle: "All fields are required. Only registered users can apply.", q1: "1. Your full name", q3: "2. Preferred contact method", contactLabel: "Select all that apply:", contactEmail: "Email", contactTg: "Telegram", contactInst: "Instagram", emailPlaceholder: "your@email.com", tgPlaceholder: "@username", instPlaceholder: "@username", q4: "3. Link to your portfolio", q4hint: "Behance, Dribbble, Google Drive, etc.", q5: "4. Which programs do you prefer?", q5hint: "Figma is highly preferred.", q5options: ["Figma (priority)","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other: "Other:", q6: "5. Which section interests you?", q6options: ["General style & templates","Layout of interview spreads","Ad blocks & promo","Ready for any task"], q7: "6. Data processing consent", q7options: ["I consent to the processing of my personal data."], submitBtn: "Send Application", success: "Application sent!", error: "Please fill in all required fields.", loginRequired: "Please log in or register.", loginLink: "Log in / Register", invalidTg: "Username must start with @", privacyTitle: "Privacy Policy", privacyText: "<h3>Privacy Policy</h3><p>Last updated: June 2026</p><h4>1. General Provisions</h4><p>This policy governs data collection.</p><h4>2. Data Collected</h4><p>Name, email, contacts, portfolio.</p><h4>3. Purpose</h4><p>Reviewing applications.</p><h4>4. Storage</h4><p>Local browser storage.</p><h4>5. Rights</h4><p>Access, modify, delete data.</p><h4>6. Consent</h4><p>Submitting form = consent.</p>" },
+                ru: { title: "Анкета дизайнера", subtitle: "Все поля обязательны.", q1: "1. Ваше имя и фамилия", q3: "2. Способ связи", contactLabel: "Выберите:", contactEmail: "Почта", contactTg: "Telegram", contactInst: "Instagram", emailPlaceholder: "your@email.com", tgPlaceholder: "@username", instPlaceholder: "@username", q4: "3. Ссылка на портфолио", q4hint: "Behance, Dribbble...", q5: "4. В каких программах работаете?", q5hint: "Figma желательна.", q5options: ["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other: "Другое:", q6: "5. Какая рубрика интересна?", q6options: ["Стиль и шаблоны","Верстка интервью","Реклама","Любая задача"], q7: "6. Согласие на обработку", q7options: ["Я даю согласие."], submitBtn: "Отправить", success: "Заявка отправлена!", error: "Заполните все поля.", loginRequired: "Войдите или зарегистрируйтесь.", loginLink: "Войти", invalidTg: "Имя должно начинаться с @", privacyTitle: "Политика", privacyText: "<h3>Политика</h3><p>Сбор и хранение данных.</p>" },
+                zh: { title: "设计师申请", subtitle: "所有字段必填。", q1: "1. 全名", q3: "2. 联系方式", contactLabel: "选择:", contactEmail: "邮箱", contactTg: "Telegram", contactInst: "Instagram", emailPlaceholder: "your@email.com", tgPlaceholder: "@username", instPlaceholder: "@username", q4: "3. 作品集链接", q4hint: "Behance...", q5: "4. 使用哪些软件?", q5hint: "Figma优先。", q5options: ["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other: "其他:", q6: "5. 哪个板块?", q6options: ["风格模板","采访版面","广告设计","任何任务"], q7: "6. 数据同意", q7options: ["我同意处理个人数据。"], submitBtn: "发送", success: "申请已发送!", error: "请填写所有字段。", loginRequired: "请登录。", loginLink: "登录", invalidTg: "用户名必须以@开头", privacyTitle: "隐私", privacyText: "<h3>隐私政策</h3><p>数据收集与存储。</p>" }
+            };
 
-        function checkAge() { if(!getCookie('age_confirmed')) { document.getElementById('ageModal').classList.add('active'); document.body.classList.add('modal-active'); } else checkCookieConsent(); }
-        function confirmAge() { setCookie('age_confirmed','true',365); document.getElementById('ageModal').classList.remove('active'); document.body.classList.remove('modal-active'); checkCookieConsent(); }
-        function exitSite() { window.location.href = 'https://www.google.com'; }
+            const maintenanceTexts = {
+                en: { title: "Technical Break", subtitle: "We're making VERT even better.", estimated: "Estimated return:" },
+                ru: { title: "Технический перерыв", subtitle: "Мы делаем VERT ещё лучше.", estimated: "Возвращение:" },
+                zh: { title: "技术维护", subtitle: "我们正在让VERT变得更好。", estimated: "预计恢复:" }
+            };
 
-        function closeModalOnOutsideClick(modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
+            const translations = {
+                en: { logoTitle:'VERT',aboutNumber:'01',aboutTitle:'about',aboutText:'<p><strong>VERT</strong> is an online magazine about people, their inner world, and the stories behind the facade.</p><p>We believe that every person has depth worth exploring. Through intimate interviews and visual storytelling, we seek to uncover what lies beneath the surface.</p><p>Our mission is to create a space where contemporary stories come to life — raw, honest, and deeply human.</p>',aboutQuote:'— behind the facade, there is always someone. we seek the vertical.',newsNumber:'02',newsTitle:'last news',issuesNumber:'03',issuesTitle:'issues',copyright:'© VERT, 2026',cookieTitle:'Cookie Policy',cookieText:'We use cookies.',acceptCookies:'Accept',declineCookies:'Decline',loginTab:'Login',registerTab:'Register',loginSubmit:'Login',registerSubmit:'Register',authBtn:'Login / Register',logoutBtn:'Logout' },
+                ru: { logoTitle:'VERT',aboutNumber:'01',aboutTitle:'о журнале',aboutText:'<p><strong>VERT</strong> — это интернет-журнал о людях, их внутреннем мире и историях за фасадом.</p><p>Мы верим, что у каждого человека есть глубина, достойная исследования.</p>',aboutQuote:'— за фасадом всегда кто-то есть. мы ищем вертикаль.',newsNumber:'02',newsTitle:'новости',issuesNumber:'03',issuesTitle:'выпуски',copyright:'© VERT, 2026',cookieTitle:'Cookie',cookieText:'Мы используем cookie.',acceptCookies:'Принять',declineCookies:'Отказаться',loginTab:'Вход',registerTab:'Регистрация',loginSubmit:'Войти',registerSubmit:'Зарегистрироваться',authBtn:'Войти',logoutBtn:'Выйти' },
+                zh: { logoTitle:'VERT',aboutNumber:'01',aboutTitle:'关于',aboutText:'<p><strong>VERT</strong> 是一本关于人、内心世界和表象背后故事的在线杂志。</p>',aboutQuote:'— 表象背后总有人存在。我们寻找垂直。',newsNumber:'02',newsTitle:'新闻',issuesNumber:'03',issuesTitle:'期刊',copyright:'© VERT, 2026',cookieTitle:'Cookie',cookieText:'我们使用cookie。',acceptCookies:'接受',declineCookies:'拒绝',loginTab:'登录',registerTab:'注册',loginSubmit:'登录',registerSubmit:'注册',authBtn:'登录',logoutBtn:'退出' }
+            };
+
+            let currentLang = 'en', currentUser = null, users = [], newsletterSubscribers = [], designerApplications = [];
+            let currentSlide = 0, heroInterval, newsScrollInterval;
+            let isPremiumUser = false;
+
+            function setCookie(n,v,d){const e=new Date();e.setTime(e.getTime()+d*86400000);document.cookie=n+"="+encodeURIComponent(v)+";expires="+e.toUTCString()+";path=/;SameSite=Lax"}
+            function getCookie(n){const c=document.cookie.split(';');for(let i=0;i<c.length;i++){let d=c[i].trim();if(d.indexOf(n+'=')==0){try{return decodeURIComponent(d.substring(n.length+1))}catch(e){return d.substring(n.length+1)}}}return null}
+
+            function loadData(){
+                try{const u=localStorage.getItem('vert_users');if(u)users=JSON.parse(u)}catch(e){users=[]}
+                try{const s=localStorage.getItem('vert_newsletter_subscribers');if(s)newsletterSubscribers=JSON.parse(s)}catch(e){newsletterSubscribers=[]}
+                try{const d=localStorage.getItem('vert_designer_applications');if(d)designerApplications=JSON.parse(d)}catch(e){designerApplications=[]}
+                try{const n=localStorage.getItem('vert_notifications');if(n)globalNotifications=JSON.parse(n)}catch(e){globalNotifications=[]}
+                try{const dn=localStorage.getItem('vert_dismissed_notifications');if(dn)dismissedNotifications=JSON.parse(dn)}catch(e){dismissedNotifications=[]}
+                try{const p=localStorage.getItem('vert_premium_users');if(p)premiumUsers=JSON.parse(p)}catch(e){premiumUsers=[]}
+                try{const cu=localStorage.getItem('vert_user');if(cu){currentUser=JSON.parse(cu);if(!getCookie('vert_session'))setCookie('vert_session',Date.now().toString(36),30)}else{currentUser=null}}catch(e){currentUser=null;localStorage.removeItem('vert_user')}
+                const savedLang = getCookie('vert_lang') || localStorage.getItem('vert_lang');
+                if(savedLang && ['en','ru','zh'].includes(savedLang)) currentLang = savedLang;
+                try{const m=localStorage.getItem('vert_maintenance');if(m){const d=JSON.parse(m);if(new Date(d.endTime)>new Date()){maintenanceActive=true;maintenanceEndTime=new Date(d.endTime);startMaintenanceDisplay()}else{localStorage.removeItem('vert_maintenance')}}}catch(e){}
+                if(currentUser && premiumUsers.includes(currentUser.email.toLowerCase())){
+                    isPremiumUser = true;
+                    document.body.classList.add('premium-active');
                 }
-            });
-        }
-
-        function setLanguage(lang) {
-            currentLang = lang; const t = translations[lang];
-            document.querySelectorAll('.lang-vert-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-            for(let id in t) {
-                if(document.getElementById(id)) document.getElementById(id).innerHTML = t[id];
             }
-            renderNews();
-            updateAuthUI();
-        }
+            function saveU(){localStorage.setItem('vert_users',JSON.stringify(users))}
+            function saveS(){localStorage.setItem('vert_newsletter_subscribers',JSON.stringify(newsletterSubscribers))}
+            function saveD(){localStorage.setItem('vert_designer_applications',JSON.stringify(designerApplications))}
+            function saveN(){localStorage.setItem('vert_notifications',JSON.stringify(globalNotifications))}
+            function saveDN(){localStorage.setItem('vert_dismissed_notifications',JSON.stringify(dismissedNotifications))}
+            function saveP(){localStorage.setItem('vert_premium_users',JSON.stringify(premiumUsers))}
+            function saveLang(lang){setCookie('vert_lang',lang,365);localStorage.setItem('vert_lang',lang)}
 
-        function openNewsDetail(id) {
-            const news = newsData.find(n => n.id === id);
-            if(news) {
-                const modal = document.getElementById('newsModal');
-                const content = document.getElementById('newsModalContent');
-                content.innerHTML = `
-                    <div class="news-modal-header">
-                        <h2 class="news-modal-title">${news.title[currentLang]}</h2>
-                        <div class="news-modal-date">${news.date[currentLang]}</div>
-                    </div>
-                    <div class="news-modal-body">
-                        <div class="news-modal-image">
-                            <img src="${news.image}" alt="${news.title[currentLang]}">
+            loadData();
+
+            function setUser(u){currentUser=u;localStorage.setItem('vert_user',JSON.stringify(u));setCookie('vert_session',Date.now().toString(36)+Math.random().toString(36).substring(2),30);isPremiumUser=premiumUsers.includes(u.email.toLowerCase());if(isPremiumUser){document.body.classList.add('premium-active')}else{document.body.classList.remove('premium-active')}updateAuthUI()}
+            function logout(){currentUser=null;localStorage.removeItem('vert_user');isPremiumUser=false;document.body.classList.remove('premium-active');updateAuthUI()}
+
+            function updateAuthUI(){
+                const t=translations[currentLang];
+                const authSection=document.getElementById('authSection');if(!authSection)return;
+                if(currentUser){
+                    let premiumBadgeHtml = '';
+                    if(isPremiumUser){
+                        premiumBadgeHtml = '<span class="premium-badge">PREMIUM</span>';
+                    }
+                    authSection.innerHTML=`<div class="user-info"><div class="user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div><span class="user-name">${currentUser.name}</span>${premiumBadgeHtml}<button class="logout-btn" id="logoutBtn"><span>${t.logoutBtn}</span></button></div>`;
+                    document.getElementById('logoutBtn')?.addEventListener('click',logout);
+                }else{
+                    authSection.innerHTML=`<button class="auth-btn" id="showAuthModal"><span>${t.authBtn}</span></button>`;
+                    document.getElementById('showAuthModal')?.addEventListener('click',()=>document.getElementById('authModal')?.classList.add('active'));
+                }
+            }
+
+            function showNotificationToast(title, text, isPremium){
+                const container = document.getElementById('notificationContainer');
+                const existing = container.querySelector('.notification-toast');
+                if(existing) existing.remove();
+                const toast = document.createElement('div');
+                toast.className = 'notification-toast' + (isPremium ? ' premium-toast' : '');
+                toast.innerHTML = `<div class="notification-toast-icon"><i data-lucide="${isPremium?'crown':'info'}"></i></div><div class="notification-toast-content"><div class="notification-toast-title">${title}</div><div class="notification-toast-text">${text}</div></div><button class="notification-toast-close" onclick="this.parentElement.remove()"><i data-lucide="x"></i></button>`;
+                container.appendChild(toast);
+                lucide.createIcons();
+                setTimeout(() => { toast.classList.add('closing'); setTimeout(() => toast.remove(), 400); }, 8000);
+            }
+
+            function checkPendingNotifications(){
+                if(!currentUser) return;
+                const pending = globalNotifications.filter(n => !dismissedNotifications.includes(n.id) && new Date(n.date) > new Date(Date.now() - 7*24*60*60*1000));
+                if(pending.length > 0){
+                    const latest = pending[pending.length - 1];
+                    showNotificationToast('Message from VERT', latest.text, false);
+                    dismissedNotifications.push(latest.id);
+                    saveDN();
+                }
+            }
+
+            function startMaintenanceDisplay(){
+                if(!maintenanceActive)return;
+                const overlay = document.getElementById('maintenanceOverlay');
+                if(overlay) overlay.classList.add('active');
+                document.body.classList.add('maintenance-active');
+                updateMaintenanceCountdown();
+                if(maintenanceInterval)clearInterval(maintenanceInterval);
+                maintenanceInterval = setInterval(updateMaintenanceCountdown, 60000);
+            }
+
+            function updateMaintenanceCountdown(){
+                if(!maintenanceActive||!maintenanceEndTime)return;
+                const now=new Date(),diff=maintenanceEndTime-now,mt=maintenanceTexts[currentLang];
+                document.getElementById('maintenanceTitle').textContent=mt.title;
+                document.getElementById('maintenanceSubtitle').textContent=mt.subtitle;
+                if(diff>0){const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000);document.getElementById('maintenanceTime').textContent=`${mt.estimated} ${h}h ${m}m`}
+                else{document.getElementById('maintenanceTime').textContent='Returning soon...';stopMaintenance()}
+            }
+
+            function stopMaintenance(){maintenanceActive=false;maintenanceEndTime=null;if(maintenanceInterval)clearInterval(maintenanceInterval);document.getElementById('maintenanceOverlay')?.classList.remove('active');document.body.classList.remove('maintenance-active');localStorage.removeItem('vert_maintenance');if(adminUnlocked)renderAdminPanel()}
+            function openMaintenanceSetup(){document.getElementById('maintenanceSetupModal').classList.add('active');document.getElementById('maintenanceEndHours').value=2}
+            function closeMaintenanceSetup(){document.getElementById('maintenanceSetupModal').classList.remove('active')}
+
+            window.startMaintenance = function(){
+                const hours = parseInt(document.getElementById('maintenanceEndHours').value);
+                if(!hours||hours<1||hours>48){alert('Enter valid hours (1-48).');return}
+                maintenanceEndTime=new Date(Date.now()+hours*3600000);
+                maintenanceActive=true;
+                localStorage.setItem('vert_maintenance',JSON.stringify({endTime:maintenanceEndTime.toISOString()}));
+                document.getElementById('maintenanceSetupModal').classList.remove('active');
+                startMaintenanceDisplay();
+                if(adminUnlocked)renderAdminPanel();
+            };
+
+            window.stopMaintenanceMode = function(){stopMaintenance();};
+
+            window.sendGlobalNotification = function(){
+                const text = document.getElementById('adminNotificationText').value.trim();
+                if(!text){alert('Enter notification text.');return}
+                const notification = {id: Date.now().toString(36)+Math.random().toString(36), text, date: new Date().toISOString()};
+                globalNotifications.push(notification);
+                saveN();
+                document.getElementById('adminNotificationText').value='';
+                renderAdminNotificationsList();
+            };
+
+            window.grantSubscription = function(){
+                const email = document.getElementById('grantEmail').value.trim();
+                const plan = document.getElementById('grantPlan').value;
+                if(!email||!email.includes('@')){alert('Enter valid email.');return}
+                if(!newsletterSubscribers.some(s=>s.email.toLowerCase()===email.toLowerCase())){
+                    newsletterSubscribers.push({email, plan, date: new Date().toISOString(), granted: true});
+                    saveS();
+                }else{
+                    const sub = newsletterSubscribers.find(s=>s.email.toLowerCase()===email.toLowerCase());
+                    sub.plan = plan; sub.granted = true;
+                    saveS();
+                }
+                if(!premiumUsers.includes(email.toLowerCase())){
+                    premiumUsers.push(email.toLowerCase());
+                    saveP();
+                }
+                if(currentUser && currentUser.email.toLowerCase() === email.toLowerCase()){
+                    isPremiumUser = true;
+                    document.body.classList.add('premium-active');
+                    updateAuthUI();
+                    showNotificationToast('Premium Activated', 'Welcome to VERT Premium! Enjoy exclusive content.', true);
+                }
+                document.getElementById('grantEmail').value='';
+                renderAdminPanel();
+                alert('Subscription granted.');
+            };
+
+            function renderAdminNotificationsList(){
+                const container = document.getElementById('adminNotificationsList');
+                if(!container)return;
+                let h='<div class="admin-table-wrapper"><table class="admin-table"><thead><tr><th>Date</th><th>Message</th><th>Actions</th></tr></thead><tbody>';
+                if(globalNotifications.length===0)h+='<tr class="empty-row"><td colspan="3">No notifications</td></tr>';
+                else [...globalNotifications].reverse().forEach((n,i)=>{h+=`<tr><td>${new Date(n.date).toLocaleDateString()}</td><td>${n.text}</td><td><button class="admin-row-btn delete" onclick="deleteNotification(${globalNotifications.length-1-i})">Del</button></td></tr>`});
+                h+='</tbody></table></div>';container.innerHTML=h;
+            }
+
+            window.deleteNotification = function(index){
+                globalNotifications.splice(index,1);
+                saveN();
+                renderAdminNotificationsList();
+            };
+
+            function isValidUrl(url){if(!url)return true;try{const u=new URL(url);return u.protocol==='http:'||u.protocol==='https:'}catch{return false}}
+            function isValidEmail(email){return email&&email.includes('@')&&email.length>5&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
+            function isValidTelegram(username){if(!username)return false;return /^@[a-zA-Z0-9_]{3,32}$/.test(username)}
+
+            function initAdminPanel(){
+                document.addEventListener('keydown',function(e){
+                    if(e.key && e.key.toLowerCase() === 'v' && e.ctrlKey && e.shiftKey && !e.altKey && !e.metaKey){
+                        e.preventDefault();
+                        if(adminUnlocked) return;
+                        if(adminLoginBlocked) return;
+                        openAdminLogin();
+                    }
+                });
+                document.querySelectorAll('.admin-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');adminCurrentTab=tab.dataset.adminTab;adminCurrentPage=1;adminSearchQuery='';const se=document.getElementById('adminSearch');if(se)se.value='';adminFilterValue='all';const fe=document.getElementById('adminFilter');if(fe)fe.value='all';document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));const tm={designers:'adminDesigners',subscribers:'adminSubscribers',users:'adminUsers',notifications:'adminNotifications'};const target=document.getElementById(tm[adminCurrentTab]);if(target)target.classList.add('active');renderAdminPanel();if(adminCurrentTab==='notifications')renderAdminNotificationsList()})});
+                document.getElementById('adminSearch')?.addEventListener('input',e=>{adminSearchQuery=e.target.value.toLowerCase();adminCurrentPage=1;renderAdminPanel()});
+                document.getElementById('adminFilter')?.addEventListener('change',e=>{adminFilterValue=e.target.value;adminCurrentPage=1;renderAdminPanel()});
+            }
+
+            function getFilteredData(type){let data;if(type==='designers')data=[...designerApplications].reverse();else if(type==='subscribers')data=[...newsletterSubscribers].reverse();else data=[...users].reverse();const now=new Date();if(adminFilterValue==='recent'){const y=new Date(now.getTime()-24*60*60*1000);data=data.filter(i=>i.date&&new Date(i.date)>=y)}else if(adminFilterValue==='week'){const w=new Date(now.getTime()-7*24*60*60*1000);data=data.filter(i=>i.date&&new Date(i.date)>=w)}else if(adminFilterValue==='month'){const m=new Date(now.getTime()-30*24*60*60*1000);data=data.filter(i=>i.date&&new Date(i.date)>=m)}if(adminSearchQuery)data=data.filter(i=>JSON.stringify(i).toLowerCase().includes(adminSearchQuery));return data}
+
+            function renderAdminPanel(){const ac=designerApplications.length,sc=newsletterSubscribers.length,uc=users.length;['adminHeaderApps','adminHeaderSubs','adminHeaderUsers'].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.textContent=[ac,sc,uc][i]});['adminDesignerCount','adminSubscriberCount','adminUserCount'].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.textContent=[ac,sc,uc][i]});const sg=document.getElementById('adminStatsGrid');if(sg)sg.innerHTML=`<div class="admin-stat-card"><div class="admin-stat-number">${ac}</div><div class="admin-stat-label">Applications</div></div><div class="admin-stat-card"><div class="admin-stat-number">${sc}</div><div class="admin-stat-label">Subscribers</div></div><div class="admin-stat-card"><div class="admin-stat-number">${uc}</div><div class="admin-stat-label">Users</div></div><div class="admin-stat-card"><div class="admin-stat-number">${maintenanceActive?'ON':'OFF'}</div><div class="admin-stat-label">Maintenance</div>${maintenanceActive?`<button class="maintenance-stop-btn" onclick="stopMaintenanceMode()">Stop</button>`:'<span style="color:#4ADE80;font-size:0.65rem;">Inactive</span>'}</div>`;if(adminCurrentTab!=='notifications'){renderAdminTable()}if(adminCurrentTab==='subscribers'){renderAdminSubscribersTable()}}
+
+            function renderAdminTable(){const fd=getFilteredData(adminCurrentTab),tp=Math.ceil(fd.length/ITEMS_PER_PAGE)||1,si=(adminCurrentPage-1)*ITEMS_PER_PAGE,pd=fd.slice(si,si+ITEMS_PER_PAGE);document.getElementById('adminResultCount').textContent=`${fd.length} results`;let h='<div class="admin-table-wrapper"><table class="admin-table">';if(adminCurrentTab==='designers'){h+='<thead><tr><th>Date</th><th>Name</th><th>Contacts</th><th>Actions</th></tr></thead><tbody>';if(pd.length===0)h+='<tr class="empty-row"><td colspan="4">No applications</td></tr>';else pd.forEach(a=>{const ri=designerApplications.findIndex(d=>d.date===a.date&&d.email===a.email);const contactStr=a.contacts?Object.values(a.contacts).filter(Boolean).join(', '):'—';h+=`<tr><td>${a.date?new Date(a.date).toLocaleDateString():'—'}</td><td>${a.name||'—'}</td><td>${contactStr}</td><td><div class="admin-table-actions"><button class="admin-row-btn view" onclick="adminViewDetail('designers',${ri})">View</button><button class="admin-row-btn delete" onclick="adminDeleteItem('designers',${ri})">Del</button></div></td></tr>`})}else if(adminCurrentTab==='users'){h+='<thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Actions</th></tr></thead><tbody>';if(pd.length===0)h+='<tr class="empty-row"><td colspan="4">No users</td></tr>';else pd.forEach(u=>{const ri=users.findIndex(user=>user.email===u.email);h+=`<tr><td>${u.date?new Date(u.date).toLocaleDateString():'—'}</td><td>${u.name||'—'}</td><td>${u.email||'—'}</td><td><button class="admin-row-btn delete" onclick="adminDeleteItem('users',${ri})">Del</button></td></tr>`})}h+='</tbody></table></div>';const tm={designers:'adminDesigners',users:'adminUsers'};const target=document.getElementById(tm[adminCurrentTab]);if(target)target.innerHTML=h;renderAdminPagination(tp)}
+
+            function renderAdminSubscribersTable(){
+                const container = document.getElementById('adminSubscribersTable');
+                if(!container)return;
+                const fd=getFilteredData('subscribers'),tp=Math.ceil(fd.length/ITEMS_PER_PAGE)||1,si=(adminCurrentPage-1)*ITEMS_PER_PAGE,pd=fd.slice(si,si+ITEMS_PER_PAGE);
+                let h='<div class="admin-table-wrapper"><table class="admin-table"><thead><tr><th>Date</th><th>Email</th><th>Plan</th><th>Premium</th><th>Actions</th></tr></thead><tbody>';
+                if(pd.length===0)h+='<tr class="empty-row"><td colspan="5">No subscribers</td></tr>';
+                else pd.forEach(s=>{const ri=newsletterSubscribers.findIndex(sub=>sub.date===s.date&&sub.email===s.email);const isPrem=premiumUsers.includes(s.email.toLowerCase());h+=`<tr><td>${s.date?new Date(s.date).toLocaleDateString():'—'}</td><td>${s.email||'—'}</td><td>${s.plan||'—'}</td><td>${isPrem?'Yes':'No'}</td><td><button class="admin-row-btn delete" onclick="adminDeleteItem('subscribers',${ri})">Del</button></td></tr>`});
+                h+='</tbody></table></div>';container.innerHTML=h;
+            }
+
+            function renderAdminPagination(tp){const pc=document.getElementById('adminPagination');if(!pc)return;if(tp<=1){pc.innerHTML='';return}let h='';h+=`<button class="admin-page-btn" onclick="adminGoToPage(${adminCurrentPage-1})" ${adminCurrentPage===1?'disabled style="opacity:0.3"':''}>‹</button>`;for(let i=1;i<=tp;i++){if(i===1||i===tp||(i>=adminCurrentPage-2&&i<=adminCurrentPage+2))h+=`<button class="admin-page-btn ${i===adminCurrentPage?'active':''}" onclick="adminGoToPage(${i})">${i}</button>`;else if(i===adminCurrentPage-3||i===adminCurrentPage+3)h+='<span style="color:#444;">...</span>'}h+=`<button class="admin-page-btn" onclick="adminGoToPage(${adminCurrentPage+1})" ${adminCurrentPage===tp?'disabled style="opacity:0.3"':''}>›</button>`;pc.innerHTML=h}
+            window.adminGoToPage=function(p){const fd=getFilteredData(adminCurrentTab);const tp=Math.ceil(fd.length/ITEMS_PER_PAGE)||1;if(p<1||p>tp)return;adminCurrentPage=p;if(adminCurrentTab==='subscribers')renderAdminSubscribersTable();else renderAdminTable()};
+            window.adminViewDetail=function(type,index){let item,title;if(type==='designers'){item=designerApplications[index];title='Application Detail'}else{item=users[index];title='User'}if(!item)return;const m=document.getElementById('adminDetailModal'),c=document.getElementById('adminDetailContent');if(!m||!c)return;c.innerHTML=`<h3>${title}</h3>${Object.entries(item).map(([k,v])=>`<p><strong>${k}:</strong> ${typeof v==='object'?JSON.stringify(v):(v||'—')}</p>`).join('')}<button class="admin-modal-close" onclick="document.getElementById('adminDetailModal').classList.remove('active')">Close</button>`;m.classList.add('active')};
+            window.adminDeleteItem=function(type,index){if(confirm('Delete?')){if(type==='designers'){designerApplications.splice(index,1);saveD()}else if(type==='subscribers'){newsletterSubscribers.splice(index,1);saveS()}else{users.splice(index,1);saveU()}renderAdminPanel()}};
+            window.adminExportAll=function(){const d={exportDate:new Date().toISOString(),designerApplications,newsletterSubscribers,users};const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`vert_export_${new Date().toISOString().split('T')[0]}.json`;a.click();URL.revokeObjectURL(u)};
+
+            function openAdminLogin(){
+                if(adminLoginBlocked){alert('Wait 60 seconds.');return}
+                document.getElementById('adminLoginOverlay').classList.add('active');
+                document.getElementById('adminPasswordInput').value='';
+                document.getElementById('adminLoginError').style.display='none';
+                setTimeout(()=>document.getElementById('adminPasswordInput').focus(),200);
+            }
+            window.closeAdminLogin = function(){
+                if(adminUnlocked) return;
+                document.getElementById('adminLoginOverlay').classList.remove('active');
+            };
+            window.verifyAdminPassword=function(){if(adminLoginBlocked)return;const i=document.getElementById('adminPasswordInput');if(!i)return;if(i.value===ADMIN_PASSWORD){adminUnlocked=true;adminLoginAttempts=0;document.getElementById('adminLoginOverlay').classList.remove('active');document.getElementById('adminPanel').classList.add('active');document.body.style.overflow='hidden';adminCurrentPage=1;adminCurrentTab='designers';document.querySelectorAll('.admin-tab').forEach((t,i)=>t.classList.toggle('active',i===0));document.querySelectorAll('.admin-section').forEach((s,i)=>s.classList.toggle('active',i===0));document.getElementById('adminSearch').value='';document.getElementById('adminFilter').value='all';adminSearchQuery='';adminFilterValue='all';renderAdminPanel()}else{adminLoginAttempts++;const e=document.getElementById('adminLoginError');if(e){e.style.display='block';e.textContent=`Invalid (${adminLoginAttempts}/5)`}i.value='';if(adminLoginAttempts>=5){adminLoginBlocked=true;document.getElementById('adminLoginOverlay').classList.remove('active');alert('Blocked 60s.');if(adminBlockTimer)clearTimeout(adminBlockTimer);adminBlockTimer=setTimeout(()=>{adminLoginBlocked=false;adminLoginAttempts=0},60000)}}};
+            window.closeAdminPanel=function(){document.getElementById('adminPanel').classList.remove('active');document.body.style.overflow='';adminUnlocked=false};
+
+            document.addEventListener('keydown',function(e){if(e.key==='Enter'&&document.getElementById('adminLoginOverlay')?.classList.contains('active'))verifyAdminPassword()});
+            document.getElementById('adminDetailModal')?.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')});
+            document.getElementById('maintenanceSetupModal')?.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')});
+
+            window.openPrivacyPolicy = function(){
+                const t = designerFormTexts[currentLang];
+                const content = document.getElementById('privacyPolicyContent');
+                content.innerHTML = t.privacyText + `<button class="privacy-policy-close" onclick="document.getElementById('privacyPolicyModal').classList.remove('active')">Close</button>`;
+                document.getElementById('privacyPolicyModal').classList.add('active');
+            };
+            document.getElementById('privacyPolicyModal')?.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')});
+
+            function generateDesignerForm(){
+                const t=designerFormTexts[currentLang];
+                if(!currentUser){return `<div class="designer-application-form"><div class="form-not-logged-in"><p>${t.loginRequired}</p><span class="login-link-btn" onclick="document.getElementById('authModal').classList.add('active')">${t.loginLink}</span></div></div>`}
+                const q5checkboxes=t.q5options.map((o,i)=>`<div class="checkbox-item"><input type="checkbox" id="q5_${i}" value="${o}"> <label for="q5_${i}">${o}</label></div>`).join('');
+                const q5other=`<div class="checkbox-item"><input type="checkbox" id="q5_other" value="other"> <label for="q5_other">${t.q5other}</label><input type="text" class="other-input" id="q5_other_text" placeholder="${t.q5other}" style="display:none;"></div>`;
+                const q6radios=t.q6options.map((o,i)=>`<div class="radio-item"><input type="radio" name="q6" id="q6_${i}" value="${o}"> <label for="q6_${i}">${o}</label></div>`).join('');
+                const q7radios=t.q7options.map((o,i)=>`<div class="radio-item"><input type="radio" name="q7" id="q7_${i}" value="${o}"> <label for="q7_${i}">${o}</label></div>`).join('');
+
+                return `<div class="designer-application-form" id="designerApplicationForm">
+                    <h3>${t.title}</h3><p class="form-subtitle">${t.subtitle}</p>
+                    <div class="designer-form-group"><label>${t.q1} <span class="required-star">*</span></label><input type="text" id="designerName" placeholder=""></div>
+                    <div class="designer-form-group"><label>${t.q3} <span class="required-star">*</span></label>
+                        <div class="contact-method-group">
+                            <div class="contact-method-item"><input type="checkbox" id="contactEmail" value="email" onchange="toggleContactField('email')"> <label for="contactEmail">${t.contactEmail}</label></div>
+                            <div class="contact-method-item"><input type="checkbox" id="contactTg" value="tg" onchange="toggleContactField('tg')"> <label for="contactTg">${t.contactTg}</label></div>
+                            <div class="contact-method-item"><input type="checkbox" id="contactInst" value="inst" onchange="toggleContactField('inst')"> <label for="contactInst">${t.contactInst}</label></div>
                         </div>
-                        <div class="news-modal-text">${news.fullText[currentLang]}</div>
+                        <div class="contact-fields">
+                            <div class="contact-field" id="contactFieldEmail"><input type="email" id="contactEmailValue" placeholder="${t.emailPlaceholder}"></div>
+                            <div class="contact-field" id="contactFieldTg"><input type="text" id="contactTgValue" placeholder="${t.tgPlaceholder}"></div>
+                            <div class="contact-field" id="contactFieldInst"><input type="text" id="contactInstValue" placeholder="${t.instPlaceholder}"></div>
+                        </div>
                     </div>
-                `;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                    <div class="designer-form-group"><label>${t.q4} <span class="required-star">*</span><span class="hint">${t.q4hint}</span></label><input type="url" id="designerPortfolio" placeholder="https://"></div>
+                    <div class="designer-form-group"><label>${t.q5} <span class="required-star">*</span><span class="hint">${t.q5hint}</span></label><div class="checkbox-group">${q5checkboxes}${q5other}</div></div>
+                    <div class="designer-form-group"><label>${t.q6} <span class="required-star">*</span></label><div class="radio-group">${q6radios}</div></div>
+                    <div class="designer-form-group"><label>${t.q7} <span class="required-star">*</span></label><div class="radio-group">${q7radios}</div>
+                        <div class="privacy-policy-section"><span class="privacy-policy-link" onclick="openPrivacyPolicy()">${t.privacyTitle}</span></div>
+                    </div>
+                    <button class="designer-submit-btn" id="designerSubmitBtn">${t.submitBtn}</button>
+                    <div class="designer-form-success" id="designerFormSuccess">${t.success}</div>
+                    <div class="designer-form-error" id="designerFormError">${t.error}</div>
+                </div>`;
             }
-        }
 
-        function renderNews() {
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = newsData.slice(0,4).map(n => `
-                <div class="news-item" data-news-id="${n.id}">
-                    <span class="news-date">${n.date[currentLang]}</span>
-                    <span class="news-title">${n.title[currentLang]}</span>
-                    <span class="news-arrow">→</span>
-                </div>
-            `).join('');
-            document.querySelectorAll('.news-item').forEach(item => {
-                item.addEventListener('click', () => openNewsDetail(parseInt(item.dataset.newsId)));
-            });
-        }
+            window.toggleContactField = function(type){const cb=document.getElementById('contact'+type.charAt(0).toUpperCase()+type.slice(1));const field=document.getElementById('contactField'+type.charAt(0).toUpperCase()+type.slice(1));if(cb&&field){field.classList.toggle('active',cb.checked);if(!cb.checked){const input=field.querySelector('input');if(input)input.value=''}}};
 
-        try { const saved = localStorage.getItem('vertical_user'); if(saved && getCookie('session')) currentUser = JSON.parse(saved); } catch(e) {}
-        try { const su = localStorage.getItem('vertical_users'); if(su) users = JSON.parse(su); } catch(e) {}
-        function saveUsers() { localStorage.setItem('vertical_users', JSON.stringify(users)); }
-        function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
-        function setUser(u) { currentUser=u; localStorage.setItem('vertical_user',JSON.stringify(u)); setCookie('session',Math.random().toString(36).substring(2)+Date.now().toString(36),7); updateAuthUI(); }
-        function logout() { currentUser=null; localStorage.removeItem('vertical_user'); deleteCookie('session'); updateAuthUI(); }
-        function updateAuthUI() {
-            const t = translations[currentLang];
-            if(currentUser) {
-                document.getElementById('authSection').innerHTML = `<div class="user-info"><div class="user-avatar">${currentUser.name.charAt(0)}</div><span class="user-name">${currentUser.name}</span><button class="logout-btn" id="logoutBtn">${t.logoutBtn}</button></div>`;
-                document.getElementById('logoutBtn').addEventListener('click', logout);
-            } else {
-                document.getElementById('authSection').innerHTML = `<button class="auth-btn" id="showAuthModal">${t.authBtn}</button>`;
-                document.getElementById('showAuthModal').addEventListener('click', () => document.getElementById('authModal').classList.add('active'));
-            }
-        }
+            function openNewsFullscreen(id){
+                const news=newsData.find(n=>n.id===id);if(!news)return;
+                let eh='',fh='',layoutHtml='';
+                if(news.hasLink&&news.linkAction==='designerForm'){eh=`<div class="apply-btn" id="openDesignerFormBtn">${news.linkText[currentLang]}</div>`;fh=`<div id="designerFormContainer" style="display:none;">${generateDesignerForm()}</div>`}
+                else if(news.hasLink&&news.linkAction==='openIssue'){eh=`<div class="apply-btn" id="openIssueFromNews">${news.linkText[currentLang]}</div>`}
 
-        document.getElementById('loginSubmit').addEventListener('click', () => {
-            const e = document.getElementById('loginEmail').value, p = document.getElementById('loginPassword').value;
-            if(!e||!p) { document.getElementById('loginError').textContent='Fill all fields'; document.getElementById('loginError').classList.add('show'); return; }
-            if(!isValidEmail(e)) { document.getElementById('loginError').textContent='Invalid email'; document.getElementById('loginError').classList.add('show'); return; }
-            const u = users.find(u=>u.email===e && u.password===p);
-            if(u) { setUser(u); document.getElementById('authModal').classList.remove('active'); document.getElementById('loginError').classList.remove('show'); }
-            else { document.getElementById('loginError').textContent='Invalid email or password'; document.getElementById('loginError').classList.add('show'); }
-        });
-        document.getElementById('registerSubmit').addEventListener('click', () => {
-            const n = document.getElementById('registerName').value, e = document.getElementById('registerEmail').value, p = document.getElementById('registerPassword').value;
-            if(!n||!e||!p) { document.getElementById('registerError').textContent='Fill all fields'; document.getElementById('registerError').classList.add('show'); return; }
-            if(!isValidEmail(e)) { document.getElementById('registerError').textContent='Invalid email'; document.getElementById('registerError').classList.add('show'); return; }
-            if(p.length<6) { document.getElementById('registerError').textContent='Password min 6 chars'; document.getElementById('registerError').classList.add('show'); return; }
-            if(users.some(u=>u.email===e)) { document.getElementById('registerError').textContent='Email exists'; document.getElementById('registerError').classList.add('show'); return; }
-            const nu = {name:n, email:e, password:p}; users.push(nu); saveUsers(); setUser(nu);
-            document.getElementById('authModal').classList.remove('active'); document.getElementById('registerError').classList.remove('show');
-        });
-
-        const modals = ['authModal', 'ageModal', 'cookieBanner', 'issueModal', 'newsModal'];
-        modals.forEach(id => {
-            const modal = document.getElementById(id);
-            if(modal) closeModalOnOutsideClick(modal);
-        });
-
-        document.getElementById('closeAuthModal').addEventListener('click', () => document.getElementById('authModal').classList.remove('active'));
-        document.getElementById('closeModal').addEventListener('click', () => document.getElementById('issueModal').classList.remove('active'));
-        document.getElementById('closeNewsModal').addEventListener('click', () => { document.getElementById('newsModal').classList.remove('active'); document.body.style.overflow = ''; });
-
-        document.querySelectorAll('.lang-vert-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
-
-        const sectionsMap = { about: document.getElementById('about'), creator: document.getElementById('creator'), news: document.getElementById('news'), issues: document.getElementById('issues') };
-        document.querySelectorAll('.nav-dot').forEach(dot => {
-            const section = dot.dataset.section;
-            dot.addEventListener('click', () => sectionsMap[section]?.scrollIntoView({ behavior: 'smooth' }));
-        });
-        window.addEventListener('scroll', () => {
-            const pos = window.scrollY + 100;
-            for(let [key, sec] of Object.entries(sectionsMap)) {
-                if(sec && pos >= sec.offsetTop && pos < sec.offsetTop + sec.offsetHeight) {
-                    document.querySelectorAll('.nav-dot').forEach(d => d.classList.toggle('active', d.dataset.section === key));
-                    break;
+                if(news.useCutoutLayout){
+                    layoutHtml=`<div class="news-fullscreen-with-cutout"><div class="news-cutout-image"><img src="${news.cutoutImage}" alt="${news.title[currentLang]}"></div><div class="news-cutout-text"><div class="content-text">${news.fullText[currentLang]}</div>${eh}${fh}</div></div>`;
+                } else {
+                    layoutHtml=`<div class="news-fullscreen-layout"><div class="news-fullscreen-image"><img src="${news.image}" alt="${news.title[currentLang]}"></div><div class="news-fullscreen-text"><div class="content-text">${news.fullText[currentLang]}</div>${eh}${fh}</div></div>`;
                 }
+
+                const body=document.getElementById('newsFullscreenBody'),modal=document.getElementById('newsFullscreenModal');
+                if(!body||!modal)return;
+                body.innerHTML=`<div class="meta">${news.date?news.date[currentLang]||'':''}</div><h2>${news.title[currentLang]}</h2>${layoutHtml}`;
+                modal.classList.add('active');document.body.style.overflow='hidden';
+                if(news.hasLink&&news.linkAction==='designerForm'){document.getElementById('openDesignerFormBtn')?.addEventListener('click',()=>{const fc=document.getElementById('designerFormContainer');if(fc){fc.style.display='block';fc.scrollIntoView({behavior:'smooth'})}document.getElementById('openDesignerFormBtn').style.display='none';initFormHandlers()})}
+                if(news.hasLink&&news.linkAction==='openIssue'){document.getElementById('openIssueFromNews')?.addEventListener('click',()=>{closeFullscreenModal();setTimeout(openIssueFullscreen,300)})}
+                lucide.createIcons();
             }
-        });
 
-        let slideshowInterval=null, currentPhotoIndex=0, isTransitioning=false;
-        function renderGallery(photos, container) {
-            currentPhotoIndex=0;
-            container.innerHTML = `<div class="gallery-container"><div class="gallery-main"><img src="${photos[0]}" id="galleryImage"></div><div class="gallery-arrow prev" id="prevPhoto">←</div><div class="gallery-arrow next" id="nextPhoto">→</div><div class="gallery-nav" id="galleryDots">${photos.map((_,i)=>`<span class="gallery-dot ${i===0?'active':''}" data-index="${i}"></span>`).join('')}</div></div>`;
-            function updatePhoto(idx) { if(isTransitioning) return; if(idx>=0&&idx<photos.length) { isTransitioning=true; const img=document.getElementById('galleryImage'); img.style.opacity='0'; setTimeout(()=>{ currentPhotoIndex=idx; img.src=photos[idx]; img.style.opacity='1'; document.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===idx)); setTimeout(()=>isTransitioning=false,100); },500); } }
-            document.getElementById('prevPhoto')?.addEventListener('click',()=>{ let i=currentPhotoIndex-1; if(i<0)i=photos.length-1; updatePhoto(i); resetSlideshow(); });
-            document.getElementById('nextPhoto')?.addEventListener('click',()=>{ let i=currentPhotoIndex+1; if(i>=photos.length)i=0; updatePhoto(i); resetSlideshow(); });
-            document.querySelectorAll('.gallery-dot').forEach((d,i)=>d.addEventListener('click',()=>{ updatePhoto(i); resetSlideshow(); }));
-            function startSlideshow() { if(slideshowInterval) clearInterval(slideshowInterval); slideshowInterval = setInterval(()=>{ let i=currentPhotoIndex+1; if(i>=photos.length)i=0; updatePhoto(i); },5000); }
-            function resetSlideshow() { if(slideshowInterval){ clearInterval(slideshowInterval); startSlideshow(); } }
-            startSlideshow();
-        }
-        document.querySelector('.issue-card')?.addEventListener('click', () => {
-            const modal=document.getElementById('issueModal'), content=document.getElementById('modalContent');
-            content.innerHTML = `<div class="gallery-container"></div><div class="modal-info"><h3>${issueData.name[currentLang]}</h3><div class="modal-date">${issueData.date[currentLang]}</div><div class="modal-description">${issueData.description[currentLang]}</div></div>`;
-            renderGallery(issueData.photos, content.querySelector('.gallery-container'));
-            modal.classList.add('active'); document.body.style.overflow='hidden';
-        });
+            function initFormHandlers(){const q5other=document.getElementById('q5_other'),q5otherText=document.getElementById('q5_other_text');if(q5other&&q5otherText){q5other.addEventListener('change',()=>{q5otherText.style.display=q5other.checked?'block':'none';if(!q5other.checked)q5otherText.value=''})}const sb=document.getElementById('designerSubmitBtn');if(sb)sb.addEventListener('click',submitDesignerApplication)}
 
-        document.getElementById('confirmAge').addEventListener('click', confirmAge);
-        document.getElementById('exitSite').addEventListener('click', exitSite);
-        document.getElementById('acceptCookies').addEventListener('click', acceptCookies);
-        document.getElementById('declineCookies').addEventListener('click', declineCookies);
+            function submitDesignerApplication(){
+                if(!currentUser){alert('Please log in first.');return}
+                const t=designerFormTexts[currentLang];
+                const name=document.getElementById('designerName')?.value.trim();
+                const portfolio=document.getElementById('designerPortfolio')?.value.trim();
+                const se=document.getElementById('designerFormSuccess'),ee=document.getElementById('designerFormError');
+                if(se)se.style.display='none';if(ee)ee.style.display='none';
+                if(!name){if(ee){ee.textContent='Please enter your name';ee.style.display='block'}return}
+                if(!portfolio){if(ee){ee.textContent='Please enter portfolio link';ee.style.display='block'}return}
+                if(portfolio&&!isValidUrl(portfolio)){if(ee){ee.textContent='Invalid portfolio URL';ee.style.display='block'}return}
+                const contacts={};let hasContact=false;
+                if(document.getElementById('contactEmail')?.checked){const v=document.getElementById('contactEmailValue')?.value.trim();if(v){if(!isValidEmail(v)){if(ee){ee.textContent='Invalid email';ee.style.display='block'}return}contacts.email=v;hasContact=true}}
+                if(document.getElementById('contactTg')?.checked){const v=document.getElementById('contactTgValue')?.value.trim();if(v){if(!isValidTelegram(v)){if(ee){ee.textContent=t.invalidTg;ee.style.display='block'}return}contacts.tg=v;hasContact=true}}
+                if(document.getElementById('contactInst')?.checked){const v=document.getElementById('contactInstValue')?.value.trim();if(v){if(!v.startsWith('@')){if(ee){ee.textContent='Instagram username must start with @';ee.style.display='block'}return}contacts.inst=v;hasContact=true}}
+                if(!hasContact){if(ee){ee.textContent='Select at least one contact method';ee.style.display='block'}return}
+                const q5selected=[];document.querySelectorAll('#designerApplicationForm input[type="checkbox"]:checked').forEach(cb=>{if(cb.id.startsWith('q5_')&&cb.id!=='q5_other')q5selected.push(cb.value)});
+                if(document.getElementById('q5_other')?.checked){const ov=document.getElementById('q5_other_text')?.value.trim();if(ov)q5selected.push(ov)}
+                if(q5selected.length===0){if(ee){ee.textContent='Select at least one program';ee.style.display='block'}return}
+                const q6=document.querySelector('input[name="q6"]:checked');if(!q6){if(ee){ee.textContent='Select a section';ee.style.display='block'}return}
+                const q7=document.querySelector('input[name="q7"]:checked');if(!q7){if(ee){ee.textContent='Confirm data processing consent';ee.style.display='block'}return}
+                const app={name,contacts,portfolio,programs:q5selected,section:q6.value,consent:q7.value,userId:currentUser.email,date:new Date().toISOString(),lang:currentLang};
+                designerApplications.push(app);saveD();
+                if(se)se.style.display='block';
+                ['designerName','designerPortfolio'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+                document.querySelectorAll('#designerApplicationForm input[type="checkbox"]').forEach(cb=>cb.checked=false);
+                document.querySelectorAll('#designerApplicationForm input[type="radio"]').forEach(r=>r.checked=false);
+                document.querySelectorAll('.contact-field').forEach(f=>{f.classList.remove('active');const i=f.querySelector('input');if(i)i.value=''});
+            }
 
-        setLanguage('en');
-        checkAge();
-        updateAuthUI();
-        renderNews();
+            function openIssueFullscreen(issueDataParam){
+                const data = issueDataParam || issueData;
+                const pages=data.photos;let ph='';
+                for(let i=0;i<pages.length;i+=2){ph+=`<div class="issue-page-spread"><div class="issue-page" onclick="openLightbox('${pages[i]}')"><img src="${pages[i]}" alt="Page ${i+1}" loading="lazy"></div>${pages[i+1]?`<div class="issue-page" onclick="openLightbox('${pages[i+1]}')"><img src="${pages[i+1]}" alt="Page ${i+2}" loading="lazy"></div>`:''}</div>`}
+                const body=document.getElementById('issueFullscreenBody'),modal=document.getElementById('issueFullscreenModal');
+                if(!body||!modal)return;
+                body.innerHTML=`<div class="meta">${data.tag[currentLang]} · ${data.date[currentLang]}</div><h2>${data.name[currentLang]}</h2><div class="issue-fullscreen-layout"><div class="issue-fullscreen-pages">${ph}</div><div class="issue-fullscreen-info"><div class="content-text">${data.description[currentLang]}</div></div></div>`;
+                modal.classList.add('active');document.body.style.overflow='hidden';lucide.createIcons();
+            }
+
+            window.closeFullscreenModal=function(){document.getElementById('newsFullscreenModal')?.classList.remove('active');document.body.style.overflow=''}
+            window.closeIssueFullscreen=function(){document.getElementById('issueFullscreenModal')?.classList.remove('active');document.body.style.overflow=''}
+            window.openLightbox=function(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('active')}
+
+            function updateHeroSlides(){const s=heroSlidesData[currentLang];for(let i=0;i<3;i++){const te=document.getElementById('heroTitle'+(i+1)),de=document.getElementById('heroDesc'+(i+1));if(te)te.textContent=s[i].title;if(de)de.textContent=s[i].desc}}
+            function initHeroSlider(){const slides=document.getElementById('heroSlides'),dotsContainer=document.getElementById('heroDots'),totalSlides=3;if(!slides||!dotsContainer)return;dotsContainer.innerHTML='';for(let i=0;i<totalSlides;i++){const dot=document.createElement('div');dot.className='hero-dot'+(i===0?' active':'');dot.addEventListener('click',()=>goToSlide(i));dotsContainer.appendChild(dot)}function goToSlide(idx){currentSlide=idx;slides.style.transform=`translateX(-${idx*100}%)`;document.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('active',i===idx))}function nextSlide(){currentSlide=(currentSlide+1)%totalSlides;goToSlide(currentSlide)}if(heroInterval)clearInterval(heroInterval);heroInterval=setInterval(nextSlide,5000);const hs=document.getElementById('heroSlider');if(hs){hs.addEventListener('mouseenter',()=>clearInterval(heroInterval));hs.addEventListener('mouseleave',()=>{clearInterval(heroInterval);heroInterval=setInterval(nextSlide,5000)});let tsx=0;hs.addEventListener('touchstart',(e)=>{tsx=e.touches[0].clientX});hs.addEventListener('touchend',(e)=>{const diff=tsx-e.changedTouches[0].clientX;if(Math.abs(diff)>50){if(diff>0)currentSlide=(currentSlide+1)%totalSlides;else currentSlide=(currentSlide-1+totalSlides)%totalSlides;goToSlide(currentSlide)}})}}
+            function renderNews(){const grid=document.getElementById('newsGrid');if(!grid)return;grid.innerHTML=newsData.map(n=>`<div class="news-item" data-news-id="${n.id}"><div class="news-image"><img src="${n.image}" alt="${n.title[currentLang]}" loading="lazy"></div><div class="news-info"><span class="news-title">${n.title[currentLang]}</span><span class="news-arrow"><i data-lucide="arrow-right"></i></span></div></div>`).join('');lucide.createIcons();document.querySelectorAll('.news-item').forEach(item=>{item.addEventListener('click',function(){const id=parseInt(this.dataset.newsId);if(!isNaN(id))openNewsFullscreen(id)})});startNewsAutoScroll()}
+            function startNewsAutoScroll(){if(newsScrollInterval)clearInterval(newsScrollInterval);const grid=document.getElementById('newsGrid');if(!grid||grid.children.length===0)return;newsScrollInterval=setInterval(()=>{if(grid.scrollLeft+grid.clientWidth>=grid.scrollWidth-10)grid.scrollTo({left:0,behavior:'smooth'});else grid.scrollBy({left:230,behavior:'smooth'})},3500);grid.addEventListener('mouseenter',()=>clearInterval(newsScrollInterval));grid.addEventListener('mouseleave',()=>{clearInterval(newsScrollInterval);startNewsAutoScroll()})}
+            function renderIssues(){
+                const grid=document.getElementById('issuesGrid');
+                if(!grid)return;
+                // Only the standard issue is rendered; premium issue card has been removed.
+                let issuesHtml = '';
+                issuesHtml += `<div class="issue-card" onclick="openIssueFullscreen()"><div class="issue-cover-large"><img src="${issueData.photos[0]}" alt="VERT issue 1" loading="lazy"></div><div class="issue-info-mini"><span class="issue-tag-mini">${issueData.tag[currentLang]}</span><span class="issue-date-mini">${issueData.date[currentLang]}</span></div></div>`;
+                grid.innerHTML = issuesHtml;
+                lucide.createIcons();
+            }
+
+            function setLanguage(lang){
+                currentLang=lang;saveLang(lang);
+                const t=translations[lang];document.querySelectorAll('.lang-vert-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+                ['logoTitle','aboutNumber','aboutTitle','aboutQuote','newsNumber','newsTitle','issuesNumber','issuesTitle','copyright','cookieTitle','cookieText','acceptCookies','declineCookies','loginTab','registerTab','loginSubmit','registerSubmit'].forEach(id=>{const el=document.getElementById(id);if(el&&t[id])el.textContent=t[id]});
+                document.getElementById('aboutText').innerHTML=t['aboutText'];
+                const ft=footerTexts[lang];
+                document.getElementById('footerTagline').textContent=ft.tagline;
+                document.getElementById('footerPrivacy').textContent=ft.privacy;
+                document.getElementById('footerTerms').textContent=ft.terms;
+                document.getElementById('footerCookies').textContent=ft.cookies;
+                updateHeroSlides();renderNews();renderIssues();updateAuthUI();
+                if(maintenanceActive)updateMaintenanceCountdown();
+                lucide.createIcons();
+            }
+
+            function buildNav(){const nav=document.getElementById('quickNav');if(!nav)return;nav.innerHTML=['about','news','issues'].map((s,i)=>`<button class="nav-icon" data-section="${s}"><i data-lucide="${['circle','zap','book-open'][i]}"></i></button>`).join('');lucide.createIcons();document.querySelectorAll('.nav-icon').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.section)?.scrollIntoView({behavior:'smooth'})))}
+            window.addEventListener('scroll',()=>{const p=window.scrollY+120;document.querySelectorAll('.nav-icon').forEach(b=>{const s=document.getElementById(b.dataset.section);if(s&&p>=s.offsetTop&&p<s.offsetTop+s.offsetHeight){document.querySelectorAll('.nav-icon').forEach(x=>x.classList.remove('active'));b.classList.add('active')}})});
+
+            document.getElementById('loginSubmit')?.addEventListener('click',()=>{const e=document.getElementById('loginEmail')?.value.trim(),p=document.getElementById('loginPassword')?.value,err=document.getElementById('loginError');if(!e||!p){if(err){err.textContent='Fill all fields';err.style.display='block'}return}const u=users.find(u=>u.email.toLowerCase()===e.toLowerCase()&&u.password===p);if(u){setUser(u);document.getElementById('authModal').classList.remove('active');document.getElementById('loginEmail').value='';document.getElementById('loginPassword').value='';if(err)err.style.display='none';checkPendingNotifications()}else{if(err){err.textContent='Invalid credentials';err.style.display='block'}}});
+            document.getElementById('registerSubmitModal')?.addEventListener('click',()=>{const n=document.getElementById('registerNameModal')?.value.trim(),e=document.getElementById('registerEmailModal')?.value.trim(),p=document.getElementById('registerPasswordModal')?.value,err=document.getElementById('registerErrorModal');if(!n||!e||!p){if(err){err.textContent='Fill all fields';err.style.display='block'}return}if(!isValidEmail(e)){if(err){err.textContent='Invalid email';err.style.display='block'}return}if(users.some(u=>u.email.toLowerCase()===e.toLowerCase())){if(err){err.textContent='Email already registered';err.style.display='block'}return}const nu={name:n,email:e,password:p,date:new Date().toISOString()};users.push(nu);saveU();setUser(nu);document.getElementById('authModal').classList.remove('active');document.getElementById('registerNameModal').value='';document.getElementById('registerEmailModal').value='';document.getElementById('registerPasswordModal').value='';if(err)err.style.display='none';checkPendingNotifications()});
+            document.getElementById('closeAuthModal')?.addEventListener('click',()=>document.getElementById('authModal').classList.remove('active'));
+            document.querySelectorAll('.lang-vert-btn').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
+            document.getElementById('acceptCookies')?.addEventListener('click',()=>{setCookie('cookie_consent','accepted',365);document.getElementById('cookieBanner').classList.remove('active')});
+            document.getElementById('declineCookies')?.addEventListener('click',()=>{setCookie('cookie_consent','declined',365);document.getElementById('cookieBanner').classList.remove('active')});
+            if(!getCookie('cookie_consent'))setTimeout(()=>document.getElementById('cookieBanner')?.classList.add('active'),500);
+            document.querySelectorAll('.auth-tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.auth-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.auth-form').forEach(f=>f.classList.remove('active'));document.getElementById(tab.dataset.tab==='login'?'loginForm':'registerFormModal')?.classList.add('active');document.getElementById('loginError').style.display='none';document.getElementById('registerErrorModal').style.display='none'}));
+            document.addEventListener('keydown',(e)=>{if(e.key==='Escape'){['authModal','newsFullscreenModal','issueFullscreenModal','lightbox','adminDetailModal','privacyPolicyModal'].forEach(id=>document.getElementById(id)?.classList.remove('active'));document.body.style.overflow=''}});
+
+            initHeroSlider();buildNav();initAdminPanel();setLanguage(currentLang);updateAuthUI();renderNews();renderIssues();
+            if(maintenanceActive)startMaintenanceDisplay();
+            if(currentUser)checkPendingNotifications();
+            window.openIssueFullscreen = openIssueFullscreen;
+        })();
     </script>
 </body>
 </html>
