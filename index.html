@@ -1761,7 +1761,7 @@
             body { font-size: 14px; padding-top: 64px; }
             .sticky-header { padding: 0.6rem 1rem; }
             .logo h1 { font-size: 2rem; }
-            .auth-section { position: static; transform: none; margin-top: 0.3rem; }
+            .auth-section { position: static; transform: none; margin-top: 0.3rem; justify-content: center; }
             .header-content { flex-direction: column; gap: 0.4rem; }
             .right-panel { right: 0.3rem; gap: 1rem; }
             .lang-switch-vertical { width: 32px; padding: 0.35rem 0.25rem; border-radius: 20px; }
@@ -1783,6 +1783,20 @@
             .cookie-content { flex-direction: column; text-align: center; }
             .footer-grid { gap: 1rem; }
             .notification-toast { top: 70px; width: 94%; padding: 1rem 1.3rem; }
+            .auth-btn, .logout-btn, .apply-btn, .designer-submit-btn, .cookie-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
+            }
+            .auth-modal-content {
+                padding: 1.5rem;
+            }
+            .designer-application-form {
+                padding: 1.5rem;
+            }
+            .admin-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
@@ -2013,6 +2027,16 @@
             function saveLang(lang){setCookie('vert_lang',lang,365);localStorage.setItem('vert_lang',lang)}
 
             loadData();
+
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'vert_users' || e.key === 'vert_user' || e.key === 'vert_newsletter_subscribers' || e.key === 'vert_premium_users') {
+                    loadData();
+                    updateAuthUI();
+                    renderNews();
+                    renderIssues();
+                    if (adminUnlocked) renderAdminPanel();
+                }
+            });
 
             function setUser(u){currentUser=u;localStorage.setItem('vert_user',JSON.stringify(u));setCookie('vert_session',Date.now().toString(36)+Math.random().toString(36).substring(2),30);isPremiumUser=premiumUsers.includes(u.email.toLowerCase());if(isPremiumUser){document.body.classList.add('premium-active')}else{document.body.classList.remove('premium-active')}updateAuthUI()}
             function logout(){currentUser=null;localStorage.removeItem('vert_user');isPremiumUser=false;document.body.classList.remove('premium-active');updateAuthUI()}
@@ -2320,7 +2344,6 @@
             function renderIssues(){
                 const grid=document.getElementById('issuesGrid');
                 if(!grid)return;
-                // Only the standard issue is rendered; premium issue card has been removed.
                 let issuesHtml = '';
                 issuesHtml += `<div class="issue-card" onclick="openIssueFullscreen()"><div class="issue-cover-large"><img src="${issueData.photos[0]}" alt="VERT issue 1" loading="lazy"></div><div class="issue-info-mini"><span class="issue-tag-mini">${issueData.tag[currentLang]}</span><span class="issue-date-mini">${issueData.date[currentLang]}</span></div></div>`;
                 grid.innerHTML = issuesHtml;
