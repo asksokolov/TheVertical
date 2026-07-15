@@ -12,11 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --bg: #070707;
@@ -33,8 +29,8 @@
             color: var(--text-secondary);
             font-family: 'Instrument Sans', 'Onest', -apple-system, sans-serif;
             font-weight: 400;
-            font-size: 15px;
-            line-height: 1.7;
+            font-size: 17px;
+            line-height: 1.8;
             min-height: 100vh;
             overflow-x: hidden;
             padding-top: 60px;
@@ -60,6 +56,11 @@
         @keyframes breathe {
             0%, 100% { opacity: 0.4; }
             50% { opacity: 0.8; }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* ХЕДЕР */
@@ -114,20 +115,15 @@
             background-clip: text;
             animation: gradientShift 5s ease-in-out infinite;
         }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
 
-        .auth-section { display: flex; align-items: center; gap: 0.5rem; }
+        .auth-section { display: flex; align-items: center; gap: 0.8rem; }
         .auth-btn {
             background: transparent;
             border: 1px solid rgba(255,255,255,0.08);
             color: var(--text-secondary);
-            padding: 0.4rem 1.2rem;
+            padding: 0.45rem 1.6rem;
             border-radius: 40px;
-            font-size: 0.62rem;
+            font-size: 0.8rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.06em;
@@ -145,14 +141,14 @@
         .user-info {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             background: rgba(255,255,255,0.015);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 40px;
-            padding: 0.15rem 0.7rem 0.15rem 0.3rem;
+            padding: 0.15rem 0.9rem 0.15rem 0.4rem;
         }
         .user-avatar {
-            width: 26px; height: 26px;
+            width: 28px; height: 28px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent), #FF8C00);
             display: flex;
@@ -160,26 +156,29 @@
             justify-content: center;
             color: var(--bg);
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-family: 'Clash Display', sans-serif;
         }
-        .user-name { color: #d0d0d0; font-size: 0.72rem; font-weight: 500; }
+        .user-name { color: #d0d0d0; font-size: 0.85rem; font-weight: 500; }
+
         .logout-btn {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.05);
-            color: var(--text-tertiary);
-            padding: 0.2rem 0.6rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-secondary);
+            padding: 0.4rem 1.2rem;
             border-radius: 40px;
-            font-size: 0.5rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 0.2rem;
+            gap: 0.4rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
         }
-        .logout-btn:hover { border-color: rgba(255,80,80,0.3); color: #ff5555; }
-        .logout-btn svg { width: 10px; height: 10px; }
+        .logout-btn:hover { border-color: rgba(255,80,80,0.3); color: #ff5555; background: rgba(255,80,80,0.05); }
+        .logout-btn svg { width: 12px; height: 12px; }
 
         /* ГЕРО-СЛАЙДЕР */
         .hero-slider {
@@ -228,7 +227,7 @@
             border: 1px solid rgba(204,255,0,0.12);
             border-radius: 40px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.48rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             color: var(--accent);
@@ -236,7 +235,7 @@
         }
         .hero-slide-content h2 {
             font-family: 'Clash Display', 'Unbounded', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 700;
             color: #fff;
             line-height: 1.08;
@@ -244,7 +243,7 @@
             letter-spacing: -0.03em;
         }
         .hero-slide-content p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: rgba(255,255,255,0.6);
             max-width: 460px;
             margin: 0 auto;
@@ -280,32 +279,34 @@
         /* ПАНЕЛЬ ПЕРЕКЛЮЧЕНИЯ РАЗДЕЛОВ */
         .section-nav {
             display: flex;
-            gap: 0.15rem;
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 14px;
-            padding: 0.25rem;
+            gap: 0.3rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 0.4rem 0.6rem;
             margin-bottom: 2.5rem;
             position: sticky;
             top: 72px;
             z-index: 50;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             overflow-x: auto;
             scrollbar-width: none;
+            flex-wrap: nowrap;
+            justify-content: center;
         }
         .section-nav::-webkit-scrollbar { display: none; }
         .section-nav-btn {
-            flex: 1;
-            min-width: 120px;
+            flex: 0 1 auto;
+            min-width: 140px;
             background: transparent;
             border: none;
-            color: rgba(255,255,255,0.3);
-            padding: 0.65rem 1.2rem;
+            color: rgba(255,255,255,0.25);
+            padding: 0.7rem 1.8rem;
             border-radius: 12px;
             cursor: pointer;
             font-family: 'Onest', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.9rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -314,24 +315,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             position: relative;
         }
         .section-nav-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
-            opacity: 0.4;
+            opacity: 0.3;
             transition: all 0.4s var(--transition);
-        }
-        .section-nav-btn .nav-text {
-            transition: all 0.4s;
         }
         .section-nav-btn.active {
             color: var(--bg);
             background: var(--accent);
-            font-weight: 600;
-            box-shadow: 0 4px 20px rgba(204,255,0,0.1);
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(204,255,0,0.15);
         }
         .section-nav-btn.active svg {
             opacity: 1;
@@ -353,7 +351,7 @@
             margin-bottom: 1.5rem;
         }
         .section-number {
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             color: var(--accent);
             font-weight: 600;
             letter-spacing: 0.14em;
@@ -362,7 +360,7 @@
         }
         .section-title {
             font-family: 'Clash Display', 'Unbounded', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             font-weight: 600;
             color: var(--text-primary);
             letter-spacing: -0.03em;
@@ -382,17 +380,17 @@
         }
 
         .description-text {
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             color: #aaa;
-            max-width: 640px;
+            max-width: 680px;
             margin: 0 auto;
-            line-height: 1.9;
+            line-height: 2;
         }
-        .description-text p { margin-bottom: 1rem; }
+        .description-text p { margin-bottom: 0.8rem; }
         .description-text strong { color: #ddd; font-weight: 600; }
 
         .accent-quote {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-style: italic;
             color: var(--accent);
             text-align: center;
@@ -416,11 +414,11 @@
             background: transparent;
             border: none;
             color: rgba(255,255,255,0.3);
-            padding: 0.45rem 1.2rem;
+            padding: 0.5rem 1.4rem;
             border-radius: 30px;
             cursor: pointer;
             font-family: 'Onest', sans-serif;
-            font-size: 0.6rem;
+            font-size: 0.75rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.06em;
@@ -429,7 +427,7 @@
             align-items: center;
             gap: 0.4rem;
         }
-        .tab-switcher-btn svg { width: 13px; height: 13px; opacity: 0.4; transition: opacity 0.3s; }
+        .tab-switcher-btn svg { width: 15px; height: 15px; opacity: 0.4; transition: opacity 0.3s; }
         .tab-switcher-btn.active { color: var(--bg); background: var(--accent); font-weight: 600; }
         .tab-switcher-btn.active svg { opacity: 1; }
         .tab-switcher-btn:hover:not(.active) { color: rgba(255,255,255,0.55); }
@@ -440,8 +438,8 @@
         /* СЕТКИ */
         .news-grid, .issues-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 0.8rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
             margin-top: 0.3rem;
         }
 
@@ -483,7 +481,7 @@
         .news-item:hover .news-image img, .issue-card:hover .issue-cover-large img { transform: scale(1.04); }
         .news-info, .issue-info-mini { padding: 0.7rem 0.8rem; }
         .news-title {
-            font-size: 0.78rem;
+            font-size: 0.9rem;
             font-weight: 500;
             color: #ccc;
             line-height: 1.35;
@@ -498,10 +496,10 @@
             justify-content: space-between;
             align-items: center;
         }
-        .news-date, .issue-date-mini { font-size: 0.5rem; color: var(--text-tertiary); letter-spacing: 0.04em; text-transform: uppercase; }
-        .issue-tag-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.7; }
+        .news-date, .issue-date-mini { font-size: 0.6rem; color: var(--text-tertiary); letter-spacing: 0.04em; text-transform: uppercase; }
+        .issue-tag-mini { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.7; }
         .news-arrow {
-            width: 24px; height: 24px;
+            width: 26px; height: 26px;
             border-radius: 50%;
             border: 1px solid rgba(255,255,255,0.05);
             display: flex;
@@ -509,7 +507,7 @@
             justify-content: center;
             transition: all 0.3s;
         }
-        .news-arrow svg { width: 11px; height: 11px; color: rgba(255,255,255,0.2); transition: all 0.3s; }
+        .news-arrow svg { width: 13px; height: 13px; color: rgba(255,255,255,0.2); transition: all 0.3s; }
         .news-item:hover .news-arrow { border-color: rgba(204,255,0,0.15); background: rgba(204,255,0,0.03); }
         .news-item:hover .news-arrow svg { color: var(--accent); }
 
@@ -548,99 +546,197 @@
             flex-wrap: wrap;
             gap: 1.2rem;
         }
-        .footer-brand { display: flex; align-items: center; gap: 0.4rem; }
-        .footer-brand img { width: 24px; height: 24px; }
+        .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+        .footer-brand img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
         .footer-brand-name { font-family: 'Clash Display', sans-serif; font-size: 1.1rem; font-weight: 700; color: #ccc; }
-        .footer-brand-tagline { font-size: 0.6rem; color: var(--text-tertiary); font-style: italic; }
+        .footer-brand-tagline { font-size: 0.7rem; color: var(--text-tertiary); font-style: italic; }
         .footer-center { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
         .footer-links-row { display: flex; gap: 1.5rem; }
-        .footer-links-row a { color: var(--text-tertiary); font-size: 0.6rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.3s; }
+        .footer-links-row a { color: var(--text-tertiary); font-size: 0.7rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.3s; cursor: pointer; }
         .footer-links-row a:hover { color: rgba(255,255,255,0.5); }
-        .footer-copyright { font-size: 0.55rem; color: rgba(255,255,255,0.1); }
+        .footer-copyright { font-size: 0.65rem; color: rgba(255,255,255,0.1); }
         .footer-social { display: flex; gap: 1rem; }
-        .footer-social-item { color: var(--text-tertiary); font-size: 0.6rem; text-decoration: none; display: flex; align-items: center; gap: 0.25rem; transition: color 0.3s; }
+        .footer-social-item { color: var(--text-tertiary); font-size: 0.7rem; text-decoration: none; display: flex; align-items: center; gap: 0.25rem; transition: color 0.3s; }
         .footer-social-item:hover { color: #ccc; }
-        .footer-social-item svg { width: 13px; height: 13px; opacity: 0.4; }
+        .footer-social-item svg { width: 15px; height: 15px; opacity: 0.4; }
 
-        /* ФОРМА */
+        /* ФОРМА - ИСПРАВЛЕННЫЕ КВАДРАТЫ И КРУГИ */
         .designer-application-form {
             margin-top: 1rem;
-            padding: 1.8rem;
+            padding: 2rem;
             background: rgba(255,255,255,0.015);
             border: 1px solid rgba(255,255,255,0.04);
             border-radius: 16px;
         }
-        .designer-application-form h3 { font-family: 'Clash Display', sans-serif; font-size: 1rem; color: #ddd; margin-bottom: 0.1rem; }
-        .designer-application-form .form-subtitle { font-size: 0.65rem; color: var(--text-tertiary); margin-bottom: 1.4rem; }
-        .designer-form-group { margin-bottom: 1rem; }
-        .designer-form-group label { display: block; font-size: 0.62rem; color: rgba(255,255,255,0.45); margin-bottom: 0.25rem; font-weight: 500; }
+        .designer-application-form h3 { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; color: #ddd; margin-bottom: 0.1rem; }
+        .designer-application-form .form-subtitle { font-size: 0.8rem; color: var(--text-tertiary); margin-bottom: 1.4rem; }
+        .designer-form-group { margin-bottom: 1.2rem; }
+        .designer-form-group label { display: block; font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-bottom: 0.35rem; font-weight: 500; }
         .designer-form-group label .required-star { color: var(--accent); }
-        .designer-form-group label .hint { font-size: 0.5rem; color: var(--text-tertiary); font-weight: 400; }
+        .designer-form-group label .hint { font-size: 0.6rem; color: var(--text-tertiary); font-weight: 400; }
         .designer-form-group input {
             width: 100%;
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 8px;
-            padding: 0.5rem 0.8rem;
+            padding: 0.7rem 1rem;
             color: #ddd;
             font-family: 'Onest', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             outline: none;
             transition: border-color 0.3s;
         }
         .designer-form-group input:focus { border-color: rgba(204,255,0,0.2); }
 
-        .checkbox-group, .radio-group { display: flex; flex-direction: column; gap: 0.25rem; }
+        .checkbox-group, .radio-group { display: flex; flex-direction: column; gap: 0.6rem; }
         .checkbox-item, .radio-item {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.8rem;
             cursor: pointer;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
             transition: color 0.3s;
         }
-        .checkbox-item:hover, .radio-item:hover { color: rgba(255,255,255,0.65); }
-        .checkbox-item input[type="checkbox"], .radio-item input[type="radio"] {
-            appearance: none; -webkit-appearance: none;
-            width: 13px; height: 13px;
-            min-width: 13px; max-width: 13px;
-            border: 1.5px solid rgba(255,255,255,0.2);
-            border-radius: 3px;
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-            flex-shrink: 0;
-            margin: 0;
+        .checkbox-item:hover, .radio-item:hover { color: rgba(255,255,255,0.7); }
+        
+        /* ====== ИСПРАВЛЕННЫЕ КВАДРАТЫ ====== */
+        .checkbox-item input[type="checkbox"] {
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            width: 22px !important;
+            height: 22px !important;
+            min-width: 22px !important;
+            max-width: 22px !important;
+            min-height: 22px !important;
+            max-height: 22px !important;
+            border: 2px solid rgba(255,255,255,0.25) !important;
+            border-radius: 4px !important;
+            background: transparent !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            flex-shrink: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            position: relative !important;
+            box-sizing: border-box !important;
         }
-        .radio-item input[type="radio"] { border-radius: 50%; }
-        .checkbox-item input[type="checkbox"]:checked, .radio-item input[type="radio"]:checked { background: var(--accent); border-color: var(--accent); }
+        .checkbox-item input[type="checkbox"]:checked {
+            background: var(--accent) !important;
+            border-color: var(--accent) !important;
+        }
         .checkbox-item input[type="checkbox"]:checked::after {
-            content: '';
-            position: absolute;
-            top: 2px; left: 4px;
-            width: 3px; height: 6px;
-            border: solid var(--bg);
-            border-width: 0 1.5px 1.5px 0;
-            transform: rotate(45deg);
+            content: '' !important;
+            position: absolute !important;
+            top: 3px !important;
+            left: 7px !important;
+            width: 6px !important;
+            height: 11px !important;
+            border: solid var(--bg) !important;
+            border-width: 0 2.5px 2.5px 0 !important;
+            transform: rotate(45deg) !important;
+            background: transparent !important;
         }
-        .checkbox-item .other-input { display: none; margin-top: 0.2rem; margin-left: 1.3rem; }
-        .checkbox-item .other-input.active { display: block; }
 
-        .contact-method-group { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-        .contact-method-item { display: flex; align-items: center; gap: 0.3rem; cursor: pointer; font-size: 0.68rem; color: rgba(255,255,255,0.4); }
-        .contact-method-item input[type="checkbox"] {
-            appearance: none; -webkit-appearance: none;
-            width: 12px; height: 12px;
-            min-width: 12px; max-width: 12px;
-            border: 1.5px solid rgba(255,255,255,0.2);
-            border-radius: 3px;
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin: 0;
+        /* ====== ИСПРАВЛЕННЫЕ КРУГИ ====== */
+        .radio-item input[type="radio"] {
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            width: 22px !important;
+            height: 22px !important;
+            min-width: 22px !important;
+            max-width: 22px !important;
+            min-height: 22px !important;
+            max-height: 22px !important;
+            border: 2px solid rgba(255,255,255,0.25) !important;
+            border-radius: 50% !important;
+            background: transparent !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            flex-shrink: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            position: relative !important;
+            box-sizing: border-box !important;
         }
-        .contact-method-item input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+        .radio-item input[type="radio"]:checked {
+            border-color: var(--accent) !important;
+            background: var(--accent) !important;
+        }
+        .radio-item input[type="radio"]:checked::after {
+            content: '' !important;
+            position: absolute !important;
+            top: 5px !important;
+            left: 5px !important;
+            width: 8px !important;
+            height: 8px !important;
+            border-radius: 50% !important;
+            background: var(--bg) !important;
+            border: none !important;
+        }
+
+        .checkbox-item .other-input { display: none; margin-top: 0.2rem; margin-left: 2.6rem; }
+        .checkbox-item .other-input.active { display: block; }
+        .checkbox-item .other-input input {
+            width: 100%;
+            padding: 0.5rem 0.8rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 6px;
+            color: #ddd;
+            font-size: 0.8rem;
+            outline: none;
+        }
+
+        .contact-method-group { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+        .contact-method-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            cursor: pointer; 
+            font-size: 0.8rem; 
+            color: rgba(255,255,255,0.4);
+        }
+        .contact-method-item input[type="checkbox"] {
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            width: 20px !important;
+            height: 20px !important;
+            min-width: 20px !important;
+            max-width: 20px !important;
+            min-height: 20px !important;
+            max-height: 20px !important;
+            border: 2px solid rgba(255,255,255,0.2) !important;
+            border-radius: 4px !important;
+            background: transparent !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            position: relative !important;
+            flex-shrink: 0 !important;
+            box-sizing: border-box !important;
+        }
+        .contact-method-item input[type="checkbox"]:checked {
+            background: var(--accent) !important;
+            border-color: var(--accent) !important;
+        }
+        .contact-method-item input[type="checkbox"]:checked::after {
+            content: '' !important;
+            position: absolute !important;
+            top: 2px !important;
+            left: 6px !important;
+            width: 5px !important;
+            height: 10px !important;
+            border: solid var(--bg) !important;
+            border-width: 0 2px 2px 0 !important;
+            transform: rotate(45deg) !important;
+            background: transparent !important;
+        }
         .contact-fields { margin-top: 0.4rem; }
         .contact-field { display: none; margin-bottom: 0.3rem; }
         .contact-field.active { display: block; }
@@ -650,20 +746,20 @@
             background: var(--accent);
             border: none;
             border-radius: 40px;
-            padding: 0.7rem;
+            padding: 0.9rem;
             color: var(--bg);
             font-weight: 700;
             cursor: pointer;
             font-family: 'Onest', sans-serif;
             text-transform: uppercase;
             letter-spacing: 0.07em;
-            font-size: 0.78rem;
+            font-size: 0.9rem;
             transition: all 0.4s var(--transition);
             margin-top: 0.5rem;
         }
         .designer-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(204,255,0,0.15); }
-        .designer-form-success { display: none; color: var(--accent); font-weight: 500; margin-top: 0.6rem; font-size: 0.72rem; text-align: center; }
-        .designer-form-error { display: none; color: #ff5555; margin-top: 0.3rem; font-size: 0.68rem; text-align: center; }
+        .designer-form-success { display: none; color: var(--accent); font-weight: 500; margin-top: 0.6rem; font-size: 0.85rem; text-align: center; }
+        .designer-form-error { display: none; color: #ff5555; margin-top: 0.3rem; font-size: 0.8rem; text-align: center; }
 
         /* КНОПКИ */
         .apply-btn {
@@ -674,18 +770,18 @@
             cursor: pointer;
             font-weight: 600;
             margin-top: 0.8rem;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-family: 'Onest', sans-serif;
             background: var(--accent);
             border: none;
-            padding: 0.5rem 1.4rem;
+            padding: 0.6rem 1.6rem;
             border-radius: 40px;
             transition: all 0.4s var(--transition);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
         .apply-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(204,255,0,0.15); }
-        .apply-btn svg { width: 14px; height: 14px; }
+        .apply-btn svg { width: 16px; height: 16px; }
 
         /* МОДАЛКИ */
         .auth-modal, .privacy-policy-modal {
@@ -704,12 +800,12 @@
             background: #0d0d0d;
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 18px;
-            padding: 1.8rem;
-            max-width: 380px;
+            padding: 2rem;
+            max-width: 400px;
             width: 92%;
             position: relative;
         }
-        .privacy-policy-content { max-width: 520px; max-height: 75vh; overflow-y: auto; }
+        .privacy-policy-content { max-width: 540px; max-height: 75vh; overflow-y: auto; }
         .auth-modal-close {
             position: absolute;
             top: 0.6rem; right: 0.6rem;
@@ -717,7 +813,7 @@
             border: none;
             color: rgba(255,255,255,0.25);
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: color 0.3s;
         }
         .auth-modal-close:hover { color: #fff; }
@@ -727,7 +823,7 @@
             border: none;
             color: rgba(255,255,255,0.3);
             font-family: 'Onest', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             cursor: pointer;
             font-weight: 500;
             text-transform: uppercase;
@@ -744,11 +840,11 @@
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 8px;
-            padding: 0.6rem 0.9rem;
+            padding: 0.7rem 1rem;
             margin-bottom: 0.6rem;
             color: #ddd;
             font-family: 'Onest', sans-serif;
-            font-size: 0.78rem;
+            font-size: 0.85rem;
             outline: none;
             transition: border-color 0.3s;
         }
@@ -758,18 +854,18 @@
             background: var(--accent);
             border: none;
             border-radius: 40px;
-            padding: 0.65rem;
+            padding: 0.75rem;
             color: var(--bg);
             font-weight: 700;
             cursor: pointer;
             font-family: 'Onest', sans-serif;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             transition: all 0.3s var(--transition);
         }
         .auth-submit:hover { transform: translateY(-1px); box-shadow: 0 4px 18px rgba(204,255,0,0.15); }
-        .auth-error { color: #ff5555; font-size: 0.65rem; display: none; margin-top: 0.2rem; }
+        .auth-error { color: #ff5555; font-size: 0.75rem; display: none; margin-top: 0.2rem; }
 
         .fullscreen-modal {
             display: none;
@@ -823,23 +919,27 @@
             background: rgba(204,255,0,0.03);
             color: var(--accent);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            padding: 0.12rem 0.6rem;
+            padding: 0.15rem 0.7rem;
             border-radius: 30px;
             margin-bottom: 0.7rem;
             border: 1px solid rgba(204,255,0,0.05);
         }
         .fullscreen-modal-body h2 {
             font-family: 'Clash Display', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 600;
             color: #eee;
             margin-bottom: 0.8rem;
             line-height: 1.2;
         }
-        .fullscreen-modal-body .content-text { font-size: 0.88rem; color: #aaa; line-height: 1.9; }
+        .fullscreen-modal-body .content-text { 
+            font-size: 0.95rem; 
+            color: #aaa; 
+            line-height: 2;
+        }
         .fullscreen-modal-body .content-text p { margin-bottom: 0.7rem; }
         .news-fullscreen-layout { display: flex; gap: 1.4rem; align-items: flex-start; }
         .news-fullscreen-image { flex: 0 0 260px; aspect-ratio: 3/4; overflow: hidden; border-radius: 10px; position: sticky; top: 66px; }
@@ -880,13 +980,13 @@
             transition: all 0.5s var(--transition);
         }
         .cookie-banner.active { display: block; transform: translateX(-50%) translateY(0); opacity: 1; }
-        .cookie-text h3 { font-family: 'Clash Display', sans-serif; font-size: 0.8rem; color: var(--accent); margin-bottom: 0.2rem; opacity: 0.9; }
-        .cookie-text p { font-size: 0.68rem; color: rgba(255,255,255,0.42); line-height: 1.6; }
+        .cookie-text h3 { font-family: 'Clash Display', sans-serif; font-size: 0.9rem; color: var(--accent); margin-bottom: 0.2rem; opacity: 0.9; }
+        .cookie-text p { font-size: 0.75rem; color: rgba(255,255,255,0.42); line-height: 1.6; }
         .cookie-buttons { display: flex; gap: 0.5rem; margin-top: 0.9rem; }
         .cookie-btn {
-            padding: 0.45rem 1.2rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 40px;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             cursor: pointer;
             font-weight: 500;
             border: 1px solid rgba(255,255,255,0.08);
@@ -911,34 +1011,35 @@
             background: #0d0d0d;
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 14px;
-            padding: 0.9rem 1.3rem;
-            max-width: 420px;
+            padding: 1rem 1.5rem;
+            max-width: 440px;
             width: 92%;
             box-shadow: 0 14px 40px rgba(0,0,0,0.5);
             display: flex;
-            gap: 0.7rem;
+            gap: 0.8rem;
             align-items: flex-start;
         }
-        .notification-toast-title { font-family: 'Clash Display', sans-serif; font-size: 0.78rem; color: #fff; margin-bottom: 0.05rem; }
-        .notification-toast-text { font-size: 0.68rem; color: rgba(255,255,255,0.5); }
-        .notification-toast-close { background: none; border: none; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 0.9rem; flex-shrink: 0; }
-
-        /* АДМИНКА */
-        .admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg); z-index: 5000; overflow-y: auto; font-family: 'JetBrains Mono', monospace; }
-        .admin-panel.active { display: block; }
-        .admin-header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid rgba(204,255,0,0.06); padding: 0.4rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-        .admin-header h2 { font-family: 'Clash Display', sans-serif; color: var(--accent); font-size: 1rem; }
-        .admin-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); padding: 0.3rem 0.7rem; border-radius: 8px; cursor: pointer; font-size: 0.5rem; text-transform: uppercase; transition: all 0.3s; }
-        .admin-btn:hover { border-color: rgba(255,255,255,0.12); color: #ccc; }
-        .admin-login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 5100; justify-content: center; align-items: center; }
-        .admin-login-overlay.active { display: flex; }
-        .admin-login-box { background: #0d0d0d; border: 1px solid rgba(204,255,0,0.1); border-radius: 16px; padding: 1.8rem; width: 90%; max-width: 340px; text-align: center; }
-        .admin-login-box h3 { font-family: 'Clash Display', sans-serif; color: var(--accent); margin-bottom: 0.4rem; }
-        .admin-login-box input { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 0.6rem 0.9rem; color: #ddd; font-family: 'JetBrains Mono', monospace; margin-bottom: 0.7rem; outline: none; text-align: center; font-size: 0.8rem; }
-        .admin-login-box button { width: 100%; background: var(--accent); border: none; border-radius: 8px; padding: 0.6rem; color: var(--bg); font-weight: 700; cursor: pointer; font-family: 'Clash Display', sans-serif; text-transform: uppercase; font-size: 0.8rem; }
-
-        .premium-badge { display: none; background: linear-gradient(135deg, #FFD700, #FFA500); color: var(--bg); font-size: 0.4rem; font-weight: 700; padding: 0.08rem 0.4rem; border-radius: 10px; }
-        body.premium-active .premium-badge { display: inline-flex; }
+        .notification-toast-title {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 0.05rem;
+        }
+        .notification-toast-text {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+        }
+        .notification-toast-close {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.2);
+            cursor: pointer;
+            font-size: 1rem;
+            flex-shrink: 0;
+            transition: color 0.3s;
+            padding: 0 0.2rem;
+        }
+        .notification-toast-close:hover { color: #fff; }
 
         /* ЯЗЫКОВАЯ ПАНЕЛЬ */
         .lang-panel {
@@ -949,27 +1050,27 @@
             z-index: 150;
             display: flex;
             flex-direction: column;
-            gap: 0.35rem;
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 20px;
-            padding: 0.4rem 0.3rem;
+            gap: 0.4rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 24px;
+            padding: 0.6rem 0.4rem;
         }
         .lang-btn {
             background: transparent;
             border: none;
             color: rgba(255,255,255,0.2);
-            font-size: 0.52rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            padding: 0.3rem 0.35rem;
-            border-radius: 14px;
+            padding: 0.4rem 0.5rem;
+            border-radius: 16px;
             cursor: pointer;
             transition: all 0.4s var(--transition);
             font-family: 'Onest', sans-serif;
             text-transform: uppercase;
             text-align: center;
             letter-spacing: 0.04em;
-            min-width: 30px;
+            min-width: 38px;
         }
         .lang-btn.active {
             color: var(--bg);
@@ -979,22 +1080,78 @@
         }
         .lang-btn:hover:not(.active) { color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.02); }
 
+        /* АДАПТИВ */
         @media (max-width: 768px) {
-            body { padding-top: 52px; font-size: 14px; }
+            body { padding-top: 52px; font-size: 15px; }
             .sticky-header { padding: 0 1rem; height: 52px; }
             .logo-text { font-size: 1.4rem; }
-            .section-nav { top: 60px; gap: 0.1rem; padding: 0.2rem; border-radius: 10px; }
-            .section-nav-btn { padding: 0.5rem 0.8rem; font-size: 0.6rem; min-width: auto; }
-            .section-nav-btn svg { width: 14px; height: 14px; }
+            .section-nav {
+                top: 60px;
+                gap: 0.15rem;
+                padding: 0.3rem 0.4rem;
+                border-radius: 12px;
+                justify-content: flex-start;
+            }
+            .section-nav-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+                min-width: 90px;
+            }
+            .section-nav-btn svg { width: 16px; height: 16px; }
             .hero-slider { height: 40vh; min-height: 260px; margin-top: -52px; }
             .hero-slide-content h2 { font-size: 1.8rem; }
+            .hero-slide-content p { font-size: 0.9rem; }
             .container { padding: 0 1rem 2rem; }
-            .news-grid, .issues-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.5rem; }
+            .section-title { font-size: 1.4rem; }
+            .description-text { font-size: 0.9rem; }
+            .news-grid, .issues-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.6rem; }
             .news-fullscreen-layout, .news-fullscreen-with-cutout, .issue-fullscreen-layout { flex-direction: column; }
             .news-fullscreen-image, .news-cutout-image, .issue-fullscreen-pages { flex: 0 0 auto; position: static; width: 100%; max-width: 260px; margin: 0 auto; }
             .footer-grid { flex-direction: column; text-align: center; }
-            .lang-panel { right: 0.4rem; top: auto; bottom: 1.5rem; transform: none; flex-direction: row; gap: 0.2rem; padding: 0.3rem 0.35rem; border-radius: 16px; }
-            .lang-btn { padding: 0.25rem 0.35rem; font-size: 0.48rem; }
+            .lang-panel {
+                right: 0.6rem;
+                top: auto;
+                bottom: 1.5rem;
+                transform: none;
+                flex-direction: row;
+                gap: 0.2rem;
+                padding: 0.4rem 0.4rem;
+                border-radius: 18px;
+            }
+            .lang-btn { padding: 0.3rem 0.4rem; font-size: 0.55rem; min-width: 32px; }
+            .logout-btn { padding: 0.3rem 0.8rem; font-size: 0.6rem; }
+            .auth-btn { padding: 0.35rem 1.2rem; font-size: 0.65rem; }
+            .designer-application-form { padding: 1.2rem; }
+            /* На мобилках чуть меньше */
+            .checkbox-item input[type="checkbox"],
+            .radio-item input[type="radio"] {
+                width: 20px !important;
+                height: 20px !important;
+                min-width: 20px !important;
+                max-width: 20px !important;
+                min-height: 20px !important;
+                max-height: 20px !important;
+            }
+            .contact-method-item input[type="checkbox"] {
+                width: 18px !important;
+                height: 18px !important;
+                min-width: 18px !important;
+                max-width: 18px !important;
+                min-height: 18px !important;
+                max-height: 18px !important;
+            }
+            .checkbox-item input[type="checkbox"]:checked::after {
+                top: 2px !important;
+                left: 6px !important;
+                width: 5px !important;
+                height: 10px !important;
+            }
+            .radio-item input[type="radio"]:checked::after {
+                top: 4px !important;
+                left: 4px !important;
+                width: 8px !important;
+                height: 8px !important;
+            }
         }
     </style>
 </head>
@@ -1002,7 +1159,7 @@
     <!-- ХЕДЕР -->
     <header class="sticky-header">
         <div class="header-content">
-            <div class="logo-wrapper" id="adminTriggerLogo">
+            <div class="logo-wrapper">
                 <img src="https://github.com/asksokolov/TheVertical/blob/main/logo_white.png?raw=true" alt="VERT" class="logo-image">
                 <span class="logo-text" id="logoTitle">VERT</span>
             </div>
@@ -1018,7 +1175,7 @@
                 <div class="hero-slide-content">
                     <div class="hero-tag" id="heroTag1">OPPORTUNITY</div>
                     <h2 id="heroTitle1">VERT Seeks Web Designers</h2>
-                    <p id="heroDesc1">Join our digital team and shape the future of storytelling</p>
+                    <p id="heroDesc1">Join our digital team</p>
                 </div>
             </div>
             <div class="hero-slide">
@@ -1188,43 +1345,22 @@
     </div>
     <div id="notificationContainer"></div>
 
-    <!-- АДМИНКА -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-header"><h2>Admin</h2><div style="display:flex;gap:0.3rem;"><button class="admin-btn" onclick="adminExportAll()">Export</button><button class="admin-btn" onclick="closeAdminPanel()" style="border-color:rgba(255,80,80,0.1);color:#ff5555;">Exit</button></div></div>
-        <div style="padding:1.2rem;max-width:800px;margin:0 auto;">
-            <div style="margin-bottom:2rem;"><h3 style="color:#aaa;font-size:0.7rem;margin-bottom:0.6rem;">Applications (<span id="adminDesignerCount">0</span>)</h3><div id="adminDesignersList"></div></div>
-            <div><h3 style="color:#aaa;font-size:0.7rem;margin-bottom:0.6rem;">Subscribers (<span id="adminSubscriberCount">0</span>)</h3>
-                <div style="display:flex;gap:0.4rem;margin-bottom:0.8rem;"><input type="email" id="grantEmail" placeholder="Email" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:0.35rem 0.7rem;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:0.55rem;outline:none;width:160px;"><select id="grantPlan" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#888;padding:0.35rem 0.7rem;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:0.5rem;"><option value="monthly">Monthly</option><option value="yearly">Yearly</option></select><button onclick="grantSubscription()" class="admin-btn" style="background:var(--accent);color:var(--bg);border:none;font-weight:600;">Grant</button></div>
-                <div id="adminSubscribersList"></div>
-            </div>
-        </div>
-    </div>
-    <div class="admin-login-overlay" id="adminLoginOverlay">
-        <div class="admin-login-box">
-            <h3>Admin Access</h3>
-            <input type="password" id="adminPasswordInput" placeholder="Password" autocomplete="off">
-            <button onclick="verifyAdminPassword()">Unlock</button>
-            <div id="adminLoginError" style="color:#ff5555;font-size:0.6rem;margin-top:0.3rem;display:none;">Invalid</div>
-        </div>
-    </div>
-
     <script>
     (function() {
         const BOT_TOKEN = '8427045055:AAFSAmB8yuLXYghWF58NjKn_x-OZWFUTc_A';
         const CHAT_ID = '2126885119';
-        const ADMIN_PASSWORD = 'VERTAdmin2081!';
 
-        let currentLang = 'en', currentUser = null, users = [], newsletterSubscribers = [], designerApplications = [];
-        let currentSlide = 0, heroInterval, adminUnlocked = false, isPremiumUser = false, premiumUsers = [];
+        let currentLang = 'en', currentUser = null, users = [], designerApplications = [];
+        let currentSlide = 0, heroInterval;
 
         const issueData = {
             name: { en: "Selina Tan", ru: "Селина Тан", zh: "塞琳娜·谭" },
             date: { en: "March 2026", ru: "Март 2026", zh: "2026年3月" },
             tag: { en: "interview", ru: "интервью", zh: "访谈" },
             description: {
-                en: "<p>A conversation with model Selina Tan about inner silence, creativity, and finding balance in a world that never stops.</p><p>Photography by Alex Chen. Styling by Maria Volkova.</p>",
-                ru: "<p>Разговор с моделью Селиной Тан о внутренней тишине, творчестве и поиске баланса в мире, который никогда не останавливается.</p><p>Фотография: Алекс Чен. Стиль: Мария Волкова.</p>",
-                zh: "<p>与模特塞琳娜·谭关于内心宁静、创造力和在永不停息的世界中寻找平衡的对话。</p><p>摄影：Alex Chen。造型：Maria Volkova。</p>"
+                en: "<p>A conversation with model Selina Tan about inner silence, creativity, and finding balance.</p>",
+                ru: "<p>Разговор с моделью Селиной Тан о внутренней тишине, творчестве и поиске баланса.</p>",
+                zh: "<p>与模特塞琳娜·谭关于内心宁静、创造力和寻找平衡的对话。</p>"
             },
             photos: ["https://github.com/asksokolov/TheVertical/blob/main/Vertical_1.png?raw=true","https://github.com/asksokolov/TheVertical/blob/main/Vertical_2.png?raw=true","https://github.com/asksokolov/TheVertical/blob/main/Vertical_3.png?raw=true","https://github.com/asksokolov/TheVertical/blob/main/Vertical_4.png?raw=true","https://github.com/asksokolov/TheVertical/blob/main/Vertical_5.png?raw=true"]
         };
@@ -1235,9 +1371,9 @@
                 title: { en: "VERT is Looking for Web Designers", ru: "VERT ищет веб-дизайнеров", zh: "VERT 正在寻找网页设计师" },
                 date: { en: "April 2026", ru: "Апрель 2026", zh: "2026年4月" },
                 fullText: {
-                    en: "<p>VERT magazine is expanding its digital team and looking for talented web designers and developers to join us.</p><p>We're building the future of digital publishing and need creative minds who understand both aesthetics and functionality.</p><p>If you want to be part of shaping the visual identity of a forward-thinking online publication, we would love to hear from you.</p>",
-                    ru: "<p>Журнал VERT расширяет цифровую команду и ищет талантливых веб-дизайнеров и разработчиков, которые присоединятся к нам.</p><p>Мы строим будущее цифрового издательства и нуждаемся в творческих умах, понимающих как эстетику, так и функциональность.</p><p>Если вы хотите участвовать в формировании визуальной идентичности прогрессивного онлайн-издания, мы будем рады услышать вас.</p>",
-                    zh: "<p>VERT杂志正在扩大数字团队，寻找有才华的网页设计师和开发人员加入我们。</p><p>我们正在构建数字出版的未来，需要既懂美学又懂功能的创意人才。</p><p>如果您想参与塑造前瞻性在线出版物的视觉形象，我们很乐意听到您的消息。</p>"
+                    en: "<p>VERT is expanding its digital team and looking for talented web designers and developers.</p><p>We need creative minds who understand aesthetics and functionality.</p>",
+                    ru: "<p>VERT расширяет цифровую команду и ищет талантливых веб-дизайнеров.</p><p>Нужны творческие умы, понимающие эстетику и функциональность.</p>",
+                    zh: "<p>VERT正在扩大数字团队，寻找有才华的网页设计师。</p><p>需要既懂美学又懂功能的创意人才。</p>"
                 },
                 linkText: { en: "Apply now", ru: "Подать заявку", zh: "立即申请" },
                 image: "https://github.com/asksokolov/TheVertical/blob/main/%D0%A1%D1%8A%D0%B5%D0%BC%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BE%D1%87%D0%BA%D0%BE%D0%B2%20%E2%9D%A4%EF%B8%8F_Idol%20Production%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0.jpg?raw=true",
@@ -1246,14 +1382,14 @@
             },
             {
                 id: 2, category: 'interviews',
-                title: { en: "Selina Tan Interview Now Live", ru: "Интервью с Селиной Тан уже доступно", zh: "塞琳娜·谭专访现已上线" },
+                title: { en: "Selina Tan Interview Now Live", ru: "Интервью с Селиной Тан", zh: "塞琳娜·谭专访" },
                 date: { en: "March 2026", ru: "Март 2026", zh: "2026年3月" },
                 fullText: {
-                    en: "<p>The very first issue of VERT is now available, featuring an exclusive conversation with model Selina Tan.</p><p>In this intimate interview, Selina opens up about inner silence, creativity, and finding balance in a chaotic world.</p>",
-                    ru: "<p>Первый выпуск VERT уже доступен с эксклюзивным интервью модели Селины Тан.</p><p>В этом откровенном разговоре Селина рассказывает о внутренней тишине, творчестве и поиске баланса в хаотичном мире.</p>",
-                    zh: "<p>VERT第一期现已上线，包含与模特塞琳娜·谭的独家对话。</p><p>在这次亲密的采访中，塞琳娜敞开心扉谈论内心宁静、创造力和在混乱世界中寻找平衡。</p>"
+                    en: "<p>The very first issue of VERT is now available, featuring an exclusive conversation with model Selina Tan.</p>",
+                    ru: "<p>Первый выпуск VERT уже доступен с эксклюзивным интервью модели Селины Тан.</p>",
+                    zh: "<p>VERT第一期现已上线，包含与模特塞琳娜·谭的独家对话。</p>"
                 },
-                linkText: { en: "View the full photo gallery", ru: "Смотреть полную фотогалерею", zh: "查看完整照片库" },
+                linkText: { en: "View gallery", ru: "Смотреть галерею", zh: "查看图库" },
                 image: "https://github.com/asksokolov/TheVertical/blob/main/Vertical_2.png?raw=true",
                 hasLink: true, linkAction: 'openIssue'
             },
@@ -1262,20 +1398,20 @@
                 title: { en: "VERT Officially Launches", ru: "Официальный запуск VERT", zh: "VERT 正式启动" },
                 date: { en: "March 2026", ru: "Март 2026", zh: "2026年3月" },
                 fullText: {
-                    en: "<p>Today marks the official launch of VERT — a new online magazine dedicated to contemporary stories and deep conversations.</p><p>Join us on this journey as we seek the vertical in art, culture, and the human experience.</p>",
-                    ru: "<p>Сегодня состоялся официальный запуск VERT — нового онлайн-журнала, посвящённого современным историям и глубоким разговорам.</p><p>Присоединяйтесь к нам в поиске вертикали в искусстве, культуре и человеческом опыте.</p>",
-                    zh: "<p>今天标志着VERT的正式启动——一本致力于当代故事和深度对话的新在线杂志。</p><p>加入我们，在艺术、文化和人类经验中寻找垂直。</p>"
+                    en: "<p>Today marks the official launch of VERT — a new online magazine dedicated to contemporary stories.</p>",
+                    ru: "<p>Сегодня состоялся официальный запуск VERT — нового онлайн-журнала о современных историях.</p>",
+                    zh: "<p>今天标志着VERT的正式启动——一本关于当代故事的新在线杂志。</p>"
                 },
                 image: "https://images.wallpaperscraft.ru/image/single/fotoapparat_obektiv_kamera_137568_540x960.jpg"
             },
             {
                 id: 4, category: 'design',
-                title: { en: "New Visual Identity for VERT", ru: "Новая визуальная идентичность VERT", zh: "VERT的新视觉形象" },
+                title: { en: "New Visual Identity", ru: "Новая визуальная идентичность", zh: "新视觉形象" },
                 date: { en: "February 2026", ru: "Февраль 2026", zh: "2026年2月" },
                 fullText: {
-                    en: "<p>We're excited to reveal our new visual identity — a bold step forward for VERT.</p><p>Minimalist, modern, and unmistakably VERT.</p>",
-                    ru: "<p>Мы рады представить наш новый визуальный язык — смелый шаг вперёд для VERT.</p><p>Минималистичный, современный и безошибочно VERT.</p>",
-                    zh: "<p>我们很高兴展示新的视觉形象——VERT的大胆一步。</p><p>极简、现代、 unmistakably VERT。</p>"
+                    en: "<p>We're excited to reveal our new visual identity — a bold step forward for VERT.</p>",
+                    ru: "<p>Мы рады представить новый визуальный язык — смелый шаг вперёд.</p>",
+                    zh: "<p>我们很高兴展示新的视觉形象——VERT的大胆一步。</p>"
                 },
                 image: "https://github.com/asksokolov/TheVertical/blob/main/Vertical_1.png?raw=true"
             }
@@ -1283,17 +1419,17 @@
 
         const heroSlidesData = {
             en: [
-                { tag: "OPPORTUNITY", title: "VERT Seeks Web Designers", desc: "Join our digital team and shape the future of storytelling" },
+                { tag: "OPPORTUNITY", title: "VERT Seeks Web Designers", desc: "Join our digital team" },
                 { tag: "INTERVIEW", title: "We seek the vertical", desc: "Deep conversations with those who inspire" },
                 { tag: "LAUNCH", title: "Stories that matter", desc: "Every voice deserves to be heard" }
             ],
             ru: [
-                { tag: "ВАКАНСИЯ", title: "VERT ищет веб-дизайнеров", desc: "Присоединяйтесь к нашей цифровой команде и формируйте будущее" },
+                { tag: "ВАКАНСИЯ", title: "VERT ищет веб-дизайнеров", desc: "Присоединяйтесь к команде" },
                 { tag: "ИНТЕРВЬЮ", title: "Мы ищем вертикаль", desc: "Глубокие разговоры с теми, кто вдохновляет" },
                 { tag: "ЗАПУСК", title: "Истории, которые важны", desc: "Каждый голос заслуживает быть услышанным" }
             ],
             zh: [
-                { tag: "机会", title: "VERT 寻找网页设计师", desc: "加入我们的数字团队，塑造讲故事的未来" },
+                { tag: "机会", title: "VERT 寻找网页设计师", desc: "加入我们的团队" },
                 { tag: "访谈", title: "我们寻找垂直", desc: "与激励人心的人进行深度对话" },
                 { tag: "启动", title: "重要的故事", desc: "每个声音都值得被听到" }
             ]
@@ -1302,52 +1438,55 @@
         const translations = {
             en: {
                 logoTitle:'VERT', aboutNumber:'01', aboutTitle:'about',
-                aboutText:'<p><strong>VERT</strong> is an online magazine about people, their inner world, and the stories behind the facade.</p><p>We believe that every person has depth worth exploring. Through intimate interviews and visual storytelling, we seek to uncover what lies beneath the surface.</p><p>Our mission is to create a space where contemporary stories come to life — raw, honest, and deeply human.</p>',
-                aboutQuote:'— behind the facade, there is always someone. we seek the vertical.',
+                aboutText:'<p><strong>VERT</strong> is an online magazine about people, their inner world, and the stories behind the facade.</p><p>We believe that every person has depth worth exploring. Through intimate interviews and visual storytelling, we seek to uncover what lies beneath the surface.</p>',
+                aboutQuote:'— behind the facade, there is always someone.',
                 newsNumber:'02', newsTitle:'last news', issuesNumber:'03', issuesTitle:'issues',
                 copyright:'© VERT, 2026',
-                cookieTitle:'Cookie Policy', cookieText:'We use cookies to enhance your experience. By clicking "Accept All", you consent to our use of cookies.',
+                cookieTitle:'Cookie Policy', cookieText:'We use cookies to enhance your experience.',
                 acceptCookies:'Accept All', partialCookies:'Partial',
                 loginTab:'Login', registerTab:'Register', loginSubmit:'Login', registerSubmit:'Register',
                 authBtn:'Login', logoutBtn:'Logout',
                 footerPrivacy:'Privacy', footerTerms:'Terms', footerCookies:'Cookies', footerTagline:'contemporary stories',
                 navAbout:'About', navNews:'News', navIssues:'Issues',
-                tabAll:'All', tabInterviews:'Interviews', tabUpdates:'Updates', tabDesign:'Design'
+                tabAll:'All', tabInterviews:'Interviews', tabUpdates:'Updates', tabDesign:'Design',
+                notifTitle:'Success', notifText:'Application submitted.'
             },
             ru: {
                 logoTitle:'VERT', aboutNumber:'01', aboutTitle:'о журнале',
-                aboutText:'<p><strong>VERT</strong> — это интернет-журнал о людях, их внутреннем мире и историях за фасадом.</p><p>Мы верим, что у каждого человека есть глубина, достойная исследования. Через откровенные интервью и визуальные истории мы пытаемся заглянуть за поверхность.</p><p>Наша миссия — создать пространство, где современные истории оживают — честные, настоящие и глубоко человечные.</p>',
-                aboutQuote:'— за фасадом всегда кто-то есть. мы ищем вертикаль.',
+                aboutText:'<p><strong>VERT</strong> — это интернет-журнал о людях, их внутреннем мире и историях за фасадом.</p><p>Мы верим, что у каждого человека есть глубина, достойная исследования. Через откровенные интервью и визуальные истории мы пытаемся заглянуть за поверхность.</p>',
+                aboutQuote:'— за фасадом всегда кто-то есть.',
                 newsNumber:'02', newsTitle:'новости', issuesNumber:'03', issuesTitle:'выпуски',
                 copyright:'© VERT, 2026',
-                cookieTitle:'Политика cookie', cookieText:'Мы используем cookie. Нажимая «Принять все», вы даёте согласие.',
+                cookieTitle:'Политика cookie', cookieText:'Мы используем cookie для улучшения работы сайта.',
                 acceptCookies:'Принять все', partialCookies:'Частично',
                 loginTab:'Вход', registerTab:'Регистрация', loginSubmit:'Войти', registerSubmit:'Регистрация',
                 authBtn:'Войти', logoutBtn:'Выйти',
                 footerPrivacy:'Конфиденциальность', footerTerms:'Условия', footerCookies:'Cookie', footerTagline:'современные истории',
                 navAbout:'О журнале', navNews:'Новости', navIssues:'Выпуски',
-                tabAll:'Все', tabInterviews:'Интервью', tabUpdates:'Обновления', tabDesign:'Дизайн'
+                tabAll:'Все', tabInterviews:'Интервью', tabUpdates:'Обновления', tabDesign:'Дизайн',
+                notifTitle:'Отправлено', notifText:'Заявка успешно отправлена.'
             },
             zh: {
                 logoTitle:'VERT', aboutNumber:'01', aboutTitle:'关于',
-                aboutText:'<p><strong>VERT</strong> 是一本关于人、内心世界和表象背后故事的在线杂志。</p><p>我们相信每个人都有着值得探索的深度。通过深入的采访和视觉故事，我们试图揭示表面之下的真相。</p><p>我们的使命是创造一个当代故事得以生动呈现的空间——原始的、真实的、深刻人性的。</p>',
-                aboutQuote:'— 表象背后总有人存在。我们寻找垂直。',
+                aboutText:'<p><strong>VERT</strong> 是一本关于人、内心世界和表象背后故事的在线杂志。</p><p>我们相信每个人都有着值得探索的深度。通过深入的采访和视觉故事，我们试图揭示表面之下的真相。</p>',
+                aboutQuote:'— 表象背后总有人存在。',
                 newsNumber:'02', newsTitle:'新闻', issuesNumber:'03', issuesTitle:'期刊',
                 copyright:'© VERT, 2026',
-                cookieTitle:'Cookie 政策', cookieText:'我们使用cookie。点击「全部接受」即表示您同意。',
+                cookieTitle:'Cookie 政策', cookieText:'我们使用cookie来改善您的体验。',
                 acceptCookies:'全部接受', partialCookies:'部分接受',
                 loginTab:'登录', registerTab:'注册', loginSubmit:'登录', registerSubmit:'注册',
                 authBtn:'登录', logoutBtn:'退出',
                 footerPrivacy:'隐私', footerTerms:'条款', footerCookies:'Cookie', footerTagline:'当代故事',
                 navAbout:'关于', navNews:'新闻', navIssues:'期刊',
-                tabAll:'全部', tabInterviews:'访谈', tabUpdates:'更新', tabDesign:'设计'
+                tabAll:'全部', tabInterviews:'访谈', tabUpdates:'更新', tabDesign:'设计',
+                notifTitle:'已发送', notifText:'申请已提交。'
             }
         };
 
         const designerFormTexts = {
-            en: { title:"Designer Application", subtitle:"All fields required.", q1:"Full name", q3:"Contact method", contactEmail:"Email", contactTg:"Telegram", contactInst:"Instagram", q4:"Portfolio link", q4hint:"Behance, Dribbble, etc.", q5:"Software", q5hint:"Figma preferred.", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"Other:", q6:"Section", q6options:["General style","Interview layouts","Ad blocks","Any task"], q7:"Consent", q7options:["I consent to data processing."], submitBtn:"Send", success:"Application sent!", error:"Fill all fields.", loginRequired:"Please log in.", loginLink:"Log in", invalidTg:"Must start with @" },
-            ru: { title:"Анкета дизайнера", subtitle:"Все поля обязательны.", q1:"Полное имя", q3:"Способ связи", contactEmail:"Почта", contactTg:"Telegram", contactInst:"Instagram", q4:"Портфолио", q4hint:"Behance, Dribbble и т.д.", q5:"Программы", q5hint:"Figma приветствуется.", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"Другое:", q6:"Рубрика", q6options:["Общий стиль","Вёрстка интервью","Рекламные блоки","Любая задача"], q7:"Согласие", q7options:["Я даю согласие на обработку."], submitBtn:"Отправить", success:"Заявка отправлена!", error:"Заполните поля.", loginRequired:"Войдите.", loginLink:"Войти", invalidTg:"Должно начинаться с @" },
-            zh: { title:"设计师申请", subtitle:"所有字段必填。", q1:"全名", q3:"联系方式", contactEmail:"邮箱", contactTg:"Telegram", contactInst:"Instagram", q4:"作品集", q4hint:"Behance等", q5:"软件", q5hint:"Figma优先。", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"其他:", q6:"板块", q6options:["整体风格","采访版面","广告","任何"], q7:"同意", q7options:["我同意数据处理。"], submitBtn:"发送", success:"已发送！", error:"填写字段。", loginRequired:"请登录。", loginLink:"登录", invalidTg:"以@开头" }
+            en: { title:"Designer Application", subtitle:"All fields required.", q1:"Full name", q3:"Contact method", contactEmail:"Email", contactTg:"Telegram", contactInst:"Instagram", q4:"Portfolio link", q4hint:"Behance, Dribbble, etc.", q5:"Software", q5hint:"Figma preferred.", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"Other:", q6:"Section", q6options:["General style","Interview layouts","Ad blocks","Any task"], q7:"Consent", q7options:["I consent to data processing."], submitBtn:"Send", success:"Application sent!", error:"Fill all fields.", loginRequired:"Please log in.", loginLink:"Log in" },
+            ru: { title:"Анкета дизайнера", subtitle:"Все поля обязательны.", q1:"Полное имя", q3:"Способ связи", contactEmail:"Почта", contactTg:"Telegram", contactInst:"Instagram", q4:"Портфолио", q4hint:"Behance, Dribbble и т.д.", q5:"Программы", q5hint:"Figma приветствуется.", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"Другое:", q6:"Рубрика", q6options:["Общий стиль","Вёрстка интервью","Рекламные блоки","Любая задача"], q7:"Согласие", q7options:["Я даю согласие на обработку."], submitBtn:"Отправить", success:"Заявка отправлена!", error:"Заполните поля.", loginRequired:"Войдите.", loginLink:"Войти" },
+            zh: { title:"设计师申请", subtitle:"所有字段必填。", q1:"全名", q3:"联系方式", contactEmail:"邮箱", contactTg:"Telegram", contactInst:"Instagram", q4:"作品集", q4hint:"Behance等", q5:"软件", q5hint:"Figma优先。", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"其他:", q6:"板块", q6options:["整体风格","采访版面","广告","任何"], q7:"同意", q7options:["我同意数据处理。"], submitBtn:"发送", success:"已发送！", error:"填写字段。", loginRequired:"请登录。", loginLink:"登录" }
         };
 
         function setCookie(n,v,d){ const e=new Date(); e.setTime(e.getTime()+d*86400000); document.cookie=n+"="+encodeURIComponent(v)+";expires="+e.toUTCString()+";path=/;SameSite=Lax"; }
@@ -1355,18 +1494,13 @@
 
         function loadData(){
             try{users=JSON.parse(localStorage.getItem('vert_users')||'[]');}catch(e){users=[];}
-            try{newsletterSubscribers=JSON.parse(localStorage.getItem('vert_newsletter_subscribers')||'[]');}catch(e){newsletterSubscribers=[];}
             try{designerApplications=JSON.parse(localStorage.getItem('vert_designer_applications')||'[]');}catch(e){designerApplications=[];}
-            try{premiumUsers=JSON.parse(localStorage.getItem('vert_premium_users')||'[]');}catch(e){premiumUsers=[];}
             try{const cu=localStorage.getItem('vert_user');if(cu)currentUser=JSON.parse(cu);}catch(e){currentUser=null;}
             const sl=getCookie('vert_lang')||localStorage.getItem('vert_lang');
             if(sl&&['en','ru','zh'].includes(sl))currentLang=sl;
-            if(currentUser&&premiumUsers.includes(currentUser.email.toLowerCase())){isPremiumUser=true;document.body.classList.add('premium-active');}
         }
         function saveU(){localStorage.setItem('vert_users',JSON.stringify(users));}
-        function saveS(){localStorage.setItem('vert_newsletter_subscribers',JSON.stringify(newsletterSubscribers));}
         function saveD(){localStorage.setItem('vert_designer_applications',JSON.stringify(designerApplications));}
-        function saveP(){localStorage.setItem('vert_premium_users',JSON.stringify(premiumUsers));}
         loadData();
 
         function sendToTelegram(data){
@@ -1382,15 +1516,14 @@
             return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:m,parse_mode:'HTML'})}).then(r=>r.json()).catch(()=>null);
         }
 
-        function setUser(u){currentUser=u;localStorage.setItem('vert_user',JSON.stringify(u));isPremiumUser=premiumUsers.includes(u.email.toLowerCase());if(isPremiumUser)document.body.classList.add('premium-active');updateAuthUI();}
-        function logout(){currentUser=null;localStorage.removeItem('vert_user');isPremiumUser=false;document.body.classList.remove('premium-active');updateAuthUI();}
+        function setUser(u){currentUser=u;localStorage.setItem('vert_user',JSON.stringify(u));updateAuthUI();}
+        function logout(){currentUser=null;localStorage.removeItem('vert_user');updateAuthUI();}
 
         function updateAuthUI(){
             const t=translations[currentLang];
             const as=document.getElementById('authSection');
             if(currentUser){
-                let pb=isPremiumUser?'<span class="premium-badge">PREMIUM</span>':'';
-                as.innerHTML=`<div class="user-info"><div class="user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div><span class="user-name">${currentUser.name}</span>${pb}<button class="logout-btn" id="logoutBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> ${t.logoutBtn}</button></div>`;
+                as.innerHTML=`<div class="user-info"><div class="user-avatar">${currentUser.name.charAt(0).toUpperCase()}</div><span class="user-name">${currentUser.name}</span><button class="logout-btn" id="logoutBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> ${t.logoutBtn}</button></div>`;
                 document.getElementById('logoutBtn')?.addEventListener('click',logout);
             }else{
                 as.innerHTML=`<button class="auth-btn" id="showAuthModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> ${t.authBtn}</button>`;
@@ -1402,9 +1535,9 @@
             const c=document.getElementById('notificationContainer');
             const t=document.createElement('div');
             t.className='notification-toast';
-            t.innerHTML=`<div><div class="notification-toast-title">${title}</div><div class="notification-toast-text">${text}</div></div><button class="notification-toast-close" onclick="this.parentElement.remove()">×</button>`;
+            t.innerHTML=`<div><div class="notification-toast-title">${title}</div><div class="notification-toast-text">${text}</div></div><button class="notification-toast-close" onclick="this.parentElement.remove()">✕</button>`;
             c.appendChild(t);
-            setTimeout(()=>t.remove(),5000);
+            setTimeout(()=>{if(t.parentElement)t.remove();},5000);
         }
 
         function updateHeroSlides(){
@@ -1455,7 +1588,7 @@
 
         function generateDesignerForm(){
             const t=designerFormTexts[currentLang];
-            if(!currentUser)return `<div class="designer-application-form"><div style="text-align:center;padding:2rem;color:#666;"><p>${t.loginRequired}</p><span style="display:inline-block;margin-top:0.5rem;color:var(--bg);background:var(--accent);padding:0.45rem 1.4rem;border-radius:40px;cursor:pointer;font-weight:600;font-size:0.7rem;" onclick="document.getElementById('authModal').classList.add('active')">${t.loginLink}</span></div></div>`;
+            if(!currentUser)return `<div class="designer-application-form"><div style="text-align:center;padding:2rem;color:#666;"><p>${t.loginRequired}</p><span style="display:inline-block;margin-top:0.5rem;color:var(--bg);background:var(--accent);padding:0.45rem 1.4rem;border-radius:40px;cursor:pointer;font-weight:600;font-size:0.8rem;" onclick="document.getElementById('authModal').classList.add('active')">${t.loginLink}</span></div></div>`;
             return `<div class="designer-application-form" id="designerApplicationForm"><h3>${t.title}</h3><p class="form-subtitle">${t.subtitle}</p>
                 <div class="designer-form-group"><label>${t.q1} <span class="required-star">*</span></label><input type="text" id="designerName"></div>
                 <div class="designer-form-group"><label>${t.q3} <span class="required-star">*</span></label>
@@ -1471,7 +1604,7 @@
                     </div>
                 </div>
                 <div class="designer-form-group"><label>${t.q4} <span class="required-star">*</span><span class="hint">${t.q4hint}</span></label><input type="url" id="designerPortfolio" placeholder="https://"></div>
-                <div class="designer-form-group"><label>${t.q5} <span class="required-star">*</span><span class="hint">${t.q5hint}</span></label><div class="checkbox-group">${t.q5options.map((o,i)=>`<div class="checkbox-item"><input type="checkbox" id="q5_${i}" value="${o}"><label>${o}</label></div>`).join('')}<div class="checkbox-item"><input type="checkbox" id="q5_other" value="other"><label>${t.q5other}</label><input type="text" class="other-input" id="q5_other_text" style="display:none;"></div></div></div>
+                <div class="designer-form-group"><label>${t.q5} <span class="required-star">*</span><span class="hint">${t.q5hint}</span></label><div class="checkbox-group">${t.q5options.map((o,i)=>`<div class="checkbox-item"><input type="checkbox" id="q5_${i}" value="${o}"><label>${o}</label></div>`).join('')}<div class="checkbox-item"><input type="checkbox" id="q5_other" value="other"><label>${t.q5other}</label><div class="other-input" id="q5_other_input"><input type="text" id="q5_other_text" placeholder="Specify..."></div></div></div></div>
                 <div class="designer-form-group"><label>${t.q6} <span class="required-star">*</span></label><div class="radio-group">${t.q6options.map((o,i)=>`<div class="radio-item"><input type="radio" name="q6" id="q6_${i}" value="${o}"><label>${o}</label></div>`).join('')}</div></div>
                 <div class="designer-form-group"><label>${t.q7} <span class="required-star">*</span></label><div class="radio-group">${t.q7options.map((o,i)=>`<div class="radio-item"><input type="radio" name="q7" id="q7_${i}" value="${o}"><label>${o}</label></div>`).join('')}</div></div>
                 <button class="designer-submit-btn" id="designerSubmitBtn">${t.submitBtn}</button>
@@ -1498,7 +1631,13 @@
             if(n.hasLink&&n.linkAction==='openIssue')document.getElementById('openIssueFromNews')?.addEventListener('click',()=>{closeFullscreenModal();setTimeout(openIssueFullscreen,300);});
         }
 
-        function initFormHandlers(){document.getElementById('q5_other')?.addEventListener('change',function(){document.getElementById('q5_other_text').style.display=this.checked?'block':'none';});document.getElementById('designerSubmitBtn')?.addEventListener('click',submitDesignerApplication);}
+        function initFormHandlers(){
+            document.getElementById('q5_other')?.addEventListener('change',function(){
+                const inp=document.getElementById('q5_other_input');
+                if(inp)inp.classList.toggle('active',this.checked);
+            });
+            document.getElementById('designerSubmitBtn')?.addEventListener('click',submitDesignerApplication);
+        }
 
         function submitDesignerApplication(){
             if(!currentUser)return;
@@ -1522,7 +1661,8 @@
             ['designerName','designerPortfolio'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
             document.querySelectorAll('#designerApplicationForm input[type="checkbox"], #designerApplicationForm input[type="radio"]').forEach(r=>r.checked=false);
             document.querySelectorAll('.contact-field').forEach(f=>{f.classList.remove('active');const i=f.querySelector('input');if(i)i.value='';});
-            showNotification('Sent','Application submitted.');
+            const notif = translations[currentLang];
+            showNotification(notif.notifTitle||'Success', notif.notifText||'Application submitted.');
         }
 
         function openIssueFullscreen(data=issueData){
@@ -1575,30 +1715,6 @@
         });
         document.getElementById('closeAuthModal')?.addEventListener('click',()=>document.getElementById('authModal').classList.remove('active'));
 
-        // Admin
-        function initAdminTrigger(){
-            document.addEventListener('keydown',e=>{if(e.key==='z'&&e.ctrlKey&&e.shiftKey){e.preventDefault();openAdminLogin();}});
-            const logo=document.getElementById('adminTriggerLogo');let cc=0,ct=null;
-            if(logo)logo.addEventListener('click',()=>{cc++;if(ct)clearTimeout(ct);ct=setTimeout(()=>cc=0,1500);if(cc>=3){cc=0;document.addEventListener('keydown',function xl(ev){if(ev.key==='x'){document.removeEventListener('keydown',xl);openAdminLogin();}});}});
-        }
-        function openAdminLogin(){document.getElementById('adminLoginOverlay').classList.add('active');document.getElementById('adminPasswordInput').value='';setTimeout(()=>document.getElementById('adminPasswordInput').focus(),200);}
-        window.closeAdminLogin=()=>document.getElementById('adminLoginOverlay').classList.remove('active');
-        window.verifyAdminPassword=function(){if(document.getElementById('adminPasswordInput').value===ADMIN_PASSWORD){adminUnlocked=true;document.getElementById('adminLoginOverlay').classList.remove('active');document.getElementById('adminPanel').classList.add('active');document.body.style.overflow='hidden';renderAdminPanel();}else{const e=document.getElementById('adminLoginError');e.style.display='block';setTimeout(()=>e.style.display='none',2000);}};
-        window.closeAdminPanel=function(){document.getElementById('adminPanel').classList.remove('active');document.body.style.overflow='';adminUnlocked=false;};
-
-        function renderAdminPanel(){
-            document.getElementById('adminDesignerCount').textContent=designerApplications.length;
-            document.getElementById('adminSubscriberCount').textContent=newsletterSubscribers.length;
-            const dl=document.getElementById('adminDesignersList');
-            if(dl)dl.innerHTML=designerApplications.length===0?'<div style="color:#555;padding:1rem;">Empty</div>':[...designerApplications].reverse().map((a,i)=>`<div style="background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.03);border-radius:8px;padding:0.7rem;margin-bottom:0.4rem;font-size:0.6rem;color:#aaa;"><div style="display:flex;justify-content:space-between;"><span><strong>${a.name}</strong> · ${a.userId}</span><span style="color:#555;">${new Date(a.date).toLocaleDateString()}</span></div><div style="margin-top:0.2rem;color:#666;">${a.programs?.join(', ')||''} · ${a.section||''} · ${a.portfolio}</div><button onclick="adminDeleteApp(${designerApplications.length-1-i})" style="background:transparent;border:1px solid rgba(255,80,80,0.15);color:#ff5555;padding:0.15rem 0.4rem;border-radius:4px;cursor:pointer;font-size:0.45rem;margin-top:0.2rem;">Delete</button></div>`).join('');
-            const sl=document.getElementById('adminSubscribersList');
-            if(sl)sl.innerHTML=newsletterSubscribers.length===0?'<div style="color:#555;padding:1rem;">Empty</div>':[...newsletterSubscribers].reverse().map((s,i)=>`<div style="background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.03);border-radius:8px;padding:0.5rem;margin-bottom:0.3rem;font-size:0.55rem;color:#aaa;display:flex;justify-content:space-between;align-items:center;"><span>${s.email} · ${s.plan||'—'} ${premiumUsers.includes(s.email.toLowerCase())?'· <span style="color:#FFD700;">PREMIUM</span>':''}</span><button onclick="adminDeleteSub(${newsletterSubscribers.length-1-i})" style="background:transparent;border:1px solid rgba(255,80,80,0.15);color:#ff5555;padding:0.15rem 0.4rem;border-radius:4px;cursor:pointer;font-size:0.45rem;">Delete</button></div>`).join('');
-        }
-        window.adminDeleteApp=function(i){if(confirm('Delete?')){designerApplications.splice(i,1);saveD();renderAdminPanel();}};
-        window.adminDeleteSub=function(i){if(confirm('Delete?')){newsletterSubscribers.splice(i,1);saveS();renderAdminPanel();}};
-        window.grantSubscription=function(){const email=document.getElementById('grantEmail').value.trim(),plan=document.getElementById('grantPlan').value;if(!email||!email.includes('@'))return;if(!newsletterSubscribers.some(s=>s.email.toLowerCase()===email.toLowerCase())){newsletterSubscribers.push({email,plan,date:new Date().toISOString()});saveS();}if(!premiumUsers.includes(email.toLowerCase())){premiumUsers.push(email.toLowerCase());saveP();}document.getElementById('grantEmail').value='';renderAdminPanel();};
-        window.adminExportAll=function(){const d={date:new Date().toISOString(),designerApplications,newsletterSubscribers,users};const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='vert_export.json';a.click();};
-
         // Tabs
         document.querySelectorAll('.tab-switcher-btn').forEach(tab=>{tab.addEventListener('click',function(){document.querySelectorAll('.tab-switcher-btn').forEach(t=>t.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));const m={all:'tabAll',interviews:'tabInterviews',updates:'tabUpdates',design:'tabDesign'};document.getElementById(m[this.dataset.tab])?.classList.add('active');});});
         document.querySelectorAll('.auth-tab').forEach(tab=>{tab.addEventListener('click',function(){document.querySelectorAll('.auth-tab').forEach(t=>t.classList.remove('active'));this.classList.add('active');document.querySelectorAll('.auth-form').forEach(f=>f.classList.remove('active'));document.getElementById(this.dataset.tab==='login'?'loginForm':'registerFormModal')?.classList.add('active');});});
@@ -1609,12 +1725,12 @@
         document.getElementById('partialCookies')?.addEventListener('click',()=>{setCookie('cookie_consent','partial',365);document.getElementById('cookieBanner').classList.remove('active');});
         if(!getCookie('cookie_consent'))setTimeout(()=>document.getElementById('cookieBanner')?.classList.add('active'),800);
 
-        window.openPrivacyPolicy=function(){document.getElementById('privacyPolicyContent').innerHTML=`<h3>Privacy Policy</h3><p>We collect minimal data for applications. Data stored locally.</p><button class="privacy-policy-close" style="background:transparent;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);padding:0.35rem 1.2rem;border-radius:40px;cursor:pointer;font-size:0.65rem;margin-top:1rem;" onclick="document.getElementById('privacyPolicyModal').classList.remove('active')">Close</button>`;document.getElementById('privacyPolicyModal').classList.add('active');};
+        window.openPrivacyPolicy=function(){document.getElementById('privacyPolicyContent').innerHTML=`<h3 style="font-family:'Clash Display',sans-serif;color:var(--accent);margin-bottom:0.5rem;">Privacy Policy</h3><p style="color:#aaa;font-size:0.85rem;line-height:1.8;">We collect minimal data necessary for processing applications. All data is stored locally in your browser. We do not share your data with third parties. By using this site, you agree to this policy.</p><button class="privacy-policy-close" style="background:transparent;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);padding:0.4rem 1.4rem;border-radius:40px;cursor:pointer;font-size:0.75rem;margin-top:1rem;" onclick="document.getElementById('privacyPolicyModal').classList.remove('active')">Close</button>`;document.getElementById('privacyPolicyModal').classList.add('active');};
 
         document.addEventListener('keydown',e=>{if(e.key==='Escape'){['authModal','newsFullscreenModal','issueFullscreenModal','lightbox','privacyPolicyModal'].forEach(id=>document.getElementById(id)?.classList.remove('active'));document.body.style.overflow='';}});
 
         // Init
-        initHeroSlider();initSectionNav();initAdminTrigger();setLanguage(currentLang);updateAuthUI();renderAllNews();renderIssues();
+        initHeroSlider();initSectionNav();setLanguage(currentLang);updateAuthUI();renderAllNews();renderIssues();
         window.openIssueFullscreen=openIssueFullscreen;
     })();
     </script>
