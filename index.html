@@ -1483,9 +1483,9 @@
         };
 
         const designerFormTexts = {
-            en: { title:"Designer Application", subtitle:"All fields required.", q1:"Full name", q3:"Contact method", contactEmail:"Email", contactTg:"Telegram", contactInst:"Instagram", q4:"Portfolio link", q4hint:"Behance, Dribbble, etc.", q5:"Software", q5hint:"Figma preferred.", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"Other:", q6:"Section", q6options:["General style","Interview layouts","Ad blocks","Any task"], q7:"Consent", q7options:["I consent to data processing."], submitBtn:"Send", success:"Application sent!", error:"Fill all fields.", loginRequired:"Please log in.", loginLink:"Log in" },
-            ru: { title:"Анкета дизайнера", subtitle:"Все поля обязательны.", q1:"Полное имя", q3:"Способ связи", contactEmail:"Почта", contactTg:"Telegram", contactInst:"Instagram", q4:"Портфолио", q4hint:"Behance, Dribbble и т.д.", q5:"Программы", q5hint:"Figma приветствуется.", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"Другое:", q6:"Рубрика", q6options:["Общий стиль","Вёрстка интервью","Рекламные блоки","Любая задача"], q7:"Согласие", q7options:["Я даю согласие на обработку."], submitBtn:"Отправить", success:"Заявка отправлена!", error:"Заполните поля.", loginRequired:"Войдите.", loginLink:"Войти" },
-            zh: { title:"设计师申请", subtitle:"所有字段必填。", q1:"全名", q3:"联系方式", contactEmail:"邮箱", contactTg:"Telegram", contactInst:"Instagram", q4:"作品集", q4hint:"Behance等", q5:"软件", q5hint:"Figma优先。", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"其他:", q6:"板块", q6options:["整体风格","采访版面","广告","任何"], q7:"同意", q7options:["我同意数据处理。"], submitBtn:"发送", success:"已发送！", error:"填写字段。", loginRequired:"请登录。", loginLink:"登录" }
+            en: { title:"Designer Application", subtitle:"All fields required.", q1:"Full name", q3:"Contact method", contactEmail:"Email", contactTg:"Telegram", contactInst:"Instagram", q4:"Portfolio link", q4hint:"Behance, Dribbble, etc.", q5:"Software", q5hint:"Figma preferred.", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"Other:", q6:"Section", q6options:["General style","Interview layouts","Ad blocks","Any task"], q7:"Consent", q7options:["I consent to data processing."], submitBtn:"Send", success:"Application sent!", error:"Fill all fields." },
+            ru: { title:"Анкета дизайнера", subtitle:"Все поля обязательны.", q1:"Полное имя", q3:"Способ связи", contactEmail:"Почта", contactTg:"Telegram", contactInst:"Instagram", q4:"Портфолио", q4hint:"Behance, Dribbble и т.д.", q5:"Программы", q5hint:"Figma приветствуется.", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"Другое:", q6:"Рубрика", q6options:["Общий стиль","Вёрстка интервью","Рекламные блоки","Любая задача"], q7:"Согласие", q7options:["Я даю согласие на обработку."], submitBtn:"Отправить", success:"Заявка отправлена!", error:"Заполните поля." },
+            zh: { title:"设计师申请", subtitle:"所有字段必填。", q1:"全名", q3:"联系方式", contactEmail:"邮箱", contactTg:"Telegram", contactInst:"Instagram", q4:"作品集", q4hint:"Behance等", q5:"软件", q5hint:"Figma优先。", q5options:["Figma","Adobe InDesign","Adobe Photoshop","Adobe Illustrator","Canva"], q5other:"其他:", q6:"板块", q6options:["整体风格","采访版面","广告","任何"], q7:"同意", q7options:["我同意数据处理。"], submitBtn:"发送", success:"已发送！", error:"填写字段。" }
         };
 
         function setCookie(n,v,d){ const e=new Date(); e.setTime(e.getTime()+d*86400000); document.cookie=n+"="+encodeURIComponent(v)+";expires="+e.toUTCString()+";path=/;SameSite=Lax"; }
@@ -1585,10 +1585,10 @@
         function renderAllNews(){renderNewsGrid('newsGrid',newsData);['interviews','updates','design'].forEach((cat,i)=>{renderNewsGrid(['newsGridInterviews','newsGridUpdates','newsGridDesign'][i],newsData.filter(n=>n.category===cat));});}
         function renderIssues(){document.getElementById('issuesGrid').innerHTML=`<div class="issue-card" onclick="openIssueFullscreen()"><div class="issue-cover-large"><img src="${issueData.photos[0]}" loading="lazy"></div><div class="issue-info-mini"><span class="issue-tag-mini">${issueData.tag[currentLang]}</span><span class="issue-date-mini">${issueData.date[currentLang]}</span></div></div>`;}
 
-        // ====== ФОРМА БЕЗ РЕГИСТРАЦИИ ======
+        // ====== ФОРМА ДОСТУПНА ВСЕМ (БЕЗ РЕГИСТРАЦИИ) ======
         function generateDesignerForm(){
             const t=designerFormTexts[currentLang];
-            // Убираем проверку на регистрацию — форма доступна всем
+            // Форма доступна абсолютно всем — никаких проверок на регистрацию!
             return `<div class="designer-application-form" id="designerApplicationForm"><h3>${t.title}</h3><p class="form-subtitle">${t.subtitle}</p>
                 <div class="designer-form-group"><label>${t.q1} <span class="required-star">*</span></label><input type="text" id="designerName"></div>
                 <div class="designer-form-group"><label>${t.q3} <span class="required-star">*</span></label>
@@ -1649,7 +1649,7 @@
             document.getElementById('designerSubmitBtn')?.addEventListener('click',submitDesignerApplication);
         }
 
-        // ====== ОТПРАВКА ФОРМЫ БЕЗ РЕГИСТРАЦИИ ======
+        // ====== ОТПРАВКА ФОРМЫ — РЕГИСТРАЦИЯ НЕ НУЖНА ======
         function submitDesignerApplication(){
             const t=designerFormTexts[currentLang];
             const name=document.getElementById('designerName')?.value.trim();
@@ -1666,8 +1666,8 @@
             const q6=document.querySelector('input[name="q6"]:checked');if(!q6){if(ee){ee.textContent='Select section';ee.style.display='block';}return;}
             const q7=document.querySelector('input[name="q7"]:checked');if(!q7){if(ee){ee.textContent='Confirm consent';ee.style.display='block';}return;}
             
-            // Если пользователь не залогинен, используем "Guest"
-            const userId = currentUser ? currentUser.email : 'Guest';
+            // Если пользователь не залогинен — просто пишем "Guest"
+            const userId = currentUser ? currentUser.email : 'Guest (no registration)';
             const app={name,contacts,portfolio,programs:q5,section:q6.value,userId:userId,date:new Date().toISOString()};
             designerApplications.push(app);saveD();sendToTelegram(app);
             if(se)se.style.display='block';
