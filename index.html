@@ -1122,7 +1122,6 @@
             .logout-btn { padding: 0.3rem 0.8rem; font-size: 0.6rem; }
             .auth-btn { padding: 0.35rem 1.2rem; font-size: 0.65rem; }
             .designer-application-form { padding: 1.2rem; }
-            /* На мобилках чуть меньше */
             .checkbox-item input[type="checkbox"],
             .radio-item input[type="radio"] {
                 width: 20px !important;
@@ -1586,9 +1585,10 @@
         function renderAllNews(){renderNewsGrid('newsGrid',newsData);['interviews','updates','design'].forEach((cat,i)=>{renderNewsGrid(['newsGridInterviews','newsGridUpdates','newsGridDesign'][i],newsData.filter(n=>n.category===cat));});}
         function renderIssues(){document.getElementById('issuesGrid').innerHTML=`<div class="issue-card" onclick="openIssueFullscreen()"><div class="issue-cover-large"><img src="${issueData.photos[0]}" loading="lazy"></div><div class="issue-info-mini"><span class="issue-tag-mini">${issueData.tag[currentLang]}</span><span class="issue-date-mini">${issueData.date[currentLang]}</span></div></div>`;}
 
+        // ====== ФОРМА БЕЗ РЕГИСТРАЦИИ ======
         function generateDesignerForm(){
             const t=designerFormTexts[currentLang];
-            if(!currentUser)return `<div class="designer-application-form"><div style="text-align:center;padding:2rem;color:#666;"><p>${t.loginRequired}</p><span style="display:inline-block;margin-top:0.5rem;color:var(--bg);background:var(--accent);padding:0.45rem 1.4rem;border-radius:40px;cursor:pointer;font-weight:600;font-size:0.8rem;" onclick="document.getElementById('authModal').classList.add('active')">${t.loginLink}</span></div></div>`;
+            // Убираем проверку на регистрацию — форма доступна всем
             return `<div class="designer-application-form" id="designerApplicationForm"><h3>${t.title}</h3><p class="form-subtitle">${t.subtitle}</p>
                 <div class="designer-form-group"><label>${t.q1} <span class="required-star">*</span></label><input type="text" id="designerName"></div>
                 <div class="designer-form-group"><label>${t.q3} <span class="required-star">*</span></label>
@@ -1621,13 +1621,23 @@
         function openNewsFullscreen(id){
             const n=newsData.find(x=>x.id===id);if(!n)return;
             let eh='',fh='',layout='';
-            if(n.hasLink&&n.linkAction==='designerForm'){eh=`<div class="apply-btn" id="openDesignerFormBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg> ${n.linkText[currentLang]}</div>`;fh=`<div id="designerFormContainer" style="display:none;">${generateDesignerForm()}</div>`;}
+            if(n.hasLink&&n.linkAction==='designerForm'){
+                eh=`<div class="apply-btn" id="openDesignerFormBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg> ${n.linkText[currentLang]}</div>`;
+                fh=`<div id="designerFormContainer" style="display:none;">${generateDesignerForm()}</div>`;
+            }
             else if(n.hasLink&&n.linkAction==='openIssue'){eh=`<div class="apply-btn" id="openIssueFromNews">${n.linkText[currentLang]}</div>`;}
             layout=n.useCutoutLayout?`<div class="news-fullscreen-with-cutout"><div class="news-cutout-image"><img src="${n.cutoutImage}" alt=""></div><div class="news-cutout-text"><div class="content-text">${n.fullText[currentLang]}</div>${eh}${fh}</div></div>`:`<div class="news-fullscreen-layout"><div class="news-fullscreen-image"><img src="${n.image}" alt=""></div><div class="news-fullscreen-text"><div class="content-text">${n.fullText[currentLang]}</div>${eh}${fh}</div></div>`;
             const body=document.getElementById('newsFullscreenBody'),modal=document.getElementById('newsFullscreenModal');
             body.innerHTML=`<div class="meta">${n.date?n.date[currentLang]||'':''}</div><h2>${n.title[currentLang]}</h2>${layout}`;
             modal.classList.add('active');document.body.style.overflow='hidden';
-            if(n.hasLink&&n.linkAction==='designerForm'){document.getElementById('openDesignerFormBtn')?.addEventListener('click',function(){const fc=document.getElementById('designerFormContainer');if(fc){fc.style.display='block';fc.scrollIntoView({behavior:'smooth'});}this.style.display='none';initFormHandlers();});}
+            if(n.hasLink&&n.linkAction==='designerForm'){
+                document.getElementById('openDesignerFormBtn')?.addEventListener('click',function(){
+                    const fc=document.getElementById('designerFormContainer');
+                    if(fc){fc.style.display='block';fc.scrollIntoView({behavior:'smooth'});}
+                    this.style.display='none';
+                    initFormHandlers();
+                });
+            }
             if(n.hasLink&&n.linkAction==='openIssue')document.getElementById('openIssueFromNews')?.addEventListener('click',()=>{closeFullscreenModal();setTimeout(openIssueFullscreen,300);});
         }
 
@@ -1639,8 +1649,8 @@
             document.getElementById('designerSubmitBtn')?.addEventListener('click',submitDesignerApplication);
         }
 
+        // ====== ОТПРАВКА ФОРМЫ БЕЗ РЕГИСТРАЦИИ ======
         function submitDesignerApplication(){
-            if(!currentUser)return;
             const t=designerFormTexts[currentLang];
             const name=document.getElementById('designerName')?.value.trim();
             const portfolio=document.getElementById('designerPortfolio')?.value.trim();
@@ -1655,7 +1665,10 @@
             if(!q5.length){if(ee){ee.textContent='Select software';ee.style.display='block';}return;}
             const q6=document.querySelector('input[name="q6"]:checked');if(!q6){if(ee){ee.textContent='Select section';ee.style.display='block';}return;}
             const q7=document.querySelector('input[name="q7"]:checked');if(!q7){if(ee){ee.textContent='Confirm consent';ee.style.display='block';}return;}
-            const app={name,contacts,portfolio,programs:q5,section:q6.value,userId:currentUser.email,date:new Date().toISOString()};
+            
+            // Если пользователь не залогинен, используем "Guest"
+            const userId = currentUser ? currentUser.email : 'Guest';
+            const app={name,contacts,portfolio,programs:q5,section:q6.value,userId:userId,date:new Date().toISOString()};
             designerApplications.push(app);saveD();sendToTelegram(app);
             if(se)se.style.display='block';
             ['designerName','designerPortfolio'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
