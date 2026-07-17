@@ -831,7 +831,7 @@
         .apply-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(204,255,0,0.15); }
         .apply-btn svg { width: 16px; height: 16px; }
 
-        /* ===== КРАСИВЫЕ УВЕДОМЛЕНИЯ ===== */
+        /* УВЕДОМЛЕНИЯ */
         .notification-toast {
             position: fixed;
             top: 80px;
@@ -1209,42 +1209,6 @@
             text-transform: uppercase;
             font-size: 0.8rem;
         }
-        .admin-user-card {
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 8px;
-            padding: 0.7rem;
-            margin-bottom: 0.4rem;
-            font-size: 0.6rem;
-            color: #aaa;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-        }
-        .admin-user-card .user-info { display: flex; flex-direction: column; gap: 0.1rem; }
-        .admin-user-card .user-name { color: #ddd; font-weight: 600; font-size: 0.7rem; }
-        .admin-user-card .user-email { color: #666; font-size: 0.55rem; }
-        .admin-user-card .user-status { font-size: 0.45rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .admin-user-card .user-status.premium { color: #FFD700; }
-        .admin-user-card .user-status.banned { color: #ff5555; }
-        .admin-user-card .user-actions { display: flex; gap: 0.3rem; flex-wrap: wrap; }
-        .admin-user-card .user-actions button {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.4);
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.45rem;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .admin-user-card .user-actions button:hover { border-color: rgba(255,255,255,0.15); color: #ccc; }
-        .admin-user-card .user-actions button.danger:hover { border-color: rgba(255,80,80,0.3); color: #ff5555; }
-        .admin-user-card .user-actions button.success:hover { border-color: rgba(204,255,0,0.3); color: var(--accent); }
 
         /* АДАПТИВ */
         @media (max-width: 768px) {
@@ -1521,6 +1485,7 @@
 
     <script>
     (function() {
+        // ===== КОНФИГ =====
         const BOT_TOKEN = '8427045055:AAFSAmB8yuLXYghWF58NjKn_x-OZWFUTc_A';
         const CHAT_ID = '2126885119';
         const ADMIN_PASSWORD = 'VERTAdmin2081!';
@@ -1529,6 +1494,7 @@
         let currentSlide = 0, heroInterval;
         let bannedUsers = [];
 
+        // ===== ДАННЫЕ =====
         const issueData = {
             name: { en: "Selina Tan", ru: "Селина Тан", zh: "塞琳娜·谭" },
             date: { en: "March 2026", ru: "Март 2026", zh: "2026年3月" },
@@ -1808,26 +1774,56 @@
         function isValidSocial(str) { if (str.startsWith('@')) return true; try { const url = new URL(str); return url.protocol === 'http:' || url.protocol === 'https:'; } catch { return false; } }
         function isBanned(email) { return bannedUsers.includes(email.toLowerCase()); }
 
-        // ===== ОТПРАВКА В TELEGRAM =====
+        // ===== ОТПРАВКА В TELEGRAM (С ФОРМАТИРОВАНИЕМ ДЛЯ ТЕЛЕФОНА) =====
         function sendToTelegram(type, data){
             if(window.location.protocol==='file:')return Promise.resolve({ok:false});
-            let m = '<b>' + type + '</b>';
+            
+            let m = '🔔 <b>' + type + '</b>\n';
+            m += '━' + '━'.repeat(20) + '\n';
+            
             for (const [key, value] of Object.entries(data)) {
-                if (value && value !== '—') {
-                    m += '\n<b>' + key + ':</b> ' + value;
+                if (value && value !== '—' && value !== '') {
+                    let cleanKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    let cleanValue = String(value).substring(0, 500);
+                    m += '▫️ <b>' + cleanKey + ':</b> ' + cleanValue + '\n';
                 }
             }
-            m += '\n\n📅 ' + new Date().toLocaleString();
-            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:m,parse_mode:'HTML'})}).then(r=>r.json()).catch(()=>null);
+            
+            m += '━' + '━'.repeat(20) + '\n';
+            m += '📅 ' + new Date().toLocaleString();
+            
+            // Отправляем с parse_mode HTML
+            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                    chat_id:CHAT_ID,
+                    text:m,
+                    parse_mode:'HTML',
+                    disable_web_page_preview:true
+                })
+            }).then(r=>r.json()).catch(()=>null);
         }
 
         function sendUserToTelegram(action, user){
-            let m = '<b>👤 USER ' + action.toUpperCase() + '</b>';
-            m += '\n<b>Name:</b> ' + user.name;
-            m += '\n<b>Email:</b> ' + user.email;
-            m += '\n<b>Date:</b> ' + new Date(user.date || Date.now()).toLocaleString();
-            m += '\n\n📅 ' + new Date().toLocaleString();
-            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:m,parse_mode:'HTML'})}).then(r=>r.json()).catch(()=>null);
+            let m = '👤 <b>USER ' + action.toUpperCase() + '</b>\n';
+            m += '━' + '━'.repeat(20) + '\n';
+            m += '▫️ <b>Name:</b> ' + user.name + '\n';
+            m += '▫️ <b>Email:</b> ' + user.email + '\n';
+            m += '▫️ <b>Date:</b> ' + new Date(user.date || Date.now()).toLocaleString() + '\n';
+            m += '━' + '━'.repeat(20) + '\n';
+            m += '📅 ' + new Date().toLocaleString();
+            
+            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                    chat_id:CHAT_ID,
+                    text:m,
+                    parse_mode:'HTML',
+                    disable_web_page_preview:true
+                })
+            }).then(r=>r.json()).catch(()=>null);
         }
 
         // ===== АВТОРИЗАЦИЯ =====
@@ -1854,21 +1850,16 @@
             }
         }
 
-        // ===== КРАСИВОЕ УВЕДОМЛЕНИЕ =====
-        function showNotification(title, text, type = 'success') {
-            const container = document.getElementById('notificationContainer');
-            if (!container) {
+        // ===== УВЕДОМЛЕНИЯ =====
+        function showNotification(title, text) {
+            const container = document.getElementById('notificationContainer') || (() => {
                 const c = document.createElement('div');
                 c.id = 'notificationContainer';
-                c.style.position = 'fixed';
-                c.style.top = '80px';
-                c.style.left = '50%';
-                c.style.transform = 'translateX(-50%)';
-                c.style.zIndex = '4500';
-                c.style.pointerEvents = 'none';
+                c.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:4500;pointer-events:none;width:100%;display:flex;flex-direction:column;align-items:center;gap:0.5rem;';
                 document.body.appendChild(c);
-            }
-            const c = document.getElementById('notificationContainer');
+                return c;
+            })();
+            
             const toast = document.createElement('div');
             toast.className = 'notification-toast';
             toast.innerHTML = `
@@ -1881,7 +1872,7 @@
                 </div>
                 <button class="notif-close" onclick="this.closest('.notification-toast').remove()">✕</button>
             `;
-            c.appendChild(toast);
+            container.appendChild(toast);
             setTimeout(() => { toast.classList.add('show'); }, 10);
             setTimeout(() => {
                 toast.classList.remove('show');
@@ -1994,7 +1985,7 @@
                 <div class="model-form-error" id="modelFormError">${t.error}</div></div>`;
         }
 
-        // ===== ВАЛИДАЦИЯ (oninput) - числа НЕ подсвечиваем! =====
+        // ===== ВАЛИДАЦИЯ (oninput) =====
         window.validateLatin = function(el) {
             const val = el.value;
             if (val && !/^[a-zA-Z\s\-]+$/.test(val) && !/^[\d\s\-]+$/.test(val)) {
@@ -2005,7 +1996,7 @@
                 el.title = '';
             }
         };
-        // Для полей, где нужны только латинские буквы (имя, город, стиль)
+
         window.validateLatinStrict = function(el) {
             const val = el.value;
             if (val && !/^[a-zA-Z\s\-]+$/.test(val)) {
@@ -2067,7 +2058,7 @@
             if(cb && f){f.classList.toggle('active',cb.checked);if(!cb.checked){const i=f.querySelector('input');if(i)i.value='';}}
         };
 
-        // ===== ОТКРЫТИЕ НОВОСТЕЙ С ФОРМОЙ =====
+        // ===== ОТКРЫТИЕ НОВОСТЕЙ =====
         function openNewsFullscreen(id){
             const n=newsData.find(x=>x.id===id);if(!n)return;
             let eh='',fh='',layout='';
@@ -2106,7 +2097,6 @@
             if(n.hasLink && n.linkAction==='openIssue')document.getElementById('openIssueFromNews')?.addEventListener('click',()=>{closeFullscreenModal();setTimeout(openIssueFullscreen,300);});
         }
 
-        // ===== ОТКРЫТИЕ ВЫПУСКА =====
         function openIssueFullscreen(data=issueData){
             let ph='';for(let i=0;i<data.photos.length;i+=2)ph+=`<div class="issue-page-spread"><div class="issue-page" onclick="openLightbox('${data.photos[i]}')"><img src="${data.photos[i]}" loading="lazy"></div>${data.photos[i+1]?`<div class="issue-page" onclick="openLightbox('${data.photos[i+1]}')"><img src="${data.photos[i+1]}" loading="lazy"></div>`:''}</div>`;
             const body=document.getElementById('issueFullscreenBody'),modal=document.getElementById('issueFullscreenModal');
@@ -2141,13 +2131,11 @@
         }
 
         function initModelFormHandlers(){
-            // Для полей с числами (возраст, рост, объемы) - используем validateLatin (разрешает числа)
             const numberFields = ['modelAge', 'modelHeight', 'modelChest', 'modelWaist', 'modelHips'];
             numberFields.forEach(id => {
                 const el = document.getElementById(id);
                 if(el) el.addEventListener('input', function(){ validateLatin(this); });
             });
-            // Для имени и города - строгая латиница
             document.getElementById('modelName')?.addEventListener('input', function(){ validateLatinStrict(this); });
             document.getElementById('modelCity')?.addEventListener('input', function(){ validateLatinStrict(this); });
             document.getElementById('modelClothing')?.addEventListener('input', function(){ validateLatinStrict(this); });
@@ -2203,7 +2191,21 @@
 
             const userId = currentUser ? currentUser.email : 'Guest';
             const app={name,contacts,portfolio,programs:q5,section:q6.value,userId,date:new Date().toISOString()};
-            designerApplications.push(app);saveD();sendToTelegram('🎨 DESIGNER APPLICATION', app);
+            designerApplications.push(app);saveD();
+            
+            // Отправляем в Telegram с правильным форматированием
+            const tgData = {
+                'Name': name,
+                'Email': contacts.email || '—',
+                'Telegram': contacts.tg || '—',
+                'Instagram': contacts.inst || '—',
+                'Portfolio': portfolio,
+                'Programs': q5.join(', '),
+                'Section': q6.value,
+                'User ID': userId
+            };
+            sendToTelegram('🎨 DESIGNER APPLICATION', tgData);
+            
             if(se)se.style.display='block';
             document.querySelectorAll('#designerApplicationForm input, #designerApplicationForm textarea').forEach(el=>{if(el.type!=='checkbox'&&el.type!=='radio')el.value='';});
             document.querySelectorAll('#designerApplicationForm input[type="checkbox"], #designerApplicationForm input[type="radio"]').forEach(r=>r.checked=false);
@@ -2269,7 +2271,27 @@
                 userId: userId,
                 date: new Date().toISOString()
             };
-            modelApplications.push(app);saveM();sendToTelegram('📸 MODEL APPLICATION', app);
+            modelApplications.push(app);saveM();
+            
+            // Отправляем в Telegram с правильным форматированием
+            const tgData = {
+                'Name': fields.name,
+                'Age': fields.age,
+                'City': fields.city,
+                'Social': fields.social,
+                'Phone': fields.phone,
+                'Height': fields.height + ' cm',
+                'Chest': fields.chest + ' cm',
+                'Waist': fields.waist + ' cm',
+                'Hips': fields.hips + ' cm',
+                'Clothing': fields.clothing,
+                'Format': format.value,
+                'Photo Link': fields.photoLink,
+                'About': fields.about.substring(0, 200) + (fields.about.length > 200 ? '...' : ''),
+                'User ID': userId
+            };
+            sendToTelegram('📸 MODEL APPLICATION', tgData);
+            
             if(se)se.style.display='block';
             document.querySelectorAll('#modelApplicationForm input, #modelApplicationForm textarea').forEach(el=>{if(el.type!=='checkbox'&&el.type!=='radio')el.value='';});
             document.querySelectorAll('#modelApplicationForm input[type="radio"]').forEach(r=>r.checked=false);
@@ -2359,20 +2381,20 @@
 
             const ul=document.getElementById('adminUsersList');
             if(ul)ul.innerHTML=users.length===0?'<div style="color:#555;padding:1rem;">No users</div>':
-                users.map((u,i)=>`<div class="admin-user-card">
-                    <div class="user-info">
-                        <div class="user-name">${u.name}</div>
-                        <div class="user-email">${u.email}</div>
-                        <div class="user-status ${u.premium?'premium':''} ${isBanned(u.email)?'banned':''}">
+                users.map((u,i)=>`<div style="background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.03);border-radius:8px;padding:0.7rem;margin-bottom:0.4rem;font-size:0.6rem;color:#aaa;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.3rem;">
+                    <div style="display:flex;flex-direction:column;gap:0.1rem;">
+                        <div style="color:#ddd;font-weight:600;font-size:0.7rem;">${u.name}</div>
+                        <div style="color:#666;font-size:0.55rem;">${u.email}</div>
+                        <div style="font-size:0.45rem;text-transform:uppercase;letter-spacing:0.05em;${u.premium?'color:#FFD700;':''}${isBanned(u.email)?'color:#ff5555;':''}">
                             ${isBanned(u.email)?'🔴 BANNED':u.premium?'⭐ PREMIUM':'👤 User'}
                             · ${new Date(u.date||Date.now()).toLocaleDateString()}
                         </div>
                     </div>
-                    <div class="user-actions">
-                        ${!u.premium && !isBanned(u.email) ? `<button class="success" onclick="grantPremium('${u.email}')">⭐ Premium</button>` : ''}
-                        ${u.premium ? `<button onclick="removePremium('${u.email}')">Remove ⭐</button>` : ''}
-                        ${!isBanned(u.email) ? `<button class="danger" onclick="banUser('${u.email}')">🔨 Ban</button>` : `<button class="success" onclick="unbanUser('${u.email}')">✅ Unban</button>`}
-                        <button class="danger" onclick="deleteUser('${u.email}')">🗑 Delete</button>
+                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap;">
+                        ${!u.premium && !isBanned(u.email) ? `<button onclick="grantPremium('${u.email}')" style="background:transparent;border:1px solid rgba(204,255,0,0.2);color:var(--accent);padding:0.15rem 0.5rem;border-radius:4px;cursor:pointer;font-size:0.45rem;text-transform:uppercase;">⭐</button>` : ''}
+                        ${u.premium ? `<button onclick="removePremium('${u.email}')" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);padding:0.15rem 0.5rem;border-radius:4px;cursor:pointer;font-size:0.45rem;text-transform:uppercase;">Remove</button>` : ''}
+                        ${!isBanned(u.email) ? `<button onclick="banUser('${u.email}')" style="background:transparent;border:1px solid rgba(255,80,80,0.15);color:#ff5555;padding:0.15rem 0.5rem;border-radius:4px;cursor:pointer;font-size:0.45rem;text-transform:uppercase;">🔨</button>` : `<button onclick="unbanUser('${u.email}')" style="background:transparent;border:1px solid rgba(204,255,0,0.15);color:var(--accent);padding:0.15rem 0.5rem;border-radius:4px;cursor:pointer;font-size:0.45rem;text-transform:uppercase;">✅</button>`}
+                        <button onclick="deleteUser('${u.email}')" style="background:transparent;border:1px solid rgba(255,80,80,0.15);color:#ff5555;padding:0.15rem 0.5rem;border-radius:4px;cursor:pointer;font-size:0.45rem;text-transform:uppercase;">🗑</button>
                     </div>
                 </div>`).join('');
 
